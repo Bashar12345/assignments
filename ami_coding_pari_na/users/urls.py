@@ -15,5 +15,6 @@ from users import views as users_view
 urlpatterns = [
     path('login/', users_view.login_page, name='user_login'),
     path('registration/',users_view.registration_page, name='user_reg'),
+    path("logout", users_view.logout, name= "logout"),
     
 ]
