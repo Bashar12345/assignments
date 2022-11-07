@@ -1,0 +1,2 @@
+# assignments
+job hunting exercise
