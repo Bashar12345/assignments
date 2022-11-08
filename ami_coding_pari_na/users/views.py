@@ -14,7 +14,7 @@ def registration_page(request):
 			user = form.save()
 			login(request, user)
 			messages.success(request, "Registration successful." )
-			return redirect("home")
+			return redirect("/")
 		messages.error(request, "Unsuccessful registration. Invalid information.")
 	form = NewUserForm()
     
@@ -25,26 +25,29 @@ def registration_page(request):
 def login_page(request):
     title='login'
 
-    return render(request, 'users/login.html',{'title':title})
+    
 def login_page(request):
-	if request.method == "POST":
-		form = AuthenticationForm(request, data=request.POST)
-		if form.is_valid():
-			username = form.cleaned_data.get('username')
-			password = form.cleaned_data.get('password')
-			user = authenticate(username=username, password=password)
-			if user is not None:
-				login(request, user)
-				messages.info(request, f"You are now logged in as {username}.")
-				return redirect("home")
-			else:
-				messages.error(request,"Invalid username or password.")
-		else:
-			messages.error(request,"Invalid username or password.")
-	form = AuthenticationForm()
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f"You are now logged in as {username}.")
+                return redirect("/")
+            else:
+                messages.error(request,"Invalid username or password.")
+        else:
+            messages.error(request,"Invalid username or password.")
+    form = AuthenticationForm()
+    return render(request, 'users/login.html',{'login_form':form})
 
 
-def logout(request):
-	logout(request)
-	messages.info(request, "You have successfully logged out.") 
-	return redirect("home")
+def logout_request(request):
+    print('logged out')
+    logout(request)
+    
+    messages.info(request, "You have successfully logged out.") 
+    return redirect("/")
