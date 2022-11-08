@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from . models import comma_separated_integers
-
+from django.contrib.auth.models import User as DefaultDjUser
+from django.utils import timezone
 # Create your views here.
 
 def home_page(request):
@@ -17,7 +18,13 @@ def home_page(request):
 
 
         #saving the data into database 
-        comma_list.list_itself = sorted_the_list
+        print(request.user)
+        comma_list.user =request.user
+        comma_list.input_values = str(sorted_the_list)
+        now_time=str(timezone.now())
+        end_date, ext = now_time.split(' ')
+        #print(end_date)
+        comma_list.timestamp = end_date
         comma_list.save()
 
         #returning the result

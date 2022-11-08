@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'khoj_the_search.apps.KhojTheSearchConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [

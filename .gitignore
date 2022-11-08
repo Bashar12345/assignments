@@ -18,3 +18,9 @@ ami_coding_pari_na/users/__pycache__/forms.cpython-38.pyc
 ami_coding_pari_na/users/__pycache__/models.cpython-38.pyc
 ami_coding_pari_na/users/__pycache__/admin.cpython-38.pyc
 ami_coding_pari_na/users/__pycache__/__init__.cpython-38.pyc
+ami_coding_pari_na/rest_api/urls.py
+ami_coding_pari_na/rest_api/__pycache__/views.cpython-38.pyc
+ami_coding_pari_na/rest_api/__pycache__/urls.cpython-38.pyc
+ami_coding_pari_na/rest_api/__pycache__/serializers.cpython-38.pyc
+ami_coding_pari_na/rest_api/__pycache__/__init__.cpython-38.pyc
+ami_coding_pari_na/khoj_the_search/migrations/__pycache__/0001_initial.cpython-38.pyc

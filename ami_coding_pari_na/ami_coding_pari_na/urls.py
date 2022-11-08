@@ -18,6 +18,7 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('rest_api.urls')),
     path('', include('khoj_the_search.urls')),
     path('authentication/', include('users.urls')),
     
