@@ -17,6 +17,9 @@
 {% endblock header %}
 
 {% block body %}
+
+
+{% if user.is_authenticated %}
 <div onload='document.InsertForm.string_in.focus()'>
 
     <div class="container mt-lg-5">
@@ -55,6 +58,16 @@
     </div>
 
 </div>
+
+
+{% else %}
+<div class="container row text-warning text-center">
+    <p > Login First</p>
+</div>
+{% endif %}
+
+
+
 {% endblock body %}
 
 <script type="text/javascript">
