@@ -8,7 +8,7 @@ from rest_framework import permissions
 from . serializers import UserSerializer, comma_separated_integers_Serializer
 from rest_framework.views import APIView 
 from rest_framework import generics
-from django_filters.rest_framework import DjangoFilterBackend
+
 
 
 class UserViewSet(viewsets.ModelViewSet):
