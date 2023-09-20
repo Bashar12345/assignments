@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+
+
+/* default styles */
+
+html {
+  margin-inline: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
+  header {
+    background-color: lightblue;
+  }
+  
+  h1, h2 {
+    margin: 0;
+    padding: 15px 0;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .navbar-header {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+  }
+  
+  .navbar-toggle {
+    display: none;
+  }
+  
+  nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  nav li {
+    display: inline-block;
+  }
+  
+  nav a {
+    display: block;
+    padding: 15px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    background-color: #008CBA;
+  }
+  
+  .content {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+  }
+  
+  .sidebar-left,
+  .sidebar-right {
+    position: fixed;
+    top: 90px;
+    bottom: 0;
+    width: 0;
+    padding: 60px 0 0;
+    background-color: lightgray;
+    z-index: 999;
+    transition: width 0.3s ease;
+  }
+  
+  .sidebar-left ul,
+  .sidebar-right ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .sidebar-left li,
+  .sidebar-right li {
+    margin: 10px 0;
+  }
+  
+  .burger {
+    background-color: lightblue;
+    border: none;
+    color: white;
+    font-size: 20px;
+    padding: 20px 10px;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .menu-text {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .burger-icon {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    vertical-align: middle;
+  }
+  
+  .burger-icon span {
+    display: block;
+    background-color: white;
+    width: 100%;
+    height: 2px;
+    margin-top: 3px;
+    border-radius: 1px;
+  }
+  
+  .active-left,
+  .active-right {
+    width: 250px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    nav ul {
+      display: none;
+    }
+    
+    .navbar-toggle {
+      display: block;
+      border: none;
+      margin-right: 10px;
+    }
+    
+    .burger {
+      display: block;
+    }
+    
+    .sidebar-left,
+    .sidebar-right {
+      padding-top: 50px;
+      overflow-y: auto;
+    }
+  
+    .active-left,
+    .active-right {
+      width: 80%;
+    }
+  
+    .sidebar-left.active-left,
+    .sidebar-right.active-right {
+      width: 100%;
+    }
+  }

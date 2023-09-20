@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Homepage</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" onclick="openRightSidebar()">
+            <span class="sr-only">Toggle Sidebar</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span> 
+          </button>
+
+
+          <!-- <ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Blog</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul> -->
+        </div>
+
+        <button type="button" class="burger" onclick="openLeftSidebar()">
+          <span class="menu-text">Menu</span>
+          <span class="burger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="content">
+      <h2>Welcome to my homepage</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </section>
+    <aside class="sidebar-left">
+      <ul>
+        <li><a href="#">Link 1</a></li>
+        <li> <a href="#">Home</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li> <a href="#">Home</a></li>
+        <li><a href="#">Link 5</a></li>
+      </ul>
+    </aside>
+    <aside class="sidebar-right">
+      <ul>
+        <li><a href="#">Link 1</a></li>
+        <li><a href="#">Link 2</a></li>
+        <li><a href="#">Link 3</a></li>
+        <li><a href="#">Link 4</a></li>
+        <li><a href="#">Link 5</a></li>
+      </ul>
+    </aside>
+  </main>
+  <!-- <script src="script.js"></script> -->
+
+    <script>
+
+        function openLeftSidebar() {
+            var leftSidebar = document.querySelector('.sidebar-left');
+            var burger = document.querySelector('.burger');
+            leftSidebar.classList.toggle('active-left');
+            burger.classList.toggle('active');
+          }
+          
+          function openRightSidebar() {
+            var rightSidebar = document.querySelector('.sidebar-right');
+            var toggle = document.querySelector('.navbar-toggle');
+            rightSidebar.classList.toggle('active-right');
+            toggle.classList.toggle('active');
+          }
+
+
+
+    </script>
+</body>
+
+
+        <!-- function openLeftSidebar() {
+            var leftSidebar = document.querySelector(".sidebar-left");
+            var burger = document.querySelector(".burger.posi-left");
+            leftSidebar.classList.toggle("active-left");
+            burger.classList.toggle("active");
+        }
+
+        function openRightSidebar() {
+            var rightSidebar = document.querySelector(".sidebar-right");
+            var burger = document.querySelector(".burger.posi-right");
+            rightSidebar.classList.toggle("active-right");
+            burger.classList.toggle("active");
+        } -->
+
+
+<!-- const burger = document.querySelector('.burger');
+		const sidebar = document.querySelector('.sidebar');
+
+		burger.addEventListener('click', () => {
+			sidebar.classList.toggle('active');
+			burger.classList.toggle('active');
+		}); -->
+
+</html>

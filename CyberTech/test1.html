@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/test1.css">
+	<title>Homepage</title>
+
+</head>
+
+<body>
+
+
+
+	<nav class="navbar">
+		<ul>
+			<li><a href="#">Home</a></li>
+			<li><a href="#">About</a></li>
+			<li><a href="#">Blog</a></li>
+			<li><a href="#">Contact</a></li>
+		</ul>
+	</nav>
+
+
+
+	<aside class="sidebar">
+		<h2>Sidebar</h2>
+		<ul>
+			<li><a href="#">Link 1</a></li>
+			<li><a href="#">Link 2</a></li>
+			<li><a href="#">Link 3</a></li>
+			<li><a href="#">Link 4</a></li>
+			<li><a href="#">Link 5</a></li>
+		</ul>
+	</aside>
+
+
+	<main class="content">
+		<h1>Welcome to My Homepage</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+			magna aliqua.</p>
+	</main>
+
+	<div class="burger posi-left">
+		<div class="menu-text"> Menu</div>
+		<div class="burger-icon">
+			<div class="line1"></div>
+			<div class="line2"></div>
+			<div class="line3"></div>
+		</div>
+	</div>
+
+	<!-- <div class="burger">
+    <div class="menu-text"> Menu</div>
+    <div class="burger-icon">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+</div> -->
+
+
+	<script>
+		const burger = document.querySelector('.burger');
+		const sidebar = document.querySelector('.sidebar');
+
+		burger.addEventListener('click', () => {
+			sidebar.classList.toggle('active');
+			burger.classList.toggle('active');
+		});
+	</script>
+</body>
+
+</html>
