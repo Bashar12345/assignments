@@ -1,0 +1,70 @@
+{% extends 'base.html' %} 
+{% block title %}{{ task.title }}{% endblock %} 
+{% block content %}
+<h1>{{ task.title }}</h1>
+<p>{{ task.description }}</p>
+<p>Priority: {{ task.priority }}</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2>Photos</h2>
+    {% if photos %}
+    <div class="row">
+      {% for photo in photos %}
+      <div class="col-md-6">
+        <div class="card mb-3">
+          <img
+            src="{{ photo.image.url }}"
+            class="card-img-top"
+            alt="{{ photo.caption }}"
+          />
+          <div class="card-body">
+            <p class="card-text">{{ photo.caption }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No photos available.</p>
+    {% endif %}
+
+    <a href="{% url 'photo_create' task.id %}" class="btn btn-primary"
+      >Add Photo</a
+    >
+  </div>
+  <div class="col-md-6">
+    <h2>Tags</h2>
+    {% if task_tags %}
+    <ul>
+      {% for task_tag in task_tags %}
+      <li>{{ task_tag.tag }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No tags available.</p>
+    {% endif %}
+
+    <a href="{% url 'task_tag_create' task.id %}" class="btn btn-primary"
+      >Add Tag</a
+    >
+  </div>
+</div>
+
+<h2>Comments</h2>
+{% if task_comments %}
+<ul>
+  {% for task_comment in task_comments %}
+  <li>{{ task_comment.commenter }} said: {{ task_comment.content }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No comments available.</p>
+{% endif %}
+
+<h3>Add Comment</h3>
+<form method="post" action="{% url 'task_comment_create' task.id %}">
+  {% csrf_token %} {{ form.as_p }}
+  <button type="submit" class="btn btn-primary">Add</button>
+</form>
+{% endblock %}
