@@ -1,0 +1,57 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ project.name }}</h2>
+    <p>{{ project.description }}</p>
+
+    <div class=" mt-2 mb-4">
+        <a class="btn btn-primary mt-2" href="{% url 'task_create' project.pk %}">
+            <i class="fas fa-plus"></i> Add Task
+        </a>
+        <a class="btn btn-success mt-2" href="{% url 'assign_users' pk=project.pk %}">
+            <i class="fas fa-user-plus"></i> Assign Users to Project
+        </a>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in project.task_set.all %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>
+                    {% for member in task.assigned_to.all %}
+                        {{ member.username }}{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                        No assigned users
+                    {% endfor %}
+                </td>
+                
+                <td>{{ task.status }}</td>
+                <td>
+                    <a href="{% url 'update_task_status' project.pk task.pk %}" class="btn btn-sm btn-info">
+                        <i class="fas fa-edit"></i> Update Status
+                    </a>
+                    <!-- <a href="{% url 'assign_task_users' project.pk task.pk %}" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-users"></i> Assign Users
+                    </a> -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

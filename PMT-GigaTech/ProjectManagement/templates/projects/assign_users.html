@@ -1,0 +1,22 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}Assign Users to Project{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Assign Users to Project: {{ project.name }}</h2>
+
+    <form method="POST" action="{% url 'assign_users' project.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.members.label_tag }}  <!-- Label for the members field -->
+            <div class="col-md-6 col-lg-4">  <!-- Responsive columns -->
+                {{ form.members }}  <!-- Form field rendered with crispy forms -->
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'project_detail' project.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

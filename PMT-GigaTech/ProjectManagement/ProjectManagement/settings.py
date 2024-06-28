@@ -11,22 +11,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-bj^m&4w#7%0ifbwizoz1t%%-%j2dajg=dyc8=f%5=t^mw8(^40'
+SECRET_KEY = 'django-insecure-k@k9y*m^y@e8fgrv_arqn9rwr$3=ff5sc%zpo51p56*ptneq#q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,8 +41,6 @@ INSTALLED_APPS = [
     'projects',
 ]
 
-
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -55,12 +53,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ProjectManagement.urls'
 
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,8 +68,6 @@ TEMPLATES = [
         },
     },
 ]
-
-
 
 WSGI_APPLICATION = 'ProjectManagement.wsgi.application'
 
@@ -87,17 +81,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'project_management',
-#         'USER': 'project_user',
-#         'PASSWORD': 'your_password',
-#         'HOST': 'localhost',  # Or the IP address of your MySQL server
-#         'PORT': '3306',       # Default MySQL port
-#     }
-# }
 
 
 # Password validation

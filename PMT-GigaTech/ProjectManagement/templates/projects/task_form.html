@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+
+{% block title %}{{ project.name }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{% if task.pk %}Update Task{% else %}Create Task{% endif %}</h2>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">{% if task.pk %}Update{% else %}Create{% endif %} Task</button>
+        <a href="{% url 'project_detail' project.pk %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
+

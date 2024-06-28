@@ -1,5 +1,3 @@
-<!-- /home/b/Desktop/assignments/PMT-GigaTech/ProjectManagement/templates/base_generic.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,13 +6,26 @@
     <title>{% block title %}Project Management Tool{% endblock %}</title>
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+ <!-- Include Font Awesome for icons -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
-    <!-- Include any necessary CSS files -->
+    <!-- Custom CSS to make footer sticky -->
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex: 1;
+        }
+    </style>
     
     {% block extra_css %}{% endblock %}
 </head>
-<body>
-   
+<body class="container">
     <header>
         <!-- Header content here -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,7 +36,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <!-- <a class="nav-link" href="{% url 'project_list' %}">Projects</a> -->
+                        <a class="nav-link" href="{% url 'project_list' %}">Projects</a>
                     </li>
                     <!-- Add more navigation links as needed -->
                 </ul>
@@ -35,10 +46,10 @@
 
     <main class="container mt-4">
         {% block content %}
-        {% endblock %}
+        {% endblock content %}
     </main>
 
-    <footer class="text-center mt-4">
+    <footer class="text-center mt-4 bg-light py-3">
         <p>&copy; 2024 Project Management Tool</p>
     </footer>
 
@@ -47,8 +58,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- Include any necessary JavaScript files -->
-  
     {% block extra_js %}{% endblock %}
 </body>
 </html>
