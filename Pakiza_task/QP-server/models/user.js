@@ -1,15 +1,16 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  first_name: { type: String, required: true },
+  last_name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  dateOfBirth: { type: Date, required: true },
-  phoneNumber: { type: String, required: true },
-  gender: { type: String, required: true }
+  phone: { type: String },
+  user_role: { type: String, default: "1" },
+  gender: { type: String },
+  day: { type: Number }, // Added day, month, year fields
+  month: { type: Number },
+  year: { type: Number },
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = User;
+module.exports = mongoose.model("User", userSchema);

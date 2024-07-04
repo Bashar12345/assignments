@@ -11,8 +11,13 @@ import {
   MenuItem,
   InputAdornment,
 } from "@mui/material";
+import { toast } from "react-toastify";
+import { MuiTelInput } from "mui-tel-input";
+import axiosInstance from "../api/apiQueries";
+import { useAuth } from '../context/AuthContext'; 
 
 const Register = () => {
+  const { register } = useAuth();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -120,6 +125,10 @@ const Register = () => {
     }));
   };
 
+  const handlePhoneChange = (value) => {
+    setFormData({ ...formData, phoneNumber: value });
+  };
+
   //   const handlePhoneChange = (value) => {
   //     setFormData((prevState) => ({
   //       ...prevState,
@@ -127,29 +136,34 @@ const Register = () => {
   //     }));
   //   };
 
-  const handleRegister = () => {
-    // Combine day, month, and year into dateOfBirth
-    const { day, month, year } = formData;
-    const dateOfBirth = `${year}-${String(month).padStart(2, "0")}-${String(
-      day
-    ).padStart(2, "0")}`;
-    const updatedFormData = { ...formData, dateOfBirth };
+  const handleRegister = async () => {
+    if (!validateForm()) {
+      toast.error("Form has errors. Please correct them before submitting.");
+      return;
+    }
 
-    // Perform registration logic here with updatedFormData
-    console.log(updatedFormData);
+    try {
+      // const { day, month, year, ...rest } = formData;
+      // const dateOfBirth = `${year}-${String(month).padStart(2, "0")}-${String(
+      //   day
+      // ).padStart(2, "0")}`;
+      // // const updatedFormData = { ...rest, dateOfBirth };
 
-    const isValid = validateForm();
-    console.log(isValid);
-    if (isValid) {
-      // Perform registration logic here with formData
-      console.log(formData);
+      await register(formData);
 
-      // Clear the form after successful registration
-      clearForm(); // Assuming you have a function to clear the form data
+      // const response = await axiosInstance.post(
+      //   "/users/register",
+      //   updatedFormData
+      // );
+
+      // console.log("Registration successful:", response.data);
+
+      clearForm();
 
       console.log("Form submitted successfully. Form data cleared.");
-    } else {
-      console.log("Form has errors. Please correct them.");
+    } catch (error) {
+      console.error("Registration error:", error);
+      toast.error(error.response?.data?.message || "Registration failed.");
     }
   };
 
@@ -409,20 +423,20 @@ const Register = () => {
                     />
                   </Grid>
                 </Grid>
-                <TextField
+                <MuiTelInput
                   label="Phone Number"
                   type="tel"
                   name="phoneNumber"
                   value={formData.phoneNumber}
-                  onChange={handleChange}
+                  onChange={handlePhoneChange}
                   fullWidth
                   margin="normal"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">+880</InputAdornment>
-                    ),
-                    sx: { fontFamily: "Manrope" }, // Optional styling for input
-                  }}
+                  // InputProps={{
+                  //   startAdornment: (
+                  //     <InputAdornment position="start">+880</InputAdornment>
+                  //   ),
+                  //   sx: { fontFamily: "Manrope" }, // Optional styling for input
+                  // }}
                   InputLabelProps={{
                     sx: { fontFamily: "Manrope" }, // Optional styling for label
                   }}
@@ -456,9 +470,9 @@ const Register = () => {
                     sx: { fontFamily: "Manrope" },
                   }}
                 >
-                  <MenuItem value="male">Male</MenuItem>
-                  <MenuItem value="female">Female</MenuItem>
-                  <MenuItem value="other">Other</MenuItem>
+                  <MenuItem value="65018b21577b4590853ef574">Male</MenuItem>
+                  <MenuItem value="2">Female</MenuItem>
+                  <MenuItem value="000">Other</MenuItem>
                 </TextField>
                 <FormControlLabel
                   control={
