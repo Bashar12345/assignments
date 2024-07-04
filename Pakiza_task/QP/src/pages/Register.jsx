@@ -174,252 +174,261 @@ const Register = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        minHeight: "100vh",
-        backgroundColor: "#012F41",
-        padding: "20px",
-        boxSizing: "border-box",
-      }}
-    >
-      <Grid
-        container
-        spacing={2}
-        justifyContent="center"
-        alignItems="center"
-        sx={{ width: "100%" }}
-      >
-        <Grid item xs={12} sm={8}>
-          <Box
-            sx={{
-              marginTop: { xs: "20px", sm: "40px" },
-              padding: { xs: "10px", sm: "40px" },
-            }}
-          >
-            <Typography
-              variant="h2"
-              component="h1"
-              color="#fff"
-              gutterBottom
-              sx={{
-                fontFamily: "Inter",
-                fontWeight: "600",
-                fontSize: { xs: "22px", sm: "52px" },
-                lineHeight: { xs: "26.63px", sm: "70px" },
-                textAlign: "left",
-              }}
-            >
-              Welcome to the first decentralized Social Network in the world
-            </Typography>
-            <Typography
-              variant="body1"
-              color="#fff"
-              paragraph
-              sx={{
-                fontFamily: "Poppins",
-                fontWeight: "300",
-                fontSize: { xs: "12px", sm: "16px" },
-                lineHeight: { xs: "18px", sm: "27px" },
-                textAlign: "left",
-              }}
-            >
-              We are the only decentralized social network that gives you the
-              opportunity to monetize your time, even if you are a regular user
-              who doesn’t create content. Use your earnings to buy any service
-              or goods from the native marketplace.
-            </Typography>
-            <Button
-              variant="contained"
-              sx={{
-                width: { xs: "145px", sm: "157px" },
-                height: { xs: "43px", sm: "60px" },
-                borderRadius: "8px",
-                backgroundColor: "primary.main",
-              }}
-            >
-              <Typography
-                variant="body1"
-                sx={{
-                  fontFamily: "Raleway",
-                  textTransform: "capitalize",
-                  fontWeight: { xs: 500, sm: 600 },
-                  fontSize: { xs: "16px", sm: "20px" },
-                  lineHeight: "16px",
-                  color: "#FFFFFF",
-                }}
-              >
-                Login Now!
-              </Typography>
-            </Button>
-          </Box>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          sm={4}
+    <Box sx={{ background: "#012F41" }}>
+      <Box sx={{ margin: "0 auto", maxWidth: "1280px", padding: "0 13px" }}>
+        <Box
           sx={{
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
+            minHeight: "100vh",
+            // backgroundColor: "#012F41",
+            // padding: "20px",
+            boxSizing: "border-box",
           }}
         >
-          <Box
-            sx={{
-              backgroundColor: "#fff",
-              padding: "20px",
-              borderRadius: "8px",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-              width: "100%",
-              maxWidth: "400px",
-              boxSizing: "border-box",
-            }}
+          <Grid
+            container
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ width: "100%" }}
           >
-            <Typography
-              variant="h5"
-              component="h2"
-              gutterBottom
+            <Grid item xs={12} sm={8}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  height: "40%",
+                  gap: { xs: "12px", sm: "27px" },
+
+                  marginTop: { xs: "20px", sm: "40px" },
+                  padding: { xs: "10px", sm: "40px" },
+                }}
+              >
+                <Typography
+                  variant="h2"
+                  component="h1"
+                  color="#fff"
+                  gutterBottom
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: "600",
+                    fontSize: { xs: "22px", sm: "52px" },
+                    lineHeight: { xs: "26.63px", sm: "70px" },
+                    textAlign: "left",
+                  }}
+                >
+                  Welcome to the first decentralized Social Network in the world
+                </Typography>
+                <Typography
+                  variant="body1"
+                  color="#fff"
+                  paragraph
+                  sx={{
+                    fontFamily: "Poppins",
+                    fontWeight: "300",
+                    fontSize: { xs: "12px", sm: "16px" },
+                    lineHeight: { xs: "18px", sm: "27px" },
+                    textAlign: "left",
+                  }}
+                >
+                  We are the only decentralized social network that gives you
+                  the opportunity to monetize your time, even if you are a
+                  regular user who doesn’t create content. Use your earnings to
+                  buy any service or goods from the native marketplace.
+                </Typography>
+                <Button
+                  variant="contained"
+                  sx={{
+                    width: { xs: "145px", sm: "157px" },
+                    height: { xs: "43px", sm: "60px" },
+                    borderRadius: "8px",
+                    backgroundColor: "primary.main",
+                  }}
+                >
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "Raleway",
+                      textTransform: "capitalize",
+                      fontWeight: { xs: 500, sm: 600 },
+                      fontSize: { xs: "16px", sm: "20px" },
+                      lineHeight: "16px",
+                      color: "#FFFFFF",
+                    }}
+                  >
+                    Login Now!
+                  </Typography>
+                </Button>
+              </Box>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sm={4}
               sx={{
-                fontFamily: "Open Sans",
-                fontSize: "20px",
-                fontWeight: { xs: 700, sm: 600 },
-                color: "#307777",
-                lineHeight: "27.24px",
-                textAlign: "left",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              Register your Account
-            </Typography>
+              <Box
+                sx={{
+                  backgroundColor: "#fff",
+                  padding: "20px",
+                  borderRadius: "4px",
+                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                  width: "100%",
+                  maxWidth: "400px",
+                  boxSizing: "border-box",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="h2"
+                  gutterBottom
+                  sx={{
+                    fontFamily: "Open Sans",
+                    fontSize: "20px",
+                    fontWeight: { xs: 700, sm: 600 },
+                    color: "#307777",
+                    lineHeight: "27.24px",
+                    textAlign: "left",
+                  }}
+                >
+                  Register your Account
+                </Typography>
 
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      label="First Name"
+                      name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
+                      fullWidth
+                      margin="normal"
+                      error={!!formErrors.firstName}
+                      helperText={formErrors.firstName}
+                      InputLabelProps={{
+                        sx: { fontFamily: "Manrope" },
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      label="Last Name"
+                      name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
+                      fullWidth
+                      margin="normal"
+                      error={!!formErrors.lastName}
+                      helperText={formErrors.lastName}
+                      InputLabelProps={{
+                        sx: { fontFamily: "Manrope" },
+                      }}
+                    />
+                  </Grid>
+                </Grid>
                 <TextField
-                  label="First Name"
-                  name="firstName"
-                  value={formData.firstName}
+                  label="Email Address"
+                  type="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
                   fullWidth
                   margin="normal"
-                  error={!!formErrors.firstName}
-                  helperText={formErrors.firstName}
+                  error={!!formErrors.email}
+                  helperText={formErrors.email}
                   InputLabelProps={{
                     sx: { fontFamily: "Manrope" },
                   }}
                 />
-              </Grid>
-              <Grid item xs={12} sm={6}>
                 <TextField
-                  label="Last Name"
-                  name="lastName"
-                  value={formData.lastName}
+                  label="Password"
+                  type="password"
+                  name="password"
+                  value={formData.password}
                   onChange={handleChange}
                   fullWidth
                   margin="normal"
-                  error={!!formErrors.lastName}
-                  helperText={formErrors.lastName}
+                  error={!!formErrors.password}
+                  helperText={formErrors.password}
                   InputLabelProps={{
                     sx: { fontFamily: "Manrope" },
                   }}
                 />
-              </Grid>
-            </Grid>
-            <TextField
-              label="Email Address"
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              error={!!formErrors.email}
-              helperText={formErrors.email}
-              InputLabelProps={{
-                sx: { fontFamily: "Manrope" },
-              }}
-            />
-            <TextField
-              label="Password"
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              error={!!formErrors.password}
-              helperText={formErrors.password}
-              InputLabelProps={{
-                sx: { fontFamily: "Manrope" },
-              }}
-            />
-            <Grid container spacing={2}>
-              <Grid item xs={4}>
+                <Grid container spacing={2}>
+                  <Grid item xs={4}>
+                    <TextField
+                      label="Day"
+                      type="number"
+                      name="day"
+                      value={formData.day}
+                      onChange={handleChange}
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        sx: { fontFamily: "Manrope" },
+                      }}
+                      inputProps={{ min: 1, max: 31 }}
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <TextField
+                      label="Month"
+                      type="number"
+                      name="month"
+                      value={formData.month}
+                      onChange={handleChange}
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        sx: { fontFamily: "Manrope" },
+                      }}
+                      inputProps={{ min: 1, max: 12 }}
+                    />
+                  </Grid>
+                  <Grid item xs={4}>
+                    <TextField
+                      label="Year"
+                      type="number"
+                      name="year"
+                      value={formData.year}
+                      onChange={handleChange}
+                      fullWidth
+                      margin="normal"
+                      InputLabelProps={{
+                        sx: { fontFamily: "Manrope" },
+                      }}
+                      inputProps={{ min: 1900, max: new Date().getFullYear() }}
+                    />
+                  </Grid>
+                </Grid>
                 <TextField
-                  label="Day"
-                  type="number"
-                  name="day"
-                  value={formData.day}
+                  label="Phone Number"
+                  type="tel"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
                   onChange={handleChange}
                   fullWidth
                   margin="normal"
-                  InputLabelProps={{
-                    sx: { fontFamily: "Manrope" },
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">+880</InputAdornment>
+                    ),
+                    sx: { fontFamily: "Manrope" }, // Optional styling for input
                   }}
-                  inputProps={{ min: 1, max: 31 }}
-                />
-              </Grid>
-              <Grid item xs={4}>
-                <TextField
-                  label="Month"
-                  type="number"
-                  name="month"
-                  value={formData.month}
-                  onChange={handleChange}
-                  fullWidth
-                  margin="normal"
                   InputLabelProps={{
-                    sx: { fontFamily: "Manrope" },
+                    sx: { fontFamily: "Manrope" }, // Optional styling for label
                   }}
-                  inputProps={{ min: 1, max: 12 }}
                 />
-              </Grid>
-              <Grid item xs={4}>
-                <TextField
-                  label="Year"
-                  type="number"
-                  name="year"
-                  value={formData.year}
-                  onChange={handleChange}
-                  fullWidth
-                  margin="normal"
-                  InputLabelProps={{
-                    sx: { fontFamily: "Manrope" },
-                  }}
-                  inputProps={{ min: 1900, max: new Date().getFullYear() }}
-                />
-              </Grid>
-            </Grid>
-            <TextField
-              label="Phone Number"
-              type="tel"
-              name="phoneNumber"
-              value={formData.phoneNumber}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">+880</InputAdornment>
-                ),
-                sx: { fontFamily: "Manrope" }, // Optional styling for input
-              }}
-              InputLabelProps={{
-                sx: { fontFamily: "Manrope" }, // Optional styling for label
-              }}
-            />
 
-            {/* <PhoneInput
+                {/* <PhoneInput
         label="Phone Number"
         country="US" // Default country
         value={formData.phoneNumber}
@@ -433,100 +442,105 @@ const Register = () => {
         error={false} // Set error state based on your validation logic
         helperText={''} // Set helper text based on your validation logic
       /> */}
-            <TextField
-              label="Your Gender"
-              name="gender"
-              select
-              value={formData.gender}
-              onChange={handleChange}
-              fullWidth
-              margin="normal"
-              error={!!formErrors.gender}
-              helperText={formErrors.gender}
-              InputLabelProps={{
-                sx: { fontFamily: "Manrope" },
-              }}
-            >
-              <MenuItem value="male">Male</MenuItem>
-              <MenuItem value="female">Female</MenuItem>
-              <MenuItem value="other">Other</MenuItem>
-            </TextField>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={formData.acceptTerms}
+                <TextField
+                  label="Your Gender"
+                  name="gender"
+                  select
+                  value={formData.gender}
                   onChange={handleChange}
-                  name="acceptTerms"
-                />
-              }
-              label={
-                <Typography sx={{ fontSize: "14px" }}>
-                  I accept the <strong>Terms and Conditions</strong> of the
-                  website
-                </Typography>
-              }
-              sx={{ mt: 1 }}
-              error={!!formErrors.acceptTerms}
-              helperText={formErrors.acceptTerms}
-            />
-
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleRegister}
-              sx={{ mt: 2, backgroundColor: "" }}
-            >
-              Complete Registration!
-            </Button>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "16px",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  width: "80%",
-                }}
-              >
-                <hr style={{ flex: 1, borderTop: "2px solid #000" }} />
-                <Typography
-                  variant="body2"
-                  sx={{
-                    padding: "0 10px",
-                    fontFamily: "Manrope",
+                  fullWidth
+                  margin="normal"
+                  error={!!formErrors.gender}
+                  helperText={formErrors.gender}
+                  InputLabelProps={{
+                    sx: { fontFamily: "Manrope" },
                   }}
                 >
-                  or sign up
-                </Typography>
-                <hr style={{ flex: 1, borderTop: "2px solid #000" }} />
-              </div>
-            </Box>
+                  <MenuItem value="male">Male</MenuItem>
+                  <MenuItem value="female">Female</MenuItem>
+                  <MenuItem value="other">Other</MenuItem>
+                </TextField>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={formData.acceptTerms}
+                      onChange={handleChange}
+                      name="acceptTerms"
+                    />
+                  }
+                  label={
+                    <Typography sx={{ fontSize: "14px" }}>
+                      I accept the{" "}
+                      <strong style={{ cursor: "pointer", color: "#307777" }}>
+                        Terms and Conditions
+                      </strong>{" "}
+                      of the website
+                    </Typography>
+                  }
+                  sx={{ mt: 1 }}
+                  error={!!formErrors.acceptTerms}
+                  helperText={formErrors.acceptTerms}
+                />
 
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                mt: 2,
-              }}
-            >
-              <Typography variant="body2">
-                Already have an account?{" "}
-                <Link href="#" underline="none">
-                  Login here
-                </Link>
-              </Typography>
-            </Box>
-          </Box>
-        </Grid>
-      </Grid>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                  onClick={handleRegister}
+                  sx={{ mt: 2, backgroundColor: "" }}
+                >
+                  Complete Registration!
+                </Button>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: "16px",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "80%",
+                    }}
+                  >
+                    <hr style={{ flex: 1, borderTop: "2px solid #000" }} />
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        padding: "0 10px",
+                        fontFamily: "Manrope",
+                      }}
+                    >
+                      or sign up
+                    </Typography>
+                    <hr style={{ flex: 1, borderTop: "2px solid #000" }} />
+                  </div>
+                </Box>
+
+                <Box
+                  sx={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    mt: 2,
+                  }}
+                >
+                  <Typography variant="body2">
+                    Already have an account?{" "}
+                    <Link href="#" underline="none">
+                      Login here
+                    </Link>
+                  </Typography>
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 };
