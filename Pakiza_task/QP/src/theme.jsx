@@ -1,8 +1,8 @@
-import { createTheme } from '@mui/material/styles';
+import { createTheme } from "@mui/material/styles";
 
 // Import the fonts
-import 'typeface-manrope';
-import 'typeface-raleway';
+import "typeface-manrope";
+import "typeface-raleway";
 import "typeface-open-sans";
 import "typeface-inter";
 import "typeface-poppins";
@@ -10,10 +10,13 @@ import "typeface-poppins";
 const theme = createTheme({
   palette: {
     primary: {
-      main:"#307777",
+      main: "#307777",
     },
     secondary: {
-      main: '#dc004e',
+      main: "#dc004e",
+    },
+    navbar: {
+      main: "#ffffff",
     },
   },
 });

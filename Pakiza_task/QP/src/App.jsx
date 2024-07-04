@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import ProtectedRoute from './components/protectedRoutes';
+import NotFoundPage from './error/NotFoundPage';
 import AppLayout from './layouts/AppLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -23,6 +24,8 @@ function App() {
               <Route path="stories" element={<StoryList />} />
             </Route>
           </Route>
+           {/* Handle 404 - Not Found */}
+           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </AuthProvider>
