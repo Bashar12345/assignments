@@ -261,8 +261,11 @@ const PhotoStroy = () => {
                 position: "relative", // Ensure relative positioning for absolute elements
               }}
             >
+                
               <StoryPreview
+              
                 style={{
+                    background: 'whitesmoke',
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",

@@ -12,7 +12,8 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import htmlToImage from 'html-to-image';
+import { toPng } from 'html-to-image';
+
 import CloseButton from "../../components/Closebutton";
 import StoryPreview from "../../components/StroyPreview";
 import { styled } from "@mui/material/styles";
@@ -62,14 +63,15 @@ const TextStoryForm = () => {
     setMainDrawerOpen(!mainDrawerOpen);
   };
 
+
   const handleSubmit = async () => {
     try {
       // Convert StoryPreview to image
-      const dataUrl = await htmlToImage.toPng(storyPreviewRef.current);
+      const dataUrl = await toPng(storyPreviewRef.current);
 
       // Create FormData to send the image file
       const formData = new FormData();
-      formData.append("image", dataUrlToFile(dataUrl), "story-preview.png"); // 'image' is the field name your backend expects
+      formData.append('image', dataUrlToFile(dataUrl), 'story-preview.png'); // 'image' is the field name your backend expects
 
       // Example Axios POST request to your backend
       const response = await axiosInstance.post("/story", formData);
@@ -77,18 +79,18 @@ const TextStoryForm = () => {
       console.log("Image uploaded successfully:", response.data);
       // Handle success (e.g., show message to user)
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error('Error uploading image:', error);
       // Handle error (e.g., show error message to user)
     }
   };
 
   const dataUrlToFile = (dataUrl) => {
-    const blobBin = atob(dataUrl.split(",")[1]);
+    const blobBin = atob(dataUrl.split(',')[1]);
     const array = [];
     for (let i = 0; i < blobBin.length; i++) {
       array.push(blobBin.charCodeAt(i));
     }
-    return new Blob([new Uint8Array(array)], { type: "image/png" });
+    return new Blob([new Uint8Array(array)], { type: 'image/png' });
   };
 
   return (

@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 const userRoutes = require("./routes/userRoutes");
+const storyRoutes = require('./routes/storyRoutes');
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ db.once("open", () => {
 
 // Define routes
 app.use("/api/users", userRoutes);
+app.use('/api', storyRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running...");
