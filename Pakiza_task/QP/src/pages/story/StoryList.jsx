@@ -8,10 +8,10 @@ import {
   ListItemAvatar,
   Avatar,
   ListItemText,
-  Divider,
+ 
   Tooltip,
   IconButton,
-  Paper,
+ 
   Typography,
   AppBar,
   Toolbar,
@@ -30,7 +30,6 @@ import logo from "../../assets/op.png";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { margin, width } from "@mui/system";
 import { NextArrow, PrevArrow } from "../../components/Arrow";
 
 const StoryList = () => {
@@ -101,13 +100,13 @@ const StoryList = () => {
   }, []);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, boxSizing: "border-box" }}>
       <AppBar
         position="fixed"
         color="transparent"
         elevation={0}
         height={60}
-        sx={{ zIndex: 1201 }}
+        sx={{ zIndex: 1201 , display: { xs: "none", sm: "block" } }}
       >
         <Toolbar>
           <IconButton
