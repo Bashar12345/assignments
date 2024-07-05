@@ -195,7 +195,11 @@ export default function Navbar() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: 250, marginTop: "60px" }} role="presentation" onClick={toggleDrawer(false)}>
+    <Box
+      sx={{ width: 250, marginTop: "30px" }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+    >
       <List>
         <ListItem button component={Link} to="/home">
           <ListItemText primary="Home" />
@@ -203,14 +207,20 @@ export default function Navbar() {
         <ListItem button component={Link} to="/posts">
           <ListItemText primary="Posts" />
         </ListItem>
-        <ListItem button component={Link} to="/stories">
-          <ListItemText primary="Stories" />
+
+        <ListItem button component={Link} to="/post-stories">
+          <ListItemText primary="Post a Story" />
         </ListItem>
+
         <ListItem button component={Link} to="/stories-form">
           <ListItemText primary="Create Text Story " />
         </ListItem>
         <ListItem button component={Link} to="/photo-stories">
           <ListItemText primary="Create Photo Story " />
+        </ListItem>
+
+        <ListItem button component={Link} to="/stories-lists">
+          <ListItemText primary="Stories" />
         </ListItem>
       </List>
     </Box>
@@ -243,7 +253,7 @@ export default function Navbar() {
           </IconButton>
           <Box sx={{ flexGrow: 0 }} />
 
-          <Search  sx={{ display: { xs: "none", sm: "block" } }}>
+          <Search sx={{ display: { xs: "none", sm: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -268,26 +278,14 @@ export default function Navbar() {
             }}
           >
             <Tab icon={<HomeIcon />} component={Link} to="/home" />
+            <Tab icon={<VideoIcon />} component={Link} to="/videos" />
             <Tab
-             
-              icon={<VideoIcon />}
-              component={Link}
-              to="/videos"
-            />
-            <Tab
-             
               icon={<img src={GroupIcon} />} // Ensure GroupIcon component renders correctly
               component={Link}
               to="/groups"
             />
+            <Tab icon={<StorefrontIcon />} component={Link} to="/marketplace" />
             <Tab
-            
-              icon={<StorefrontIcon />}
-              component={Link}
-              to="/marketplace"
-            />
-            <Tab
-             
               icon={
                 <Badge badgeContent={3} color="primary">
                   <Cart />
@@ -349,7 +347,9 @@ export default function Navbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
+      <Drawer
+      
+      open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
       {renderMobileMenu}

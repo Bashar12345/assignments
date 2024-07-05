@@ -11,6 +11,7 @@ import PostList from './pages/post/PostList';
 import StoryList from './pages/story/StoryList';
 import TextStoryForm from './pages/story/TextStoryForm';
 import PhotoStroy from './pages/story/PhotoStroy';
+import CreateStory from './pages/story/CreateStory';
 
 function App() {
   return (
@@ -23,7 +24,9 @@ function App() {
             <Route path="/" element={<AppLayout />}>
               <Route path="home" element={<PostList />} />
               <Route path="posts" element={<PostList />} />
-              <Route path="stories" element={<StoryList />} />
+              <Route path="stories-lists" element={<StoryList />} />
+              <Route path="post-stories" element={<CreateStory />} />
+
               <Route path="stories-form" element={<TextStoryForm />} />
               <Route path="photo-stories" element={<PhotoStroy />} />
 
