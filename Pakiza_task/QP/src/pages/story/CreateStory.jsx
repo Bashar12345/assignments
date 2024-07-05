@@ -15,8 +15,9 @@ import {
   useTheme,
 } from "@mui/material";
 import CloseButton from "../../components/Closebutton";
-import ShadowBox from "../../components/ShadowBox";
 import StoryButton from "../../components/StoryButton";
+import GalleryIcon from "../../assets/GallaryIcon";
+import TextIcon from "../../assets/TextIcon";
 
 const CreateStory = () => {
   const theme = useTheme();
@@ -55,6 +56,7 @@ const CreateStory = () => {
         sx={{
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
+            zIndex: -1,
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
@@ -63,7 +65,10 @@ const CreateStory = () => {
       >
         <Box
           sx={{
-            border: "2px solid black",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            // border: "2px solid black",
             padding: "21px",
             height: "100%",
             overflowY: "auto",
@@ -78,20 +83,14 @@ const CreateStory = () => {
               fontWeight: "600",
               lineHeight: "36px",
               textAlign: "left",
-              marginBottom: "8px",
+              marginBottom: "20px",
             }}
           >
-            Create Your Story
+            Create Story
           </Typography>
-          <TextField
-            multiline
-            rows={10}
-            fullWidth
-            placeholder="Start Typing"
-            hiddenLabel
-          />
-          <FormControl fullWidth>
-            <InputLabel id="select-story-type-label">Privacy</InputLabel>
+
+          <FormControl fullWidth sx={{ flexGrow: 1 }}>
+            {/* <InputLabel id="select-story-type-label">Privacy</InputLabel> */}
             <Select labelId="select-story-type-label" defaultValue="Public">
               <MenuItem value="Public">Public</MenuItem>
               <MenuItem value="Private">Private</MenuItem>
@@ -116,60 +115,132 @@ const CreateStory = () => {
 
       <Box
         sx={{
-          //           width: Fixed (991px)px;
-          // height: Fixed (826px)px;
-          // top: 152px;
-          // left: 412px;
+          backgroundColor: "white",
+          width: "991px",
+          height: "826px",
+          marginTop: "100px",
           padding: "20px 19px 20px 19px",
-          // gap: 17px;
-          // border-radius: 8px 0px 0px 0px;
+          gap: "17px",
+          borderRadius: "8px",
           // opacity: 0px;
 
           // border: "2px solid black",
-          // padding: "21px",
+
           boxSizing: "border-box",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
         // width={isMobile ? "100%" : "calc(100% - 374px)"}
         marginLeft={drawerWidth}
       >
-        <ShadowBox>
-          <Grid
-            container
-            spacing={2}
-            sx={{ border: "2px solid red" }}
-            justifyContent={"space-between"}
-          >
-            <Grid item xs={6}>
-              <StoryButton
-                style={{
-                  background: "linear-gradient(to right, #ff416c, #ff4b2b)",
-                  display: { xs: "flex", sm: "block" },
-                }}
-                onClick={isMobile ? handleMainDrawerToggle : null}
-              >
-                <Box component="span" mb={1}>
-                  📷
-                </Box>
-                Create Your Photo Story
-              </StoryButton>
-            </Grid>
-            <Grid item xs={6}>
-              <StoryButton
-                style={{
-                  background: "linear-gradient(to right, #00b4db, #0083b0)",
-                  display: { xs: "flex", sm: "block" },
-                }}
-                onClick={isMobile ? handleMainDrawerToggle : null}
-              >
-                <Box component="span" mb={1}>
-                  📝
-                </Box>
-                Create Your Text Story
-              </StoryButton>
-            </Grid>
+        <Grid
+          container
+          // sx={{ border: "2px solid red" }}
+          justifyContent={"space-between"}
+        >
+          <Grid item xs={12}>
+            <Typography
+              variant="h2"
+              gutterBottom
+              sx={{
+                fontFamily: "Poppins",
+                fontSize: "16px",
+                fontWeight: "600",
+                lineHeight: "24px",
+                textAlign: "left",
+                marginBottom: "8px",
+              }}
+            >
+              Select Story Type
+            </Typography>
           </Grid>
-        </ShadowBox>
+
+          <Box
+            sx={{
+              display: "flex",
+              width: "951px",
+              height: "742px",
+              padding: "71px 281px 79px 281px",
+              gap: "10px",
+              borderRadius: "8px",
+              opacity: "0px",
+              background: "#F0F2F5",
+            }}
+          >
+            <Box xs={6}>
+              <StoryButton
+                style={{
+                  background:
+                    "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
+                  display: { xs: "flex", sm: "block" },
+                }}
+                onClick={isMobile ? handleMainDrawerToggle : null}
+              >
+                <Box
+                  component="span"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <GalleryIcon />
+
+                  <Typography
+                    variant="body1"
+                    component="span"
+                    marginTop={1}
+                    sx={{
+                      fontFamily: "Poppins",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      lineHeight: "24px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Create Your Photo Story
+                  </Typography>
+                </Box>
+              </StoryButton>
+            </Box>
+
+            <Box xs={6}>
+              <StoryButton
+                style={{
+                  background:
+                    "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
+                  display: { xs: "flex", sm: "block" },
+                }}
+                onClick={isMobile ? handleMainDrawerToggle : null}
+              >
+                <Box
+                  component="span"
+                  sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <TextIcon />
+                  <Typography
+                    variant="body1"
+                    component="span"
+                    marginTop={1}
+                    sx={{
+                      fontFamily: "Poppins",
+                      fontSize: 16,
+                      fontWeight: 600,
+                      lineHeight: "24px",
+                    }}
+                  >
+                    Create Your Text Story
+                  </Typography>
+                </Box>
+              </StoryButton>
+            </Box>
+          </Box>
+        </Grid>
       </Box>
 
       {/* </Container> */}
@@ -238,104 +309,3 @@ const CreateStory = () => {
 };
 
 export default CreateStory;
-
-// import React, { useState } from "react";
-// import {
-//   Box,
-//   Button,
-//   Drawer,
-//   FormControl,
-//   Grid,
-//   InputLabel,
-//   MenuItem,
-//   Select,
-//   TextField,
-//   Typography,
-//   useMediaQuery,
-//   useTheme,
-// } from "@mui/material";
-
-// const StoryButton = ({ children, style }) => (
-//   <Button variant="contained" sx={{ ...style, padding: "10px 20px", width: "100%" }}>
-//     {children}
-//   </Button>
-// );
-
-// const CreateStory = () => {
-//   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-//   const [drawerOpen, setDrawerOpen] = useState(false);
-
-//   const handleDrawerToggle = () => {
-//     setDrawerOpen(!drawerOpen);
-//   };
-
-//   return (
-//     <Grid container spacing={3}>
-//       {/* Sidebar */}
-//       <Drawer
-//         variant={isMobile ? "temporary" : "permanent"}
-//         open={isMobile ? drawerOpen : true}
-//         onClose={handleDrawerToggle}
-//         anchor={isMobile ? "bottom" : "left"}
-//         ModalProps={{ keepMounted: true }} // Better performance on mobile
-//         sx={{
-//           "& .MuiDrawer-paper": {
-//             boxSizing: "border-box",
-//             width: isMobile ? "100%" : 374,
-//             height: isMobile ? "50%" : "calc(100% - 68px)",
-//             top: isMobile ? 'auto' : 68,
-//           },
-//         }}
-//       >
-//         <Box
-//           sx={{
-//             border: "2px solid black",
-//             padding: "21px",
-//             height: "100%",
-//             overflowY: "auto",
-//           }}
-//         >
-//           <Typography
-//             variant="h2"
-//             gutterBottom
-//             sx={{
-//               fontFamily: "Poppins",
-//               fontSize: "24px",
-//               fontWeight: "600",
-//               lineHeight: "36px",
-//               textAlign: "left",
-//               marginBottom: "8px",
-//             }}
-//           >
-//             Create Your Story
-//           </Typography>
-//           <TextField
-//             multiline
-//             rows={10}
-//             fullWidth
-//             placeholder="Start Typing"
-//             hiddenLabel
-//           />
-//           <FormControl fullWidth>
-//             <InputLabel id="select-story-type-label">Privacy</InputLabel>
-//             <Select labelId="select-story-type-label" defaultValue="Public">
-//               <MenuItem value="Public">Public</MenuItem>
-//               <MenuItem value="Private">Private</MenuItem>
-//             </Select>
-//           </FormControl>
-//           <Box mt={2}>
-//             <Button variant="contained" color="primary" fullWidth>
-//               Create Your Story
-//             </Button>
-//           </Box>
-//         </Box>
-//       </Drawer>
-
-//       {/* Main Content */}
-
-//     </Grid>
-//   );
-// };
-
-// export default CreateStory;

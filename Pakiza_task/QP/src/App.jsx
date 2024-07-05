@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import PostList from './pages/post/PostList';
 import StoryList from './pages/story/StoryList';
+import TextStoryForm from './pages/story/TextStoryForm';
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
               <Route path="home" element={<PostList />} />
               <Route path="posts" element={<PostList />} />
               <Route path="stories" element={<StoryList />} />
+              <Route path="stories-form" element={<TextStoryForm />} />
+
             </Route>
           </Route>
            {/* Handle 404 - Not Found */}
