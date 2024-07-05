@@ -18,6 +18,9 @@ const theme = createTheme({
     navbar: {
       main: "#ffffff",
     },
+    background: {
+      default: "#E5E6EC", // Set default background color to white
+    },
   },
 });
 

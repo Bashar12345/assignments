@@ -237,7 +237,7 @@ export default function Navbar() {
           </IconButton>
           <Box sx={{ flexGrow: 0 }} />
 
-          <Search>
+          <Search  sx={{ display: { xs: "none", sm: "block" } }}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>

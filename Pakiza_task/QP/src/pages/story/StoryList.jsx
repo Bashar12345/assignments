@@ -6,6 +6,7 @@ import {
   CardContent,
   CardActions,
   Button,
+  Box,
 } from "@mui/material";
 import TextStoryForm from "./TextStoryForm";
 import CreateStory from "./CreateStory";
@@ -27,11 +28,11 @@ const StoryList = () => {
   }, []);
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>
+    <Box>
+      {/* <Typography variant="h4" gutterBottom>
         Stories
-      </Typography>
-      {stories.map((story) => (
+      </Typography> */}
+      {/* {stories.map((story) => (
         <Card key={story.id} style={{ marginBottom: "20px" }}>
           <CardContent>
             <Typography variant="h5">{story.title}</Typography>
@@ -46,11 +47,11 @@ const StoryList = () => {
             </Button>
           </CardActions>
         </Card>
-      ))}
+      ))} */}
 
       {/* <TextStoryForm /> */}
       <CreateStory />
-    </Container>
+    </Box>
   );
 };
 
