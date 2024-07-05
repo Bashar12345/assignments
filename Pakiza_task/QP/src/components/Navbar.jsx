@@ -220,7 +220,7 @@ export default function Navbar() {
         </ListItem>
 
         <ListItem button component={Link} to="/stories-lists">
-          <ListItemText primary="Stories" />
+          <ListItemText primary="Story View" />
         </ListItem>
       </List>
     </Box>

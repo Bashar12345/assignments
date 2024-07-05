@@ -261,11 +261,9 @@ const PhotoStroy = () => {
                 position: "relative", // Ensure relative positioning for absolute elements
               }}
             >
-                
               <StoryPreview
-              
                 style={{
-                    background: 'whitesmoke',
+                  background: "whitesmoke",
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
@@ -345,64 +343,6 @@ const PhotoStroy = () => {
         </Grid>
       </Box>
       {/* Main Content end */}
-
-      {isMobile && (
-        <Drawer
-          variant="temporary"
-          open={mainDrawerOpen}
-          onClose={handleMainDrawerToggle}
-          anchor="bottom"
-          ModalProps={{ keepMounted: true }}
-          sx={{
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: "100%",
-              height: "100%",
-            },
-          }}
-        >
-          <Box sx={{ padding: "21px", height: "100%", overflowY: "auto" }}>
-            <Grid container spacing={3} justifyContent="center">
-              <Grid
-                item
-                xs={12}
-                sx={{ display: "flex", justifyContent: "flex-end" }}
-              >
-                <CloseButton onClick={handleMainDrawerToggle} />
-              </Grid>
-              <Grid item xs={12}>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    width: "100%",
-                    height: "400px",
-                    backgroundColor: backgroundColor,
-                    borderRadius: "8px",
-                  }}
-                >
-                  <StoryPreview
-                    style={{
-                      background: "linear-gradient(to right, #00b4db, #0083b0)",
-                    }}
-                  >
-                    <Box
-                      component="span"
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    ></Box>
-                  </StoryPreview>
-                </Box>
-              </Grid>
-            </Grid>
-          </Box>
-        </Drawer>
-      )}
     </Box>
   );
 };

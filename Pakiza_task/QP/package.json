@@ -23,12 +23,15 @@
     "react-dom": "^18.3.1",
     "react-phone-number-input": "^3.4.3",
     "react-router-dom": "^6.24.1",
+    "react-slick": "^0.30.2",
     "react-toastify": "^10.0.5",
+    "slick-carousel": "^1.8.1",
     "typeface-inter": "^3.18.1",
     "typeface-manrope": "^1.0.0",
     "typeface-open-sans": "^1.1.13",
     "typeface-poppins": "^1.1.13",
     "typeface-raleway": "^1.1.13",
+    "typeface-roboto": "^1.1.13",
     "yup": "^1.4.0"
   },
   "devDependencies": {

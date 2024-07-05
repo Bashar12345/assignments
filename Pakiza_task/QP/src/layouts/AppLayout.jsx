@@ -1,8 +1,7 @@
 import React from "react";
-import { Toolbar, Typography, CssBaseline } from "@mui/material";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
+import { CssBaseline } from "@mui/material";
 import Navbar from "../components/Navbar";
-
 import { Box } from "@mui/material";
 import { Container, styled } from "@mui/system";
 
@@ -12,15 +11,18 @@ const LayoutContainer = styled(Box)({
 });
 
 const AppLayout = () => {
+  const location = useLocation();
+
+  // Check if the current route matches "/stories-lists"
+  const isStoryListRoute = location.pathname.includes("/stories-lists");
+
   return (
     <>
-      <Navbar
-        position="fixed"
-        style={{ zIndex: 1201, backgroundColor: "#fff" }}
-      />
+      {!isStoryListRoute && (
+        <Navbar position="fixed" style={{ zIndex: 1201, backgroundColor: "#fff" }} />
+      )}
       <div>
         <CssBaseline />
-
         <LayoutContainer>
           <Outlet />
         </LayoutContainer>
