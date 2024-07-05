@@ -159,7 +159,6 @@ const Register = () => {
       // console.log("Registration successful:", response.data);
 
       clearForm();
-
       console.log("Form submitted successfully. Form data cleared.");
     } catch (error) {
       console.error("Registration error:", error);

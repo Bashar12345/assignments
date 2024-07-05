@@ -209,6 +209,9 @@ export default function Navbar() {
         <ListItem button component={Link} to="/stories-form">
           <ListItemText primary="Create Text Story " />
         </ListItem>
+        <ListItem button component={Link} to="/photo-stories">
+          <ListItemText primary="Create Photo Story " />
+        </ListItem>
       </List>
     </Box>
   );

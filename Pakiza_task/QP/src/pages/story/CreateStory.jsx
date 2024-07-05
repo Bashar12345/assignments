@@ -18,6 +18,7 @@ import CloseButton from "../../components/Closebutton";
 import StoryButton from "../../components/StoryButton";
 import GalleryIcon from "../../assets/GallaryIcon";
 import TextIcon from "../../assets/TextIcon";
+import { Link } from "react-router-dom";
 
 const CreateStory = () => {
   const theme = useTheme();
@@ -86,7 +87,7 @@ const CreateStory = () => {
               marginBottom: "20px",
             }}
           >
-            Create Story
+            Create Your Story
           </Typography>
 
           <FormControl fullWidth sx={{ flexGrow: 1 }}>
@@ -104,7 +105,7 @@ const CreateStory = () => {
               fullWidth
               onClick={handleSubmit}
             >
-              Create Your Story
+              Create Story
             </Button>
           </Box>
         </Box>
@@ -168,10 +169,12 @@ const CreateStory = () => {
           >
             <Box xs={6}>
               <StoryButton
+              component={Link}
+                to="/photo-stories"
                 style={{
                   background:
                     "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
-                  display: { xs: "flex", sm: "block" },
+                  // display: { xs: "flex", sm: "block" },
                 }}
                 onClick={isMobile ? handleMainDrawerToggle : null}
               >
@@ -206,10 +209,12 @@ const CreateStory = () => {
 
             <Box xs={6}>
               <StoryButton
+                component={Link}
+                to="/stories-form"
                 style={{
                   background:
                     "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
-                  display: { xs: "flex", sm: "block" },
+                  // display: { xs: "flex", sm: "block" },
                 }}
                 onClick={isMobile ? handleMainDrawerToggle : null}
               >
@@ -232,6 +237,7 @@ const CreateStory = () => {
                       fontSize: 16,
                       fontWeight: 600,
                       lineHeight: "24px",
+                      textAlign: "center",
                     }}
                   >
                     Create Your Text Story

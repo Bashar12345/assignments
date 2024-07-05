@@ -1,22 +1,27 @@
-import React, { useRef, useState } from "react";
+import { useState } from "react";
 import {
   Box,
   Button,
   Drawer,
   FormControl,
   Grid,
+  IconButton,
   MenuItem,
   Select,
+  Slider,
   TextField,
   Typography,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import htmlToImage from 'html-to-image';
-import CloseButton from "../../components/Closebutton";
-import StoryPreview from "../../components/StroyPreview";
-import { styled } from "@mui/material/styles";
 import axiosInstance from "../../api/apiQueries";
+import CloseButton from "../../components/Closebutton";
+import PublishOutlinedIcon from "@mui/icons-material/PublishOutlined";
+import ZoomOutMapOutlinedIcon from "@mui/icons-material/ZoomOutMapOutlined";
+import ZoomInMapOutlinedIcon from "@mui/icons-material/ZoomInMapOutlined";
+import StoryPreview from "../../components/StroyPreview";
+import { toast } from "react-toastify";
+import { styled } from "@mui/material/styles";
 
 const ColorOption = styled("div")({
   width: "23px",
@@ -27,17 +32,19 @@ const ColorOption = styled("div")({
   cursor: "pointer",
 });
 
-const TextStoryForm = () => {
+const PhotoStroy = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [mainDrawerOpen, setMainDrawerOpen] = useState(false);
 
+  const [uploadedFile, setUploadedFile] = useState(null);
+  const [zoomValue, setZoomValue] = useState(100);
+
   // State variables
   const [storyText, setStoryText] = useState("");
   const [backgroundColor, setBackgroundColor] = useState("#2DB9B9"); // Default background color
   const [privacy, setPrivacy] = useState("Public"); // Default privacy option
-  const storyPreviewRef = useRef(null);
 
   // Handler for text input change
   const handleTextChange = (e) => {
@@ -62,33 +69,36 @@ const TextStoryForm = () => {
     setMainDrawerOpen(!mainDrawerOpen);
   };
 
-  const handleSubmit = async () => {
-    try {
-      // Convert StoryPreview to image
-      const dataUrl = await htmlToImage.toPng(storyPreviewRef.current);
+  const handleZoomChange = (newValue) => {
+    setZoomValue(newValue);
+    // Implement zoom logic here if necessary
+  };
 
-      // Create FormData to send the image file
-      const formData = new FormData();
-      formData.append("image", dataUrlToFile(dataUrl), "story-preview.png"); // 'image' is the field name your backend expects
-
-      // Example Axios POST request to your backend
-      const response = await axiosInstance.post("/story", formData);
-
-      console.log("Image uploaded successfully:", response.data);
-      // Handle success (e.g., show message to user)
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      // Handle error (e.g., show error message to user)
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUploadedFile(file);
+      // Optional: You can also upload the file to your server here
     }
   };
 
-  const dataUrlToFile = (dataUrl) => {
-    const blobBin = atob(dataUrl.split(",")[1]);
-    const array = [];
-    for (let i = 0; i < blobBin.length; i++) {
-      array.push(blobBin.charCodeAt(i));
-    }
-    return new Blob([new Uint8Array(array)], { type: "image/png" });
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Handle form submission, if needed
+    // For example, submit form data to another endpoint
+    const formData = new FormData();
+    formData.append("text", storyText);
+    formData.append("file", uploadedFile);
+    axiosInstance
+      .post("/story", formData)
+      .then((response) => {
+        console.log("Form submitted successfully:", response.data);
+        toast.success("Form submitted successfully");
+      })
+      .catch((error) => {
+        console.error("Error submitting form:", error);
+        toast.error("Error submitting form");
+      });
   };
 
   return (
@@ -220,7 +230,6 @@ const TextStoryForm = () => {
           // border: "2px solid black",
         }}
       >
-        {/* Preview Section */}
         <Grid container justifyContent="space-between">
           <Grid item xs={12}>
             <Typography
@@ -249,33 +258,84 @@ const TextStoryForm = () => {
                 backgroundColor: "#F0F2F5",
                 borderRadius: "8px",
                 padding: "71px 281px 79px 281px",
+                position: "relative", // Ensure relative positioning for absolute elements
               }}
             >
               <StoryPreview
                 style={{
-                  background: backgroundColor,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
                   width: "100%",
                   height: "100%",
+                  position: "relative", // Ensure relative positioning for absolute elements
                 }}
                 onClick={isMobile ? handleMainDrawerToggle : null}
               >
-                <Typography
-                  variant="body1"
-                  component="span"
-                  sx={{
-                    color: `rgba(255, 255, 255, ${storyText ? 1 : 0.3})`,
-                    fontFamily: "Poppins",
-                    fontSize: "24px",
-                    fontWeight: 600,
-                    lineHeight: "36px",
-                    textAlign: "left",
-                  }}
-                >
-                  {storyText || "Start Typing"}
-                </Typography>
+                {/* Image Preview */}
+                {uploadedFile && (
+                  <img
+                    src={URL.createObjectURL(uploadedFile)}
+                    alt="Uploaded"
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      objectFit: "contain", // Fit image to the container
+                      borderRadius: "8px", // Optional: Add border radius
+                      transform: `scale(${zoomValue / 100})`, // Apply zoom level
+                    }}
+                  />
+                )}
+
+                {/* Upload Button */}
+                {!uploadedFile && (
+                  <label htmlFor="upload-file">
+                    <input
+                      id="upload-file"
+                      type="file"
+                      accept="image/*" // Adjust file type if necessary
+                      style={{ display: "none" }}
+                      onChange={handleFileUpload}
+                    />
+                    <IconButton component="span">
+                      <PublishOutlinedIcon fontSize="large" />
+                    </IconButton>
+                  </label>
+                )}
+
+                {/* Volume Rocker (Zoom Control) */}
+                {uploadedFile && (
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: "10px",
+                      left: "10px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <IconButton
+                      onClick={() => handleZoomChange(zoomValue - 10)}
+                    >
+                      <ZoomInMapOutlinedIcon />
+                    </IconButton>
+                    <Slider
+                      value={zoomValue}
+                      onChange={(e, newValue) => handleZoomChange(newValue)}
+                      min={10}
+                      max={200}
+                      step={1}
+                      style={{ width: "100px", marginLeft: "10px" }}
+                    />
+                    <IconButton
+                      onClick={() => handleZoomChange(zoomValue + 10)}
+                    >
+                      <ZoomOutMapOutlinedIcon
+                        style={{ transform: "rotate(180deg)" }}
+                      />
+                    </IconButton>
+                  </div>
+                )}
               </StoryPreview>
             </Box>
           </Grid>
@@ -332,21 +392,7 @@ const TextStoryForm = () => {
                         justifyContent: "center",
                         alignItems: "center",
                       }}
-                    >
-                      <Typography
-                        variant="body1"
-                        component="span"
-                        sx={{
-                          fontFamily: "Poppins",
-                          fontSize: 16,
-                          fontWeight: 600,
-                          lineHeight: "24px",
-                          textAlign: "center",
-                        }}
-                      >
-                        {storyText || "Start Typing"}
-                      </Typography>
-                    </Box>
+                    ></Box>
                   </StoryPreview>
                 </Box>
               </Grid>
@@ -358,4 +404,4 @@ const TextStoryForm = () => {
   );
 };
 
-export default TextStoryForm;
+export default PhotoStroy;

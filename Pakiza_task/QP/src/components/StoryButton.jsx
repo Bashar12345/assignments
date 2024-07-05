@@ -1,8 +1,11 @@
 import { Button } from "@mui/material";
 
-const StoryButton = ({ children, style, onClick }) => (
+const StoryButton = ({ children, style, onClick, component, to }) => (
   <Button
     variant="contained"
+    component={component}
+    to={to}
+    onClick={onClick}
     sx={{
       ...style,
       padding: "10px 20px",
@@ -12,7 +15,7 @@ const StoryButton = ({ children, style, onClick }) => (
       borderRadius: "8px",
       opacity: "0px",
     }}
-    onClick={onClick}
+    
   >
     {children}
   </Button>
