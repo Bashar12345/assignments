@@ -23,7 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route path="/" element={<AppLayout />}>
-              <Route path="home" element={<PostList />} />
+              {/* <Route path="home" element={<AppLayout />} /> */}
               <Route path="posts" element={<NewsFeed />} />
               <Route path="stories-lists" element={<StoryList />} />
               <Route path="post-stories" element={<CreateStory />} />

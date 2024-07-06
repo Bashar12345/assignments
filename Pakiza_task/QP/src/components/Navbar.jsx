@@ -2,6 +2,9 @@ import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
+import DrawerList from "./DrawerList";
+
+
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -14,7 +17,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
+
 
 import logo from ".././assets/op.png";
 import HomeIcon from ".././assets/homeicon";
@@ -30,13 +33,7 @@ import BellIcon from ".././assets/bell";
 import {
   Tabs,
   Tab,
-  Divider,
   Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -214,37 +211,7 @@ export default function Navbar() {
     // Add any other logic you need based on tab change
   };
 
-  const DrawerList = (
-    <Box
-      sx={{ width: 250, marginTop: "30px" }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-    >
-      <List>
-        <ListItem button component={Link} to="/home">
-          <ListItemText primary="Home" />
-        </ListItem>
-        <ListItem button component={Link} to="/posts">
-          <ListItemText primary="Posts" />
-        </ListItem>
 
-        <ListItem button component={Link} to="/post-stories">
-          <ListItemText primary="Post a Story" />
-        </ListItem>
-
-        <ListItem button component={Link} to="/stories-form">
-          <ListItemText primary="Create Text Story " />
-        </ListItem>
-        <ListItem button component={Link} to="/photo-stories">
-          <ListItemText primary="Create Photo Story " />
-        </ListItem>
-
-        <ListItem button component={Link} to="/stories-lists">
-          <ListItemText primary="Story View" />
-        </ListItem>
-      </List>
-    </Box>
-  );
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -274,7 +241,13 @@ export default function Navbar() {
           </IconButton>
           <Box sx={{ flexGrow: 0 }} />
 
-          <Search sx={{ display: { xs: "none", sm: "block" } }}>
+          <Search
+            sx={{
+              display: { xs: "none", sm: "block" },
+              backgroundColor: "#E4E4E4",
+              borderRadius: "10px",
+            }}
+          >
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -329,7 +302,6 @@ export default function Navbar() {
           >
             <IconButton
               size="large"
-              aria-label="show 4 new mails"
               color="inherit"
               sx={{
                 backgroundColor: "#E4E4E4",
@@ -339,20 +311,17 @@ export default function Navbar() {
                 <MessageIcon />
               </Badge>
             </IconButton>
+
             <IconButton
               size="large"
-              aria-label="show 17 new notifications"
               color="inherit"
               sx={{
-                borderRadius: "50%", // Make it round
-                margin: "5px",
-                padding: "0px 12px 4px 12px",
+                marginLeft: "4px",
+                padding: "0px 14px 4px 14px",
                 backgroundColor: "#E4E4E4",
               }}
             >
-              <Badge badgeContent={17} color="primary">
-                <BellIcon  sx= {{transform: "rotate(20deg)"}}/>
-              </Badge>
+              <BellIcon />
             </IconButton>
             <IconButton
               size="large"
@@ -375,10 +344,14 @@ export default function Navbar() {
               />
             </IconButton>
           </Box>
+          {/* right-aligned icon buttons End of  */}
         </Toolbar>
       </AppBar>
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        {DrawerList}
+      <Drawer open={open} onClose={toggleDrawer(false)} 
+      anchor="left"
+     
+      >
+        <DrawerList toggleDrawer={toggleDrawer(false)} />
       </Drawer>
       {renderMobileMenu}
       {renderMenu}

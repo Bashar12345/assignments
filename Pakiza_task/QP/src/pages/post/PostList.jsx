@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   Box,
@@ -17,13 +17,15 @@ import { format } from "date-fns";
 import alterImage from "../../assets/props_img.jpeg";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import CommentIcon from "@mui/icons-material/Comment";
 import ThreeCirclesSVG from "../../assets/ThreeDotIcon";
 import CrossSVG from "../../assets/CloseRingLight";
 import PublicSvg from "../../assets/publicSvg";
 import Haha from "../../assets/haha.png";
 import Like from "../../assets/Like.jsx";
+import CommentIcon from "../../assets/CommentIcon.jsx";
 import Love from "../../assets/love.png";
+import ShareIcon from "../../assets/ShareIcon.jsx";
+import ReplyArrow from "../../assets/ReplyArrow.jsx";
 
 // import Wow from "../../assets/Wow.png";
 // import Sad from "../../assets/Sad.png";
@@ -31,6 +33,7 @@ import Love from "../../assets/love.png";
 
 const PostList = ({ posts, loading, loadMore, error }) => {
   const observer = useRef();
+  const [repliesVisible, setRepliesVisible] = useState({});
 
   const lastPostElementRef = useRef();
 
@@ -49,8 +52,15 @@ const PostList = ({ posts, loading, loadMore, error }) => {
   if (error)
     return <Typography>Error loading posts: {error.message}</Typography>;
 
+  const toggleRepliesVisibility = (commentId) => {
+    setRepliesVisible((prevState) => ({
+      ...prevState,
+      [commentId]: !prevState[commentId],
+    }));
+  };
+
   return (
-    <Box display="grid" justifyContent={"center"}>
+    <Box display="grid" justifyContent={"center"} mt={2}>
       {posts.map((post, index) => (
         <Card
           key={index}
@@ -59,7 +69,8 @@ const PostList = ({ posts, loading, loadMore, error }) => {
         >
           <CardContent sx={{ padding: 0 }}>
             {/* Post Header */}
-            <Box display="flex" alignItems="center">
+
+            <Box display="flex" alignItems="center" mb={1}>
               {/* Left-aligned content */}
               <Box
                 flex="1"
@@ -69,12 +80,12 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 marginTop={2}
               >
                 <Avatar
+                  // sx={{ width: "40px", height: "40px" }}
                   src={alterImage || post.user_id.profile_pic}
                   alt={post.user_id.username}
                 />
-                <Box ml={2}>
+                <Box ml={1}>
                   <Typography
-                    variant="h6"
                     sx={{
                       fontFamily: "Poppins",
                       fontSize: "15px",
@@ -86,7 +97,6 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     {`${post.user_id.first_name} ${post.user_id.last_name}`}
                   </Typography>
                   <Typography
-                    variant="body2"
                     color="textSecondary"
                     display="flex"
                     alignItems="center"
@@ -94,12 +104,12 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       fontFamily: "Poppins",
                       fontSize: "13px",
                       fontWeight: 400,
-                      lineHeight: "19.5px",
+                      lineHeight: "10.5px",
                       textAlign: "left",
                     }}
                   >
-                    {format(new Date(post.createdAt), "PPP")}
-                    <Box ml={1}>
+                    {format(new Date(post.createdAt), "PPP")} •
+                    <Box sx={{ marginLeft: "2px" }}>
                       <PublicSvg />
                     </Box>
                   </Typography>
@@ -113,21 +123,25 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 justifyContent={"center"}
                 marginTop={2}
               >
-                <Box
-                  sx={{
-                    margin: "0px",
-                    padding: "0px",
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <ThreeCirclesSVG />
-                </Box>
-                <Box ml={2}>
+                <Button>
+                  <IconButton
+                    sx={{
+                      margin: "0px",
+                      padding: "0px",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <ThreeCirclesSVG />
+                  </IconButton>
+                </Button>
+
+                <Button mx={1}>
                   <CrossSVG />
-                </Box>
+                </Button>
               </Box>
             </Box>
+
             {/* Post Header End */}
 
             {/* Post Content  */}
@@ -260,6 +274,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 </Typography>
               </Box>
 
+              {/* Post Comments */}
               <Box display="flex" alignItems="center">
                 <Typography
                   marginLeft={1}
@@ -275,23 +290,14 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 </Typography>
                 <IconButton
                   sx={{
-                    padding: 0,
                     margin: 0,
+                    padding: "2px",
                   }}
                 >
-                  <Box
-                    sx={{
-                      width: "20px",
-                      height: "20px",
-                      border: "2px solid black",
-                      borderRadius: "50%",
-                    }}
-                    component="img"
-                    src={Love}
-                    alt="comment icon"
-                  />
+                  <CommentIcon />
                 </IconButton>
 
+                {/* Post Shares */}
                 <Typography
                   marginLeft={1}
                   sx={{
@@ -306,21 +312,11 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 </Typography>
                 <IconButton
                   sx={{
-                    padding: 0,
+                    padding: "2px",
                     margin: 0,
                   }}
                 >
-                  <Box
-                    sx={{
-                      width: "20px",
-                      height: "20px",
-                      border: "2px solid black",
-                      borderRadius: "50%",
-                    }}
-                    component="img"
-                    src={Love}
-                    alt="share icon"
-                  />
+                  <ShareIcon />
                 </IconButton>
               </Box>
             </Box>
@@ -332,13 +328,14 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               justifyContent="space-between"
               mt={2}
               color={"#6A6A6B"}
+              marginInline={"16px"}
             >
               <Box display="flex" alignItems="center">
                 <IconButton
                   sx={{
-                    marginLeft: "16px",
                     paddingRight: "0px",
                     marginRight: "0px",
+                    marginBottom: "4px",
                   }}
                 >
                   <Like />
@@ -398,78 +395,219 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             </Box>
           </CardContent>
 
-          {/* Display comments */}
+          {/* Post Content end */}
+
+          {/* Display comments Box */}
           {post.comments.length > 0 && (
-            <div>
-              {post.comments.map((comment) => (
-                <div key={comment._id}>
-                  <Avatar
-                    alt={`${comment.user_id.first_name} ${comment.user_id.last_name}`}
-                    src={comment.user_id.profile_pic}
-                  />
-                  <div>
-                    <Typography variant="subtitle1">
-                      {`${comment.user_id.first_name} ${comment.user_id.last_name}`}
-                    </Typography>
-                    <Typography variant="body2">
-                      {comment.comment_name}
-                    </Typography>
-                    {/* Display comment reactions */}
-                    {comment.comment_reactions.length > 0 && (
-                      <div>
-                        {comment.comment_reactions.map((reaction) => (
-                          <IconButton key={reaction._id}>
-                            {/* Depending on the reaction_type, show different icons */}
-                            {reaction.reaction_type === "love" && (
-                              <FavoriteIcon color="secondary" />
-                            )}
-                            {/* Add more reaction types as needed */}
-                          </IconButton>
-                        ))}
-                      </div>
-                    )}
-                    {/* Display replies */}
-                    {comment.replies.length > 0 && (
-                      <div>
-                        {comment.replies.map((reply) => (
-                          <div key={reply._id}>
-                            <Avatar
-                              alt={`${reply.replies_user_id.first_name} ${reply.replies_user_id.last_name}`}
-                              src={reply.replies_user_id.profile_pic}
-                            />
-                            <div>
-                              <Typography variant="subtitle2">
-                                {`${reply.replies_user_id.first_name} ${reply.replies_user_id.last_name}`}
+            <Box display="flex" flexDirection="column" mt={2} px={4}>
+              <Typography
+                sx={{
+                  fontFamily: "Poppins",
+                  fontSize: "16px",
+                  fontWeight: 600,
+                  lineHeight: "24px",
+                }}
+              >
+                View more comments
+              </Typography>
+
+              {/*              Display comments section */}
+              {post.comments.length > 0 && (
+                <Box display="flex" flexDirection="column" mt={2} mb={2}>
+                  {post.comments.map((comment) => (
+                    <Box key={comment._id} display="flex" mb={2}>
+                      <Avatar
+                        alt={`${comment.user_id.first_name} ${comment.user_id.last_name}`}
+                        src={comment.user_id.profile_pic}
+                        sx={{ width: 40, height: 40, marginRight: 2 }}
+                      />
+
+                      {/* Comment container */}
+                      <Box display="flex" flexDirection="column" width="100%">
+                        {/* Comment */}
+                        <Box
+                          display="flex"
+                          width="100%"
+                          flexDirection="column"
+                          // border={"2px solid #E4E4E4"}
+                          // borderRadius={3}
+                          // paddingLeft={2}
+                          p={1}
+                        >
+                          <Box display="flex" alignItems="center">
+                            <Typography
+                              variant="subtitle1"
+                              sx={{
+                                fontFamily: "Poppins",
+                                fontSize: "14px",
+                                fontWeight: 500,
+                                lineHeight: "21.5px",
+                              }}
+                            >
+                              {`${comment.user_id.first_name} ${comment.user_id.last_name}`}
+                            </Typography>
+                          </Box>
+                          {/* Comment Text */}
+                          <Typography
+                            variant="body2"
+                            sx={{
+                              mt: 1,
+                              fontFamily: "Poppins",
+                              fontSize: "12px",
+                              fontWeight: 400,
+                              lineHeight: "18.5px",
+                            }}
+                          >
+                            {comment.comment_name || comment.comment_text}
+                          </Typography>
+
+                          {/* Display comment reactions */}
+
+                          <Box>
+                            <Box display="flex" alignItems="center">
+                              <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                ml={2}
+                                sx={{
+                                  mt: 1,
+                                  fontFamily: "Manrope",
+                                  fontSize: "12px",
+                                  fontWeight: 700,
+                                  lineHeight: "14.5px",
+                                  color: "#000000",
+                                }}
+                              >
+                                1 h
                               </Typography>
-                              <Typography variant="body2">
-                                {reply.replies_comment_name}
+                              <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                ml={2}
+                                sx={{
+                                  mt: 1,
+                                  fontFamily: "Manrope",
+                                  fontSize: "12px",
+                                  fontWeight: 700,
+                                  lineHeight: "14.5px",
+                                  color: "#000000",
+                                }}
+                              >
+                                Like
                               </Typography>
-                              {/* Display reply reactions */}
-                              {reply.replies_comment_reactions.length > 0 && (
-                                <div>
-                                  {reply.replies_comment_reactions.map(
-                                    (reaction) => (
-                                      <IconButton key={reaction._id}>
-                                        {/* Depending on the reaction_type, show different icons */}
-                                        {reaction.reaction_type === "love" && (
-                                          <FavoriteIcon color="secondary" />
-                                        )}
-                                        {/* Add more reaction types as needed */}
-                                      </IconButton>
-                                    )
-                                  )}
-                                </div>
+                              <Typography
+                                variant="body2"
+                                color="textSecondary"
+                                ml={2}
+                                sx={{
+                                  mt: 1,
+                                  fontFamily: "Manrope",
+                                  fontSize: "12px",
+                                  fontWeight: 700,
+                                  lineHeight: "14.5px",
+                                  color: "#000000",
+                                }}
+                              >
+                                Reply
+                              </Typography>
+                            </Box>
+
+                            <Box display="flex" alignItems="center">
+                              {comment.replies.length > 0 && (
+                                <>
+                                  <Button
+                                    onClick={() =>
+                                      toggleRepliesVisibility(comment._id)
+                                    }
+                                  >
+                                    <ReplyArrow />
+                                  </Button>
+
+                                  <Typography
+                                    sx={{
+                                      mt: 1,
+                                      fontFamily: "poppins",
+                                      fontSize: "12px",
+                                      fontWeight: 500,
+                                      lineHeight: "18.5px",
+                                      color: "#000000",
+                                    }}
+                                  >
+                                    {repliesVisible[comment._id]
+                                      ? "Hide"
+                                      : "View"}{" "}
+                                    {comment.replies.length} Reply
+                                  </Typography>
+                                </>
                               )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
+                            </Box>
+                          </Box>
+
+                          {/* Replies */}
+                          {repliesVisible[comment._id] && (
+                            <Box mt={2} pl={5}>
+                              {comment.replies.map((reply) => (
+                                <Box key={reply._id} display="flex" mb={2}>
+                                  <Avatar
+                                    alt={`${reply.replies_user_id.first_name} ${reply.replies_user_id.last_name}`}
+                                    src={reply.replies_user_id.profile_pic}
+                                    sx={{
+                                      width: 30,
+                                      height: 30,
+                                      marginRight: 2,
+                                    }}
+                                  />
+                                  <Box display="flex" flexDirection="column">
+                                    <Box display="flex" alignItems="center">
+                                      <Typography
+                                        variant="subtitle2"
+                                        sx={{
+                                          fontFamily: "Poppins",
+                                          fontSize: "14px",
+                                          fontWeight: 500,
+                                        }}
+                                      >
+                                        {`${reply.replies_user_id.first_name} ${reply.replies_user_id.last_name}`}
+                                      </Typography>
+                                    </Box>
+                                    <Typography variant="body2" sx={{ mt: 1 }}>
+                                      {reply.replies_comment_name}
+                                    </Typography>
+                                    {reply.replies_comment_reactions.length >
+                                      0 && (
+                                      <Box display="flex" mt={1}>
+                                        {reply.replies_comment_reactions.map(
+                                          (reaction) => (
+                                            <IconButton
+                                              key={reaction._id}
+                                              sx={{ padding: "4px" }}
+                                            >
+                                              {reaction.reaction_type ===
+                                                "love" && (
+                                                <FavoriteIcon
+                                                  color="secondary"
+                                                  fontSize="small"
+                                                />
+                                              )}
+                                            </IconButton>
+                                          )
+                                        )}
+                                      </Box>
+                                    )}
+                                  </Box>
+                                </Box>
+                              ))}
+                            </Box>
+                          )}
+                        </Box>
+                      </Box>
+                    </Box>
+                  ))}
+                </Box>
+              )}
+            </Box>
           )}
+
           <Divider />
         </Card>
       ))}
