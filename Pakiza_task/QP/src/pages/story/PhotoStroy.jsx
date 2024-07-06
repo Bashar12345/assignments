@@ -254,10 +254,10 @@ const PhotoStroy = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
-                height: "742px",
+                height: {xs:"100vh",sm:"742px"},
                 backgroundColor: "#F0F2F5",
                 borderRadius: "8px",
-                padding: "71px 281px 79px 281px",
+                padding: {xs:"19px 18px 19px 18px",sm:"71px 281px 79px 281px"},
                 position: "relative", // Ensure relative positioning for absolute elements
               }}
             >

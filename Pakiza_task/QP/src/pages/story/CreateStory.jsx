@@ -19,6 +19,7 @@ import StoryButton from "../../components/StoryButton";
 import GalleryIcon from "../../assets/GallaryIcon";
 import TextIcon from "../../assets/TextIcon";
 import { Link } from "react-router-dom";
+import { Close } from "@mui/icons-material";
 
 const CreateStory = () => {
   const theme = useTheme();
@@ -117,16 +118,14 @@ const CreateStory = () => {
       <Box
         sx={{
           backgroundColor: "white",
-          width: "991px",
-          height: "826px",
-          marginTop: "100px",
+          width: { xs: "100%", md: "991px" },
+          height: { xs: "100%", md: "826px" },
+          marginTop: { xs: "10px", md: "100px" },
           padding: "20px 19px 20px 19px",
-          gap: "17px",
+          gap: { xs: "14px", md: "16px" },
           borderRadius: "8px",
           // opacity: 0px;
-
           // border: "2px solid black",
-
           boxSizing: "border-box",
           boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
         }}
@@ -138,11 +137,12 @@ const CreateStory = () => {
           // sx={{ border: "2px solid red" }}
           justifyContent={"space-between"}
         >
-          <Grid item xs={12}>
+          <Grid item sm={12}>
             <Typography
               variant="h2"
               gutterBottom
               sx={{
+                display: { xs: "none", md: "block" },
                 fontFamily: "Poppins",
                 fontSize: "16px",
                 fontWeight: "600",
@@ -153,163 +153,210 @@ const CreateStory = () => {
             >
               Select Story Type
             </Typography>
+
+            {isMobile && (
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                <Close />
+                <Typography
+                  variant="h2"
+                  gutterBottom
+                  sx={{
+                    fontFamily: "Public Sans",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    lineHeight: "8px",
+                    textAlign: "center",
+                    marginBottom: "8px",
+                  }}
+                >
+                  Create Story
+                </Typography>
+              </Box>
+            )}
           </Grid>
 
-          <Box
-            sx={{
-              display: "flex",
-              width: "951px",
-              height: "742px",
-              padding: "71px 281px 79px 281px",
-              gap: "10px",
-              borderRadius: "8px",
-              opacity: "0px",
-              background: "#F0F2F5",
-            }}
-          >
-            <Box xs={6}>
-              <StoryButton
-              component={Link}
-                to="/photo-stories"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
-                  // display: { xs: "flex", sm: "block" },
+          <>
+            {/* For desktop/tablet view */}
+            {!isMobile && (
+              <Box
+                sx={{
+                  display: "flex",
+                  width: "951px",
+                  height: "742px",
+                  padding: "71px 281px 79px 281px",
+                  gap: "10px",
+                  borderRadius: "8px",
+                  opacity: "0px",
+                  background: "#F0F2F5",
                 }}
-                onClick={isMobile ? handleMainDrawerToggle : null}
               >
-                <Box
-                  component="span"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <GalleryIcon />
+                <Box xs={6}>
+                  <StoryButton
+                    component={Link}
+                    to="/photo-stories"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
+                      width: { xs: "154px", md: "247px" },
+                      height: { xs: "271px", md: "449px" },
+                    }}
+                    onClick={isMobile ? handleMainDrawerToggle : null}
+                  >
+                    <Box
+                      component="span"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <GalleryIcon />
+                      <Typography
+                        variant="body1"
+                        component="span"
+                        marginTop={1}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          lineHeight: "24px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Create Your Photo Story
+                      </Typography>
+                    </Box>
+                  </StoryButton>
+                </Box>
 
-                  <Typography
-                    variant="body1"
+                <Box xs={6}>
+                  <StoryButton
+                    component={Link}
+                    to="/stories-form"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
+                    }}
+                    onClick={isMobile ? handleMainDrawerToggle : null}
+                  >
+                    <Box
+                      component="span"
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <TextIcon />
+                      <Typography
+                        variant="body1"
+                        component="span"
+                        marginTop={1}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          lineHeight: "24px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Create Your Text Story
+                      </Typography>
+                    </Box>
+                  </StoryButton>
+                </Box>
+              </Box>
+            )}
+
+            {/* For mobile view, render StoryButton components directly without the wrapping Box */}
+            {isMobile && (
+              <>
+                <StoryButton
+                  component={Link}
+                  to="/photo-stories"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
+                    width: { xs: "154px", md: "247px" },
+                    height: { xs: "271px", md: "449px" },
+                    margin: "10px", // Adjust margin as needed
+                  }}
+                  onClick={isMobile ? handleMainDrawerToggle : null}
+                >
+                  <Box
                     component="span"
-                    marginTop={1}
                     sx={{
-                      fontFamily: "Poppins",
-                      fontSize: 16,
-                      fontWeight: 600,
-                      lineHeight: "24px",
-                      textAlign: "center",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
-                    Create Your Photo Story
-                  </Typography>
-                </Box>
-              </StoryButton>
-            </Box>
+                    <GalleryIcon />
+                    <Typography
+                      variant="body1"
+                      component="span"
+                      marginTop={1}
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontSize: 16,
+                        fontWeight: 600,
+                        lineHeight: "24px",
+                        textAlign: "center",
+                      }}
+                    >
+                      Create Your Photo Story
+                    </Typography>
+                  </Box>
+                </StoryButton>
 
-            <Box xs={6}>
-              <StoryButton
-                component={Link}
-                to="/stories-form"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
-                  // display: { xs: "flex", sm: "block" },
-                }}
-                onClick={isMobile ? handleMainDrawerToggle : null}
-              >
-                <Box
-                  component="span"
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
+                <StoryButton
+                  component={Link}
+                  to="/stories-form"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
+                    margin: "10px", // Adjust margin as needed
                   }}
+                  onClick={isMobile ? handleMainDrawerToggle : null}
                 >
-                  <TextIcon />
-                  <Typography
-                    variant="body1"
+                  <Box
                     component="span"
-                    marginTop={1}
                     sx={{
-                      fontFamily: "Poppins",
-                      fontSize: 16,
-                      fontWeight: 600,
-                      lineHeight: "24px",
-                      textAlign: "center",
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "center",
+                      alignItems: "center",
                     }}
                   >
-                    Create Your Text Story
-                  </Typography>
-                </Box>
-              </StoryButton>
-            </Box>
-          </Box>
+                    <TextIcon />
+                    <Typography
+                      variant="body1"
+                      component="span"
+                      marginTop={1}
+                      sx={{
+                        fontFamily: "Poppins",
+                        fontSize: 16,
+                        fontWeight: 600,
+                        lineHeight: "24px",
+                        textAlign: "center",
+                      }}
+                    >
+                      Create Your Text Story
+                    </Typography>
+                  </Box>
+                </StoryButton>
+              </>
+            )}
+          </>
+
+          {/* End of StoryButton components  */}
         </Grid>
       </Box>
 
       {/* </Container> */}
-
-      {isMobile && (
-        <>
-          {/* Drawer for mobile view */}
-
-          <Drawer
-            variant="temporary"
-            open={mainDrawerOpen}
-            onClose={handleMainDrawerToggle}
-            anchor="bottom"
-            ModalProps={{ keepMounted: true }}
-            sx={{
-              "& .MuiDrawer-paper": {
-                boxSizing: "border-box",
-                width: "100%",
-                height: "100%",
-              },
-            }}
-          >
-            <Box
-              sx={{
-                border: "2px solid black",
-                padding: "21px",
-                height: "100%",
-                overflowY: "auto",
-              }}
-            >
-              <Grid container spacing={3} justifyContent="center">
-                <CloseButton onClick={handleDrawerToggle} />
-                <Grid item>
-                  <StoryButton
-                    style={{
-                      background: "linear-gradient(to right, #ff416c, #ff4b2b)",
-                    }}
-                    onClick={handleMainDrawerToggle}
-                  >
-                    <Box component="span" mb={1}>
-                      📷
-                    </Box>
-                    Create Your Photo Story
-                  </StoryButton>
-                </Grid>
-                <Grid item>
-                  <StoryButton
-                    style={{
-                      background: "linear-gradient(to right, #00b4db, #0083b0)",
-                    }}
-                    onClick={handleMainDrawerToggle}
-                  >
-                    <Box component="span" mb={1}>
-                      📝
-                    </Box>
-                    Create Your Text Story
-                  </StoryButton>
-                </Grid>
-              </Grid>
-            </Box>
-          </Drawer>
-        </>
-      )}
     </Box>
   );
 };
