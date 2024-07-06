@@ -12,6 +12,7 @@ import StoryList from './pages/story/StoryList';
 import TextStoryForm from './pages/story/TextStoryForm';
 import PhotoStroy from './pages/story/PhotoStroy';
 import CreateStory from './pages/story/CreateStory';
+import NewsFeed from './pages/NewsFeed';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
           <Route path="/" element={<ProtectedRoute />}>
             <Route path="/" element={<AppLayout />}>
               <Route path="home" element={<PostList />} />
-              <Route path="posts" element={<PostList />} />
+              <Route path="posts" element={<NewsFeed />} />
               <Route path="stories-lists" element={<StoryList />} />
               <Route path="post-stories" element={<CreateStory />} />
 

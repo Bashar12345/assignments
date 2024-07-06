@@ -39,6 +39,8 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axiosInstance from "../api/apiQueries";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -108,6 +110,23 @@ export default function Navbar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const handleLogout = async () => {
+    try {
+      const response = await axiosInstance.get("/logout");
+      console.log("Logout Successful:", response.data); // Assuming your API returns a success message
+      toast.success("Logout Successful");
+
+      localStorage.removeItem("accessToken");
+      localStorage.removeItem("refreshToken");
+    } catch (error) {
+      console.error("Logout Error:", error);
+    } finally {
+      setAnchorEl(null);
+      handleMobileMenuClose();
+      window.location.reload();
+    }
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -127,6 +146,7 @@ export default function Navbar() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
 
@@ -225,6 +245,7 @@ export default function Navbar() {
       </List>
     </Box>
   );
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="sticky" color="navbar">
@@ -310,6 +331,9 @@ export default function Navbar() {
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
+              sx={{
+                backgroundColor: "#E4E4E4",
+              }}
             >
               <Badge badgeContent={4} color="primary">
                 <MessageIcon />
@@ -319,9 +343,15 @@ export default function Navbar() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              sx={{
+                borderRadius: "50%", // Make it round
+                margin: "5px",
+                padding: "0px 12px 4px 12px",
+                backgroundColor: "#E4E4E4",
+              }}
             >
               <Badge badgeContent={17} color="primary">
-                <BellIcon />
+                <BellIcon  sx= {{transform: "rotate(20deg)"}}/>
               </Badge>
             </IconButton>
             <IconButton
@@ -347,9 +377,7 @@ export default function Navbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Drawer
-      
-      open={open} onClose={toggleDrawer(false)}>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
       {renderMobileMenu}

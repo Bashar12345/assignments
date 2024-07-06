@@ -1,39 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Typography, Card, CardContent, CardActions, Button } from '@mui/material';
-// import axios from '../api/axios';
+import React, { useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
+import { Box, Typography, Avatar, Card, CardContent, CardMedia } from '@mui/material';
+import { format } from 'date-fns';
 
-const PostList = () => {
-  const [posts, setPosts] = useState([]);
+const PostList = ({ posts, loading, loadMore, error }) => {
+  const observer = useRef();
+
+  const lastPostElementRef = useRef();
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        // const response = await axios.get('/api/posts');
-        // setPosts(response.data);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        loadMore();
       }
-    };
-    fetchPosts();
-  }, []);
+    });
+    if (lastPostElementRef.current) observer.current.observe(lastPostElementRef.current);
+  }, [loading, loadMore]);
+
+  if (error) return <Typography>Error loading posts: {error.message}</Typography>;
 
   return (
-    <Container>
-      <Typography variant="h4" gutterBottom>Posts</Typography>
-      {posts.map(post => (
-        <Card key={post.id} style={{ marginBottom: '20px' }}>
+    <Box>
+      {posts.map((post, index) => (
+        <Card key={post._id} ref={index === posts.length - 1 ? lastPostElementRef : null} sx={{ marginBottom: 2 }}>
           <CardContent>
-            <Typography variant="h5">{post.title}</Typography>
-            <Typography variant="body2">{post.content}</Typography>
+            <Box display="flex" alignItems="center">
+              <Avatar src={post.user_id.profile_pic} alt={post.user_id.username} />
+              <Box ml={2}>
+                <Typography variant="h6">{`${post.user_id.first_name} ${post.user_id.last_name}`}</Typography>
+                <Typography variant="body2" color="textSecondary">{format(new Date(post.createdAt), 'PPP')}</Typography>
+              </Box>
+            </Box>
+            <Box mt={2}>
+              <Typography variant="body1">{post.description}</Typography>
+            </Box>
+            {post.share_post_id && (
+              <Card variant="outlined" sx={{ marginTop: 2 }}>
+                <CardContent>
+                  <Typography variant="body1">{post.share_post_id.description}</Typography>
+                  <Typography variant="body2" color="textSecondary">{`Shared from ${post.share_post_id.user_id.first_name} ${post.share_post_id.user_id.last_name}`}</Typography>
+                </CardContent>
+              </Card>
+            )}
+            {post.media.length > 0 && (
+              <CardMedia
+                component="img"
+                height="140"
+                image={post.media[0]}
+                alt="Post media"
+              />
+            )}
           </CardContent>
-          <CardActions>
-            <Button size="small" color="primary">Like</Button>
-            <Button size="small" color="primary">Comment</Button>
-          </CardActions>
         </Card>
       ))}
-    </Container>
+
+      {loading && <Typography>Loading more posts...</Typography>}
+    </Box>
   );
+};
+
+PostList.propTypes = {
+  posts: PropTypes.arrayOf(PropTypes.object),
+  loading: PropTypes.bool.isRequired,
+  loadMore: PropTypes.func.isRequired,
+  error: PropTypes.object,
 };
 
 export default PostList;
