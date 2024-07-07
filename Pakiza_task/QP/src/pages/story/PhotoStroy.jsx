@@ -22,6 +22,7 @@ import ZoomInMapOutlinedIcon from "@mui/icons-material/ZoomInMapOutlined";
 import StoryPreview from "../../components/StroyPreview";
 import { toast } from "react-toastify";
 import { styled } from "@mui/material/styles";
+import StoryLayout from "./StoryLayout";
 
 const ColorOption = styled("div")({
   width: "23px",
@@ -217,19 +218,10 @@ const PhotoStroy = () => {
       {/*  sidebar end */}
 
       {/* Main Content */}
-      <Box
-        sx={{
-          backgroundColor: "white",
+      <StoryLayout>
 
-          width: isMobile ? "100%" : "calc(100% - 374px)",
-          marginLeft: isMobile ? 0 : "374px",
-          padding: "20px",
-          borderRadius: "8px",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          marginTop: isMobile ? 0 : "100px",
-          // border: "2px solid black",
-        }}
-      >
+
+        
         <Grid container justifyContent="space-between">
           <Grid item xs={12}>
             <Typography
@@ -254,10 +246,13 @@ const PhotoStroy = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 width: "100%",
-                height: {xs:"100vh",sm:"742px"},
+                height: { xs: "100vh", sm: "742px" },
                 backgroundColor: "#F0F2F5",
                 borderRadius: "8px",
-                padding: {xs:"19px 18px 19px 18px",sm:"71px 281px 79px 281px"},
+                padding: {
+                  xs: "19px 18px 19px 18px",
+                  sm: "71px 281px 79px 281px",
+                },
                 position: "relative", // Ensure relative positioning for absolute elements
               }}
             >
@@ -267,8 +262,8 @@ const PhotoStroy = () => {
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "100%",
-                  height: "100%",
+                  // width: "100%",
+                  // height: "100%",
                   position: "relative", // Ensure relative positioning for absolute elements
                 }}
                 onClick={isMobile ? handleMainDrawerToggle : null}
@@ -341,7 +336,10 @@ const PhotoStroy = () => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+
+
+
+      </StoryLayout>
       {/* Main Content end */}
     </Box>
   );

@@ -28,6 +28,7 @@ import CommentIcon from "../../assets/CommentIcon.jsx";
 import Love from "../../assets/love.png";
 import ShareIcon from "../../assets/ShareIcon.jsx";
 import ReplyArrow from "../../assets/ReplyArrow.jsx";
+import TimeFormat from "../../components/TimeFormat.jsx";
 
 // import Wow from "../../assets/Wow.png";
 // import Sad from "../../assets/Sad.png";
@@ -67,7 +68,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
         <Card
           key={index}
           ref={index === posts.length - 1 ? lastPostElementRef : null}
-          sx={{ marginBottom: 2, width: "655px" }}
+          sx={{ marginBottom: 2, width: { xs: "100%", sm: "auto" } }} // md:"655px"
         >
           <CardContent sx={{ padding: 0 }}>
             {/* Post Header */}
@@ -82,7 +83,11 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 marginTop={2}
               >
                 <Avatar
-                  // sx={{ width: "40px", height: "40px" }}
+                  sx={{
+                    width: "50px",
+                    height: "50px",
+                    borderRadius: { xs: "10px", sm: "50%" },
+                  }}
                   src={alterImage || post.user_id.profile_pic}
                   alt={post.user_id.username}
                 />
@@ -97,7 +102,24 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     }}
                   >
                     {`${post.user_id.first_name} ${post.user_id.last_name}`}
+
+                    {post.post_type && <small>{`  ${post.post_type}`}</small>}
+
+                    {post.event_type && <small>{` ${post.event_type}`}</small>}
+
+                    {post.feeling_id && (
+                      <small>{` feeling  ${post.feeling_id}`}</small>
+                    )}
+
+                    {post.activity_id && (
+                      <small>{` ${post.activity_id}`}</small>
+                    )}
+
+                    {post.campaign_id && (
+                      <small>{` ${post.campaign_id}`}</small>
+                    )}
                   </Typography>
+
                   <Typography
                     color="textSecondary"
                     display="flex"
@@ -110,10 +132,16 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       textAlign: "left",
                     }}
                   >
-                    {format(new Date(post.createdAt), "PPP")} •
-                    <Box sx={{ marginLeft: "2px" }}>
-                      <PublicSvg />
-                    </Box>
+                    <TimeFormat post={post.createdAt} />
+                    {post.location_name && (
+                      <small>{` ${post?.location_name === "null" ? "" : post?.location_name }`}</small>
+                    )}{" "}
+                    •
+                    {post.post_privacy === "public" && (
+                      <Box sx={{ marginLeft: "2px" }}>
+                        <PublicSvg />
+                      </Box>
+                    )}
                   </Typography>
                 </Box>
               </Box>
@@ -132,13 +160,21 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       padding: "0px",
                       display: "flex",
                       alignItems: "center",
+                      "@media (max-width: 600px)": {
+                        transform: "rotate(90deg)",
+                      },
                     }}
                   >
                     <ThreeCirclesSVG />
                   </IconButton>
                 </Button>
 
-                <Button mx={1}>
+                <Button
+                  sx={{
+                    marginInline: "4px",
+                    display: { xs: "none", sm: "block" },
+                  }}
+                >
                   <CrossSVG />
                 </Button>
               </Box>
@@ -421,7 +457,12 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       <Avatar
                         alt={`${comment.user_id.first_name} ${comment.user_id.last_name}`}
                         src={comment.user_id.profile_pic}
-                        sx={{ width: 40, height: 40, marginRight: 2 }}
+                        sx={{
+                          width: 40,
+                          height: 40,
+                          marginRight: 2,
+                          borderRadius: { xs: "10px", sm: "50%" },
+                        }}
                       />
 
                       {/* Comment container */}
@@ -554,9 +595,10 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                                     alt={`${reply.replies_user_id.first_name} ${reply.replies_user_id.last_name}`}
                                     src={reply.replies_user_id.profile_pic}
                                     sx={{
-                                      width: 30,
-                                      height: 30,
+                                      width: 50,
+                                      height: 50,
                                       marginRight: 2,
+                                      borderRadius: { xs: "10px", sm: "50%" },
                                     }}
                                   />
                                   <Box display="flex" flexDirection="column">
@@ -603,50 +645,53 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                           )}
 
                           {/* Comment Box */}
-                          {/* Input Field */}
-                          <Box
-                            display="flex"
-                            alignItems="center"
-                            width="100%"
-                            mb={2}
-                            paddingInline={2}
-                          >
-                            <Avatar
-                              src={propImage}
-                              sx={{
-                                width: "59px",
-                                height: "59px",
-                                marginRight: "1rem", // Adjust margin right as needed
-                              }}
-                            />
-                            <TextField
-                              fullWidth
-                              variant="outlined"
-                              placeholder={`Write a Public comment...`}
-                              InputProps={{
-                                style: {
-                                  border: "none", // light border
-                                  borderRadius: "8px",
-                                  paddingInline: "16px",
-                                  backgroundColor: "#EEEEEE",
-                                  fontFamily: "Poppins",
-                                  fontSize: "14px",
-                                  fontWeight: 400,
-                                  lineHeight: "21px",
-                                  letterSpacing: "0.01em",
-                                  textAlign: "left",
-                                  color: "#000", // text color
-                                  "&::placeholder": {
-                                    color: "#B0B3B8", // placeholder color
-                                  },
-                                },
-                              }}
-                            />
-                          </Box>
                         </Box>
                       </Box>
                     </Box>
                   ))}
+
+                  {/* Input Field */}
+                  <Box
+                    display="flex"
+                    justifyContent={"space-between"}
+                    alignItems="center"
+                    width="100%"
+                    mb={2}
+                    // paddingInline={2}
+                  >
+                    <Avatar
+                      src={propImage}
+                      sx={{
+                        width: "59px",
+                        height: "59px",
+                        marginRight: "1rem", // Adjust margin right as needed
+                        borderRadius: { xs: "10px", sm: "50%" },
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      variant="outlined"
+                      placeholder={`Write a Public comment...`}
+                      InputProps={{
+                        style: {
+                          border: "none", // light border
+                          borderRadius: "8px",
+                          paddingInline: "16px",
+                          backgroundColor: "#EEEEEE",
+                          fontFamily: "Poppins",
+                          fontSize: "14px",
+                          fontWeight: 400,
+                          lineHeight: "21px",
+                          letterSpacing: "0.01em",
+                          textAlign: "left",
+                          color: "#000", // text color
+                          "&::placeholder": {
+                            color: "#B0B3B8", // placeholder color
+                          },
+                        },
+                      }}
+                    />
+                  </Box>
                 </Box>
               )}
             </Box>

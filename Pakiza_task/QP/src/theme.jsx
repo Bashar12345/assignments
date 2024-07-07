@@ -4,6 +4,7 @@ import { createTheme } from "@mui/material/styles";
 import "typeface-manrope";
 import "typeface-raleway";
 import "typeface-open-sans";
+import 'typeface-public-sans';
 import "typeface-inter";
 import "typeface-poppins";
 import "typeface-roboto";

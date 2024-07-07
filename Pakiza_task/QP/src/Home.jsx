@@ -11,16 +11,14 @@ import NewsSlider from "./pages/home/NewsSlider";
 
 const Home = () => {
   return (
-    <Box marginInline={"2rem"}>
+    <Box
+      sx={{
+        marginInline: { xs: "2px", sm: "8px", xl: "48px" },
+      }}
+    >
       <Grid container spacing={1}>
         {/* Left Section */}
-        <Grid
-          item
-          xs={12}
-          sm={3}
-          sx={{ display: { xs: "none", sm: "block" }, width: "250px" }}
-        >
-          
+        <Grid item xs={12} sm={3} sx={{ display: { xs: "none", sm: "block" } }}>
           <NewsSlider />
           <MayLike />
           <MayKnow />

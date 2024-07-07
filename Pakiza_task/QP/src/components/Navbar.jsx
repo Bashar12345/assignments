@@ -4,7 +4,6 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import DrawerList from "./DrawerList";
 
-
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
@@ -18,7 +17,6 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 
-
 import logo from ".././assets/op.png";
 import HomeIcon from ".././assets/homeicon";
 import VideoIcon from ".././assets/videoicon";
@@ -30,11 +28,7 @@ import BellIcon from ".././assets/bell";
 
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
 
-import {
-  Tabs,
-  Tab,
-  Drawer,
-} from "@mui/material";
+import { Tabs, Tab, Drawer } from "@mui/material";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../api/apiQueries";
@@ -125,6 +119,8 @@ export default function Navbar() {
   };
 
   const menuId = "primary-search-account-menu";
+
+  // Menu Start
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -146,7 +142,9 @@ export default function Navbar() {
       <MenuItem onClick={handleLogout}>Logout</MenuItem>
     </Menu>
   );
+  // Menu end
 
+  // Mobile Menu
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
     <Menu
@@ -198,6 +196,7 @@ export default function Navbar() {
       </MenuItem>
     </Menu>
   );
+  // Mobile Menu end
 
   const [open, setOpen] = React.useState(false);
 
@@ -211,11 +210,13 @@ export default function Navbar() {
     // Add any other logic you need based on tab change
   };
 
-
-
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="sticky" color="navbar">
+      <AppBar
+        position="sticky"
+        color="navbar"
+        // sx={{ display: { xs: "none", sm: "block" } }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -265,6 +266,8 @@ export default function Navbar() {
             aria-label="navigation tabs"
             sx={{
               display: { xs: "none", sm: "flex" },
+              flexGrow: 1,
+              alignSelf: "flex-end",
               justifyContent: "center",
               "& .MuiTab-root": {
                 padding: "12px 54px", // Adjust padding for tabs
@@ -347,10 +350,7 @@ export default function Navbar() {
           {/* right-aligned icon buttons End of  */}
         </Toolbar>
       </AppBar>
-      <Drawer open={open} onClose={toggleDrawer(false)} 
-      anchor="left"
-     
-      >
+      <Drawer open={open} onClose={toggleDrawer(false)} anchor="left">
         <DrawerList toggleDrawer={toggleDrawer(false)} />
       </Drawer>
       {renderMobileMenu}

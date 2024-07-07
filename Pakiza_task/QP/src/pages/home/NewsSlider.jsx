@@ -66,10 +66,10 @@ const NewsSlider = () => {
                 borderRadius: "8px",
               }}
             >
-              <p>
+              <Box>
                 {/* <Typography variant="body1">{item.title}</Typography> */}
                 <Typography variant="subtitle2" sx={{ lineHeight: "20px"}}>{item.title} {' '} - {item.description}  </Typography>
-              </p>
+              </Box>
             </div>
           </div>
         ))}

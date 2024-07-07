@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import {
   Box,
   Avatar,
@@ -63,10 +62,10 @@ const CreatePost = () => {
       sx={{
         backgroundColor: "#fff",
         borderRadius: "2px",
-        p: 2,
+        p: { xs: 0, sm: 2 },
         boxShadow: 3,
         pt: 5,
-        height: "474px",
+        height: { xs: "234px", md: "474px" },
       }}
     >
       {/* Input Field */}
@@ -74,8 +73,9 @@ const CreatePost = () => {
         display="flex"
         alignItems="center"
         width="100%"
-        mb={2}
-        paddingInline={2}
+        mb={{ xs: 0, sm: 2 }}
+        paddingTop={1}
+        paddingInline={{ xs: 1, sm: 2 }}
       >
         <Avatar
           alt={userInfo.last_name}
@@ -84,6 +84,7 @@ const CreatePost = () => {
             width: "59px",
             height: "59px",
             marginRight: "1rem", // Adjust margin right as needed
+            borderRadius: { xs: "10px", sm: "50%" },
           }}
         />
         <TextField
@@ -93,8 +94,8 @@ const CreatePost = () => {
           InputProps={{
             style: {
               border: "none", // light border
-              borderRadius: "46px",
-              paddingInline: "16px",
+              borderRadius: { xs: "4px", sm: "46px" },
+              paddingInline: { xs: "4px", sm: "16px" },
               backgroundColor: "#EEEEEE",
               fontFamily: "Poppins",
               fontSize: "14px",
@@ -109,13 +110,22 @@ const CreatePost = () => {
             },
           }}
         />
+        <IconButton>
+          <PhotoIcon sx={{ color: "black" }} />
+        </IconButton>
       </Box>
-
 
       <Divider />
 
-      {/* Buttons */}
-      <Box display="flex" justifyContent="space-around" width="100%" mb={2}>
+      {/* Post Buttons */}
+      <Box
+        sx={{
+          display: { xs: "none", md: "flex" },
+          justifyContent: "space-around",
+        }}
+        width="100%"
+        mb={2}
+      >
         <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}>
           <Typography sx={btnTypoStyleProps}>Live Video</Typography>
         </Button>
@@ -149,20 +159,20 @@ const CreatePost = () => {
         >
           {/* Featured User Cards */}
           {featuredUsers?.map((featuredUser, index) => (
-            <Box key={index} mx={1} display="inline-block">
+            <Box key={index} ml={{ xs: 1 , sm: 0 }} mr={{xs: 0, sm: 1}} display="inline-block">
               <Box
                 position="relative"
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ width: "150px", height: "264px" }}
+                sx={{ width: {xs: "80px", sm: "150px"} , height: {xs: "142px", sm: "264px"} }}
               >
                 <Avatar
                   alt={featuredUser.last_name}
                   src={propImage || featuredUser.profilePic}
                   sx={{
-                    width: "150px",
-                    height: "214px",
+                    width: {xs: "80px", sm: "150px"} ,
+                    height: {xs: "118px", sm: "214px"} ,
                     borderRadius: "16px",
                     border: "1.5px solid",
                     borderImageSource:
@@ -172,7 +182,7 @@ const CreatePost = () => {
                 {/* Conditionally render either PlusIcon or Avatar */}
                 <Box
                   position="absolute"
-                  bottom="0%"
+                  bottom= {{xs: "-1%", sm: "0%"}}
                   transform="translate(-50%, -50%)"
                   display="flex"
                   justifyContent="center"
@@ -190,8 +200,8 @@ const CreatePost = () => {
                         transform="translate(-50%, -50%)"
                         sx={{
                           alignItem: "center",
-                          width: "40px",
-                          height: "40px",
+                          width: {xs: "22px", sm: "40px"},
+                          height: {xs: "22px", sm: "40px"},
                           border: "2px solid #307777",
                           borderRadius: "50%",
                         }}
@@ -203,6 +213,8 @@ const CreatePost = () => {
                           marginTop: "2px",
                           display: index === 0 ? "none" : "block",
                           fontSize: "10px",
+                          fontWeight: 400,
+                          fontFamily: "SF Pro Text",
                           lineHeight: "6px",
                         }}
                       >
@@ -219,6 +231,7 @@ const CreatePost = () => {
         {/* Next Arrow */}
         <IconButton
           sx={{
+            display: { xs: "none", md: "block" },
             position: "absolute",
             right: "16px", // Adjust as necessary
             width: "50px",
@@ -233,10 +246,7 @@ const CreatePost = () => {
           }}
           onClick={handleNextClick} // Add click handler for sliding functionality
         >
-          <KeyboardArrowRight
-            onClick={handleNextClick}
-            style={{ zIndex: 1000, right: "16px" }}
-          />
+          <KeyboardArrowRight style={{ zIndex: 1000, right: "16px" }} />
         </IconButton>
       </Box>
     </Box>

@@ -20,6 +20,7 @@ import GalleryIcon from "../../assets/GallaryIcon";
 import TextIcon from "../../assets/TextIcon";
 import { Link } from "react-router-dom";
 import { Close } from "@mui/icons-material";
+import StoryLayout from "./StoryLayout";
 
 const CreateStory = () => {
   const theme = useTheme();
@@ -39,14 +40,16 @@ const CreateStory = () => {
     event.preventDefault();
     // Handle form submission
   };
-  const drawerWidth = isMobile ? "0%" : "374px";
+  const drawerWidth = isMobile ? "0%" : "385px";
 
   return (
     <Box
-      sx={{
-        // border: "1px solid black",
-        width: "100%",
-      }}
+      sx={
+        {
+          border: "1px solid black",
+          width: {xs: "100%", sm: "auto"},
+        }
+      }
     >
       {/* Sidebar */}
       <Drawer
@@ -113,34 +116,19 @@ const CreateStory = () => {
       </Drawer>
 
       {/* Main Content */}
-      {/* <Container sx={{ border: "2px solid green" }}> */}
 
-      <Box
-        sx={{
-          backgroundColor: "white",
-          width: { xs: "100%", md: "991px" },
-          height: { xs: "100%", md: "826px" },
-          marginTop: { xs: "10px", md: "100px" },
-          padding: "20px 19px 20px 19px",
-          gap: { xs: "14px", md: "16px" },
-          borderRadius: "8px",
-          // opacity: 0px;
-          // border: "2px solid black",
-          boxSizing: "border-box",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-        }}
-        // width={isMobile ? "100%" : "calc(100% - 374px)"}
-        marginLeft={drawerWidth}
-      >
+      <StoryLayout >
         <Grid
           container
+          padding={{xs: "16px", sm: "0px"}}
+          width={"100%"}
+          height={"100%"}
           // sx={{ border: "2px solid red" }}
-          justifyContent={"space-between"}
+          justifyContent={"center"}
+          alignItems={"center"}
         >
-          <Grid item sm={12}>
+          <Grid item xs={12} textAlign={"left"}>
             <Typography
-              variant="h2"
-              gutterBottom
               sx={{
                 display: { xs: "none", md: "block" },
                 fontFamily: "Poppins",
@@ -155,40 +143,48 @@ const CreateStory = () => {
             </Typography>
 
             {isMobile && (
-              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Close />
-                <Typography
-                  variant="h2"
-                  gutterBottom
+              <>
+                <Box
                   sx={{
-                    fontFamily: "Public Sans",
-                    fontSize: "16px",
-                    fontWeight: "700",
-                    lineHeight: "8px",
-                    textAlign: "center",
-                    marginBottom: "8px",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginY: "4px",
                   }}
                 >
-                  Create Story
-                </Typography>
-              </Box>
+                  <Close
+                    sx={{ cursor: "pointer" }}
+                    onClick={handleMainDrawerToggle}
+                  />
+                  <Typography
+                    sx={{
+                      fontFamily: "Public Sans",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                      lineHeight: "8px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Create Story
+                  </Typography>
+                  <span></span>
+                </Box>
+              </>
             )}
           </Grid>
 
+          {/*  Select Story Type */}
           <>
             {/* For desktop/tablet view */}
             {!isMobile && (
               <Box
                 sx={{
                   display: "flex",
-                  width: "951px",
-                  height: "742px",
-                  padding: "71px 281px 79px 281px",
                   gap: "10px",
                   borderRadius: "8px",
-                  opacity: "0px",
-                  background: "#F0F2F5",
+                  alignItems: "center",
                 }}
+                height={{ xs: "50vh", sm: "65vh", md: "78vh" }}
               >
                 <Box xs={6}>
                   <StoryButton
@@ -273,90 +269,93 @@ const CreateStory = () => {
             {/* For mobile view, render StoryButton components directly without the wrapping Box */}
             {isMobile && (
               <>
-                <StoryButton
-                  component={Link}
-                  to="/photo-stories"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
-                    width: { xs: "154px", md: "247px" },
-                    height: { xs: "271px", md: "449px" },
-                    margin: "10px", // Adjust margin as needed
-                  }}
-                  onClick={isMobile ? handleMainDrawerToggle : null}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
+                <Grid item xs={6}>
+                  <StoryButton
+                    component={Link}
+                    to="/photo-stories"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, #F25268 0%, #FD1EBE 100%)",
+                      width: { xs: "154px", md: "247px" },
+                      height: { xs: "271px", md: "449px" },
+                      marginRight: "10px", // Adjust margin as needed
                     }}
+                    onClick={isMobile ? handleMainDrawerToggle : null}
                   >
-                    <GalleryIcon />
-                    <Typography
-                      variant="body1"
+                    <Box
                       component="span"
-                      marginTop={1}
                       sx={{
-                        fontFamily: "Poppins",
-                        fontSize: 16,
-                        fontWeight: 600,
-                        lineHeight: "24px",
-                        textAlign: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      Create Your Photo Story
-                    </Typography>
-                  </Box>
-                </StoryButton>
-
-                <StoryButton
-                  component={Link}
-                  to="/stories-form"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
-                    margin: "10px", // Adjust margin as needed
-                  }}
-                  onClick={isMobile ? handleMainDrawerToggle : null}
-                >
-                  <Box
-                    component="span"
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      <GalleryIcon />
+                      <Typography
+                        variant="body1"
+                        component="span"
+                        marginTop={1}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          lineHeight: "24px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Create Your Photo Story
+                      </Typography>
+                    </Box>
+                  </StoryButton>
+                </Grid>
+                <Grid item xs={6}>
+                  <StoryButton
+                    component={Link}
+                    to="/stories-form"
+                    style={{
+                      width: { xs: "154px", md: "247px" },
+                      height: { xs: "271px", md: "449px" },
+                      background:
+                        "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
+                      // margin: "10px", // Adjust margin as needed
                     }}
+                    onClick={isMobile ? handleMainDrawerToggle : null}
                   >
-                    <TextIcon />
-                    <Typography
-                      variant="body1"
+                    <Box
                       component="span"
-                      marginTop={1}
                       sx={{
-                        fontFamily: "Poppins",
-                        fontSize: 16,
-                        fontWeight: 600,
-                        lineHeight: "24px",
-                        textAlign: "center",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
                       }}
                     >
-                      Create Your Text Story
-                    </Typography>
-                  </Box>
-                </StoryButton>
+                      <TextIcon />
+                      <Typography
+                        variant="body1"
+                        component="span"
+                        marginTop={1}
+                        sx={{
+                          fontFamily: "Poppins",
+                          fontSize: 16,
+                          fontWeight: 600,
+                          lineHeight: "24px",
+                          textAlign: "center",
+                        }}
+                      >
+                        Create Your Text Story
+                      </Typography>
+                    </Box>
+                  </StoryButton>
+                </Grid>
               </>
             )}
           </>
 
           {/* End of StoryButton components  */}
         </Grid>
-      </Box>
-
-      {/* </Container> */}
+      </StoryLayout>
     </Box>
   );
 };

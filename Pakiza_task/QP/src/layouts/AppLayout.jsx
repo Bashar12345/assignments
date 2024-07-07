@@ -1,12 +1,12 @@
-import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
-import { Container, styled } from "@mui/system";
+import { styled } from "@mui/system";
+import NavbarMobile from "../components/NavbarMobile";
 
 const LayoutContainer = styled(Box)({
-  marginInline: "1rem",
+  marginInline: { xs: "0.1rem", sm: "1rem" },
   // display: "flex",
 });
 
@@ -19,8 +19,13 @@ const AppLayout = () => {
   return (
     <>
       {!isStoryListRoute && (
-        <Navbar position="fixed" style={{ zIndex: 1201, backgroundColor: "#fff" }} />
+        <Navbar
+          position="fixed"
+          style={{ zIndex: 1201, backgroundColor: "#fff" }}
+        />
       )}
+      <NavbarMobile sx ={{zIndex: 1201 , marginTop: "64px", display: { xs: "block", sm: "none"}}}/>
+
       <div style={{ marginTop: "6px" }}>
         <CssBaseline />
         <LayoutContainer>

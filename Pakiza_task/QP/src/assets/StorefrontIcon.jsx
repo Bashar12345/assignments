@@ -1,6 +1,5 @@
-import React from 'react';
 
-const YourComponent = () => {
+const StorefrontIcon = () => {
   return (
     <div>
       {/* Your other JSX */}
@@ -32,4 +31,4 @@ const YourComponent = () => {
   );
 };
 
-export default YourComponent;
+export default StorefrontIcon;

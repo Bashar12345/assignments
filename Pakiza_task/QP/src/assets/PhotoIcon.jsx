@@ -30,21 +30,21 @@ const PhotoIcon = () => {
         height="7.99962"
         rx="2"
         transform="matrix(0.993309 0.115487 -0.116787 0.993157 7.58011 16.1035)"
-        fill="#4BBC66"
+        fill="currentColor"
       />
       <rect
         width="4.99762"
         height="5.23452"
         rx="2"
         transform="matrix(0.857402 -0.514647 0.505883 0.862602 8.01566 16.3828)"
-        fill="#4BBC66"
+        fill="currentColor"
       />
       <rect
         width="7.11089"
         height="6.20528"
         rx="2"
         transform="matrix(0.857402 -0.514647 0.505883 0.862602 13.7559 16.959)"
-        fill="#4BBC66"
+        fill="currentColor"
       />
       <rect
         x="11.9082"
@@ -53,7 +53,7 @@ const PhotoIcon = () => {
         height="2.442"
         rx="1.2085"
         transform="rotate(10.3237 11.9082 5.36133)"
-        fill="#4BBC66"
+        fill="currentColor"
       />
     </svg>
   );

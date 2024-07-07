@@ -9,8 +9,8 @@ const StoryButton = ({ children, style, onClick, component, to }) => (
     sx={{
       ...style,
       padding: "10px 20px",
-      width: "247px",
-      height: "449px",
+      maxWidth: "247px",
+      maxHeight: "449px",
       gap: "0px",
       borderRadius: "8px",
       opacity: "0px",

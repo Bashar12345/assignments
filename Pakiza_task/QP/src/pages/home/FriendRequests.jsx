@@ -4,7 +4,7 @@ import { styled } from "@mui/material/styles";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   fontFamily: "Roboto",
-  padding: theme.spacing(1.5, 3.1),
+  padding: {xs: "6px 20px", sm: "10px 20px"}, // Responsive paddingtheme.spacing(1.5, 3.1),
   fontSize: "18px",
   fontWeight: 500,
   lineHeight: "14.06px",

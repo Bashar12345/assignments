@@ -12,12 +12,14 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { toPng } from 'html-to-image';
+import { toPng } from "html-to-image";
 
 import CloseButton from "../../components/Closebutton";
+
 import StoryPreview from "../../components/StroyPreview";
 import { styled } from "@mui/material/styles";
 import axiosInstance from "../../api/apiQueries";
+import StoryLayout from "./StoryLayout";
 
 const ColorOption = styled("div")({
   width: "23px",
@@ -63,7 +65,6 @@ const TextStoryForm = () => {
     setMainDrawerOpen(!mainDrawerOpen);
   };
 
-
   const handleSubmit = async () => {
     try {
       // Convert StoryPreview to image
@@ -71,7 +72,7 @@ const TextStoryForm = () => {
 
       // Create FormData to send the image file
       const formData = new FormData();
-      formData.append('image', dataUrlToFile(dataUrl), 'story-preview.png'); // 'image' is the field name your backend expects
+      formData.append("image", dataUrlToFile(dataUrl), "story-preview.png"); // 'image' is the field name your backend expects
 
       // Example Axios POST request to your backend
       const response = await axiosInstance.post("/story", formData);
@@ -79,22 +80,22 @@ const TextStoryForm = () => {
       console.log("Image uploaded successfully:", response.data);
       // Handle success (e.g., show message to user)
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error("Error uploading image:", error);
       // Handle error (e.g., show error message to user)
     }
   };
 
   const dataUrlToFile = (dataUrl) => {
-    const blobBin = atob(dataUrl.split(',')[1]);
+    const blobBin = atob(dataUrl.split(",")[1]);
     const array = [];
     for (let i = 0; i < blobBin.length; i++) {
       array.push(blobBin.charCodeAt(i));
     }
-    return new Blob([new Uint8Array(array)], { type: 'image/png' });
+    return new Blob([new Uint8Array(array)], { type: "image/png" });
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", height: "100%" }}>
       {/* Sidebar */}
       <Drawer
         variant={isMobile ? "temporary" : "permanent"}
@@ -109,6 +110,7 @@ const TextStoryForm = () => {
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
             zIndex: 1,
+            display: isMobile ? "none" : "block", // Hide drawer on mobile
           },
         }}
       >
@@ -209,20 +211,8 @@ const TextStoryForm = () => {
       {/*  sidebar end */}
 
       {/* Main Content */}
-      <Box
-        sx={{
-          backgroundColor: "white",
-
-          width: isMobile ? "100%" : "calc(100% - 374px)",
-          marginLeft: isMobile ? 0 : "374px",
-          padding: "20px",
-          borderRadius: "8px",
-          boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-          marginTop: isMobile ? 0 : "100px",
-          // border: "2px solid black",
-        }}
-      >
-        {/* Preview Section */}
+      {/* Preview Section */}
+      <StoryLayout>
         <Grid container justifyContent="space-between">
           <Grid item xs={12}>
             <Typography
@@ -235,6 +225,7 @@ const TextStoryForm = () => {
                 lineHeight: "24px",
                 textAlign: "left",
                 marginBottom: "8px",
+                display: isMobile ? "none" : "block", // Hide on mobile
               }}
             >
               Preview
@@ -246,21 +237,19 @@ const TextStoryForm = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                width: "100%",
-                height: "742px",
                 backgroundColor: "#F0F2F5",
                 borderRadius: "8px",
-                padding: "71px 281px 79px 281px",
+                paddingBlock: "71px",
+                overflow: "hidden",
               }}
             >
+              {/* Preview */}
               <StoryPreview
                 style={{
                   background: backgroundColor,
                   display: "flex",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "100%",
-                  height: "100%",
                 }}
                 onClick={isMobile ? handleMainDrawerToggle : null}
               >
@@ -274,6 +263,9 @@ const TextStoryForm = () => {
                     fontWeight: 600,
                     lineHeight: "36px",
                     textAlign: "left",
+                    wordBreak: "break-word", // Break words when they are too long
+                    overflowWrap: "break-word", // Break words when they are too long
+                    whiteSpace: "pre-wrap", // Preserve whitespace and wrap text
                   }}
                 >
                   {storyText || "Start Typing"}
@@ -282,7 +274,7 @@ const TextStoryForm = () => {
             </Box>
           </Grid>
         </Grid>
-      </Box>
+      </StoryLayout>
       {/* Main Content end */}
 
       {isMobile && (
