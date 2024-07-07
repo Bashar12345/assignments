@@ -6,6 +6,7 @@ import {
   TextField,
   Button,
   IconButton,
+  Divider,
 } from "@mui/material";
 import { KeyboardArrowRight } from "@mui/icons-material";
 import {
@@ -91,7 +92,7 @@ const CreatePost = () => {
           placeholder={`What's on your mind, ${userInfo?.last_name}?`}
           InputProps={{
             style: {
-              border: "1px solid whitesmoke", // light border
+              border: "none", // light border
               borderRadius: "46px",
               paddingInline: "16px",
               backgroundColor: "#EEEEEE",
@@ -109,6 +110,9 @@ const CreatePost = () => {
           }}
         />
       </Box>
+
+
+      <Divider />
 
       {/* Buttons */}
       <Box display="flex" justifyContent="space-around" width="100%" mb={2}>
@@ -129,10 +133,11 @@ const CreatePost = () => {
           <Typography sx={btnTypoStyleProps}>Feeling/activity</Typography>
         </Button>
       </Box>
-   
+
+      <Divider />
 
       {/* Featured Users */}
-      <Box position="relative" width="100%" height= "100%" overflow="visible">
+      <Box position="relative" width="100%" height="100%" overflow="visible">
         <Box
           display="flex"
           alignItems="center"

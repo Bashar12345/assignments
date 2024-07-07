@@ -12,9 +12,11 @@ import {
   Button,
   CardHeader,
   Container,
+  TextField,
 } from "@mui/material";
 import { format } from "date-fns";
 import alterImage from "../../assets/props_img.jpeg";
+import propImage from "../../assets/props_img.jpeg";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ThreeCirclesSVG from "../../assets/ThreeDotIcon";
@@ -599,6 +601,48 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                               ))}
                             </Box>
                           )}
+
+                          {/* Comment Box */}
+                          {/* Input Field */}
+                          <Box
+                            display="flex"
+                            alignItems="center"
+                            width="100%"
+                            mb={2}
+                            paddingInline={2}
+                          >
+                            <Avatar
+                              src={propImage}
+                              sx={{
+                                width: "59px",
+                                height: "59px",
+                                marginRight: "1rem", // Adjust margin right as needed
+                              }}
+                            />
+                            <TextField
+                              fullWidth
+                              variant="outlined"
+                              placeholder={`Write a Public comment...`}
+                              InputProps={{
+                                style: {
+                                  border: "none", // light border
+                                  borderRadius: "8px",
+                                  paddingInline: "16px",
+                                  backgroundColor: "#EEEEEE",
+                                  fontFamily: "Poppins",
+                                  fontSize: "14px",
+                                  fontWeight: 400,
+                                  lineHeight: "21px",
+                                  letterSpacing: "0.01em",
+                                  textAlign: "left",
+                                  color: "#000", // text color
+                                  "&::placeholder": {
+                                    color: "#B0B3B8", // placeholder color
+                                  },
+                                },
+                              }}
+                            />
+                          </Box>
                         </Box>
                       </Box>
                     </Box>

@@ -1,8 +1,13 @@
-import React from "react";
 import Grid from "@mui/material/Grid";
 import CreatePost from "./pages/post/CreatePost";
 import NewsFeed from "./pages/NewsFeed";
 import { Box } from "@mui/material";
+import ContactsAndGroups from "./pages/home/Contacts";
+import FriendRequests from "./pages/home/FriendRequests";
+import SponsoredList from "./pages/home/Sponsored";
+import MayLike from "./pages/home/MayLike";
+import MayKnow from "./pages/home/MayKnow";
+import NewsSlider from "./pages/home/NewsSlider";
 
 const Home = () => {
   return (
@@ -19,11 +24,16 @@ const Home = () => {
           <div style={{ background: "#f0f0f0", minHeight: "200px" }}>
             Left Section
           </div>
+
+          <MayLike />
+          <MayKnow/>
+          <SponsoredList />
         </Grid>
 
         {/* Middle Section */}
         <Grid item xs={12} sm={6}>
           {/* Replace with your content */}
+          <NewsSlider />
           <CreatePost />
           <NewsFeed />
         </Grid>
@@ -33,12 +43,13 @@ const Home = () => {
           item
           xs={12}
           sm={3}
-          sx={{ display: { xs: "none", sm: "block" }, width: "270px" }}
+          sx={{ display: { xs: "none", sm: "block" }}}
         >
           {/* Replace with your content */}
-          <div style={{ background: "#d0d0d0", minHeight: "200px" }}>
-            Right Section
-          </div>
+          <SponsoredList />
+          <FriendRequests />
+          <ContactsAndGroups />
+
         </Grid>
       </Grid>
     </Box>
