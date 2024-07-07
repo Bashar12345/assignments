@@ -15,7 +15,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropImage from "../assets/prop_img-2.png";
 import ExploreSVG from "../assets/Explore";
-import HomeIcon from "../assets/homeicon";
+// import HomeIcon from "../assets/homeicon";
 import GroupIcon from "../assets/GroupIcon";
 import Friends from "../assets/Friends";
 import PagesIcon from "../assets/PagesIcon";
@@ -195,6 +195,11 @@ const DrawerList = ({ toggleDrawer }) => {
             primary="Buyer Panel"
             primaryTypographyProps={typographyProps}
           />
+        </ListItem>
+
+
+        <ListItem button component={Link} to="/">
+          <ListItemText primary="Home" sx={{ fontSize: "16px" }} />
         </ListItem>
 
         <ListItem button component={Link} to="/posts">

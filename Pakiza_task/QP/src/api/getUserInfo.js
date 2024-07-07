@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axiosInstance from './apiQueries';
 
 const useUserInfo = () => {
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -28,8 +28,9 @@ const useUserInfo = () => {
 
         // Replace 'user-login' with your actual API endpoint
         const response = await axiosInstance.post('/user-login', formData);
+        // console.log(response.data);
 
-        setUserInfo(response.data);
+        setUserInfo(response.data.user);
       } catch (err) {
         setError(err);
       } finally {

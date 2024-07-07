@@ -26,7 +26,8 @@ const theme = createTheme({
     },
     background: {
       // default: "#E5E6EC", // Set default background color to white
-      default: "#000000",
+      // default: "#000000",
+      default: "rgba(0, 0, 0, 0.9)",
     },
   },
 });

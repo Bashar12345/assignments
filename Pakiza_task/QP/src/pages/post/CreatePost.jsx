@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Avatar,
@@ -7,123 +7,231 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import { KeyboardArrowRight } from "@mui/icons-material";
 import {
-  VideoCall,
-  PhotoLibrary,
+  // VideoCall,
+  // PhotoLibrary,
   InsertEmoticon,
   LocationOn,
   MoreHoriz,
-  ArrowForwardIosIcon,
+  // ArrowForwardIosIcon,
 } from "@mui/icons-material";
-import { useUserInfo } from "../../api/getUserInfo";
+import useUserInfo from "../../api/getUserInfo";
+import propImage from "../../assets/props_img.jpeg";
+import propImageTwo from "../../assets/prop_img-2.png";
 
-const CreatePost = ({ featuredUsers }) => {
-  const user = useUserInfo();
+import PlusIcon from "../../assets/PlusIcon";
+import CameraIcon from "../../assets/CameraIcon";
+// import PlusIcon from "../../assets/PlusIcon";
+
+import { color } from "@mui/system";
+import PhotoIcon from "../../assets/PhotoIcon";
+
+const btnTypoStyleProps = {
+  fontFamily: "poppins",
+  fontSize: "14px",
+  fontWeight: 600,
+  lineHeight: "21px",
+  textAlign: "left",
+  color: "#9FA2A6",
+};
+
+const CreatePost = () => {
+  const { userInfo, loading, error } = useUserInfo();
+
+  // console.log(userInfo);
+
+  const featuredUsers = [
+    { id: 1, name: "John Doe", profilePic: propImage },
+    { id: 2, name: "Jane Smith", profilePic: propImage },
+    { id: 3, name: "Mike Johnson", profilePic: propImage },
+    { id: 4, name: "Emily Smith", profilePic: propImage },
+    { id: 5, name: "Lola Johnson", profilePic: propImage },
+    // Add more as needed
+  ];
+
+  const handleNextClick = () => {
+    console.log("Next clicked");
+  };
+
   return (
     <Box
       display="flex"
       flexDirection="column"
       alignItems="center"
-      sx={{ backgroundColor: "#fff", borderRadius: "8px", p: 2, boxShadow: 3 }}
+      sx={{
+        backgroundColor: "#fff",
+        borderRadius: "2px",
+        p: 2,
+        boxShadow: 3,
+        pt: 5,
+        height: "474px",
+      }}
     >
       {/* Input Field */}
-      <Box display="flex" alignItems="center" width="100%" mb={2}>
-        <Avatar alt={user.name} src={user.profilePic} sx={{ marginRight: 2 }} />
+      <Box
+        display="flex"
+        alignItems="center"
+        width="100%"
+        mb={2}
+        paddingInline={2}
+      >
+        <Avatar
+          alt={userInfo.last_name}
+          src={propImage || userInfo?.profilePic}
+          sx={{
+            width: "59px",
+            height: "59px",
+            marginRight: "1rem", // Adjust margin right as needed
+          }}
+        />
         <TextField
           fullWidth
           variant="outlined"
-          placeholder={`What's on your mind, ${user.name}?`}
+          placeholder={`What's on your mind, ${userInfo?.last_name}?`}
           InputProps={{
             style: {
-              borderRadius: 50,
-              paddingLeft: "16px",
-              backgroundColor: "#f0f2f5",
+              border: "1px solid whitesmoke", // light border
+              borderRadius: "46px",
+              paddingInline: "16px",
+              backgroundColor: "#EEEEEE",
+              fontFamily: "Poppins",
+              fontSize: "14px",
+              fontWeight: 400,
+              lineHeight: "21px",
+              letterSpacing: "0.01em",
+              textAlign: "left",
+              color: "#000", // text color
+              "&::placeholder": {
+                color: "#B0B3B8", // placeholder color
+              },
             },
           }}
         />
       </Box>
 
       {/* Buttons */}
-      <Box display="flex" justifyContent="space-between" width="100%" mb={2}>
-        <Button
-          startIcon={<VideoCall />}
-          color="primary"
-          sx={{ textTransform: "none" }}
-        >
-          Live Video
+      <Box display="flex" justifyContent="space-around" width="100%" mb={2}>
+        <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}>
+          <Typography sx={btnTypoStyleProps}>Live Video</Typography>
+        </Button>
+        <Button startIcon={<PhotoIcon />} sx={{ textTransform: "none" }}>
+          <Typography sx={btnTypoStyleProps}>Photo/Video</Typography>
         </Button>
         <Button
-          startIcon={<PhotoLibrary />}
-          color="success"
+          startIcon={
+            <InsertEmoticon
+              sx={{ width: "24px", height: "24px", color: "#F6B83C" }}
+            />
+          }
           sx={{ textTransform: "none" }}
         >
-          Photo/Video
-        </Button>
-        <Button
-          startIcon={<InsertEmoticon />}
-          color="warning"
-          sx={{ textTransform: "none" }}
-        >
-          Feeling/activity
+          <Typography sx={btnTypoStyleProps}>Feeling/activity</Typography>
         </Button>
       </Box>
+   
 
       {/* Featured Users */}
-      <Box
-        display="flex"
-        alignItems="center"
-        width="100%"
-        overflow="auto"
-        sx={{
-          "::-webkit-scrollbar": { display: "none" },
-          whiteSpace: "nowrap",
-        }}
-      >
-        {featuredUsers.map((featuredUser, index) => (
-          <Box key={index} mx={1} display="inline-block">
-            <Box
-              position="relative"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-            >
-              <Avatar
-                alt={featuredUser.name}
-                src={featuredUser.profilePic}
-                sx={{ width: 80, height: 80, borderRadius: "8px" }}
-              />
-              {index === 0 && (
+      <Box position="relative" width="100%" height= "100%" overflow="visible">
+        <Box
+          display="flex"
+          alignItems="center"
+          sx={{
+            whiteSpace: "nowrap",
+            overflowX: "auto",
+            "::-webkit-scrollbar": { display: "none" },
+          }}
+        >
+          {/* Featured User Cards */}
+          {featuredUsers?.map((featuredUser, index) => (
+            <Box key={index} mx={1} display="inline-block">
+              <Box
+                position="relative"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                sx={{ width: "150px", height: "264px" }}
+              >
+                <Avatar
+                  alt={featuredUser.last_name}
+                  src={propImage || featuredUser.profilePic}
+                  sx={{
+                    width: "150px",
+                    height: "214px",
+                    borderRadius: "16px",
+                    border: "1.5px solid",
+                    borderImageSource:
+                      "linear-gradient(0deg, #2DB9B9, #2DB9B9)",
+                  }}
+                />
+                {/* Conditionally render either PlusIcon or Avatar */}
                 <Box
                   position="absolute"
-                  bottom={-10}
-                  right={-10}
+                  bottom="0%"
+                  transform="translate(-50%, -50%)"
                   display="flex"
                   justifyContent="center"
                   alignItems="center"
-                  sx={{
-                    width: 24,
-                    height: 24,
-                    backgroundColor: "#00a400",
-                    borderRadius: "50%",
-                    color: "#fff",
-                    fontWeight: "bold",
-                  }}
                 >
-                  +
+                  {index === 0 ? (
+                    <PlusIcon />
+                  ) : (
+                    <Box
+                      display="flex"
+                      flexDirection="column"
+                      alignItems="center"
+                    >
+                      <Avatar
+                        transform="translate(-50%, -50%)"
+                        sx={{
+                          alignItem: "center",
+                          width: "40px",
+                          height: "40px",
+                          border: "2px solid #307777",
+                          borderRadius: "50%",
+                        }}
+                        alt={featuredUser.last_name}
+                        src={propImageTwo || featuredUser.profilePic}
+                      />
+                      <Typography
+                        sx={{
+                          marginTop: "2px",
+                          display: index === 0 ? "none" : "block",
+                          fontSize: "10px",
+                          lineHeight: "6px",
+                        }}
+                      >
+                        {featuredUser.name}
+                      </Typography>
+                    </Box>
+                  )}
                 </Box>
-              )}
+              </Box>
             </Box>
-            <Typography
-              align="center"
-              variant="caption"
-              sx={{ mt: 1, display: "block", width: 80, whiteSpace: "normal" }}
-            >
-              {featuredUser.name}
-            </Typography>
-          </Box>
-        ))}
-        <IconButton sx={{ ml: 2 }}>
-          <ArrowForwardIosIcon />
+          ))}
+        </Box>
+
+        {/* Next Arrow */}
+        <IconButton
+          sx={{
+            position: "absolute",
+            right: "16px", // Adjust as necessary
+            width: "50px",
+            height: "50px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 1000,
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // Background to make it more visible
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 1)",
+            },
+          }}
+          onClick={handleNextClick} // Add click handler for sliding functionality
+        >
+          <KeyboardArrowRight
+            onClick={handleNextClick}
+            style={{ zIndex: 1000, right: "16px" }}
+          />
         </IconButton>
       </Box>
     </Box>

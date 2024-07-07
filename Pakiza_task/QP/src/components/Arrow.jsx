@@ -19,7 +19,7 @@ const CustomIconButton = styled(IconButton)({
   transform: "translateY(-50%)",
 });
 
-const NextArrow = ({ className, style, onClick }) => (
+const NextArrow = ({ className, style, onClick , right }) => (
   <CustomIconButton
     style={{
       right: "-100px",
