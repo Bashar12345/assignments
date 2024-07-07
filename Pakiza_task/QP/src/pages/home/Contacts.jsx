@@ -130,7 +130,7 @@ const ContactsAndGroups = () => {
             display: "flex",
             alignItems: "center",
             bgcolor: "background.paper",
-            padding: "8px 12px",
+            padding: "12px",
           }}
         >
           {/* <Badge color="secondary" badgeContent={birthdaysToday.length}> */}

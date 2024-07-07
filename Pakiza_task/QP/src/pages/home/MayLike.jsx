@@ -45,7 +45,8 @@ const MayLike = () => {
       sx={{
         background: "white",
         borderRadius: "8px",
-        marginBlock: "0.5rem",
+        marginTop: "1.5rem",
+        marginBottom: "0.5rem",
         paddingBlock: "20px",
       }}
     >

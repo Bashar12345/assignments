@@ -20,36 +20,27 @@ const Home = () => {
           sm={3}
           sx={{ display: { xs: "none", sm: "block" }, width: "250px" }}
         >
-          {/* Replace with your content */}
-          <div style={{ background: "#f0f0f0", minHeight: "200px" }}>
-            Left Section
-          </div>
-
+          
+          <NewsSlider />
           <MayLike />
-          <MayKnow/>
+          <MayKnow />
           <SponsoredList />
         </Grid>
 
         {/* Middle Section */}
         <Grid item xs={12} sm={6}>
           {/* Replace with your content */}
-          <NewsSlider />
+
           <CreatePost />
           <NewsFeed />
         </Grid>
 
         {/* Right Section */}
-        <Grid
-          item
-          xs={12}
-          sm={3}
-          sx={{ display: { xs: "none", sm: "block" }}}
-        >
+        <Grid item xs={12} sm={3} sx={{ display: { xs: "none", sm: "block" } }}>
           {/* Replace with your content */}
           <SponsoredList />
           <FriendRequests />
           <ContactsAndGroups />
-
         </Grid>
       </Grid>
     </Box>
