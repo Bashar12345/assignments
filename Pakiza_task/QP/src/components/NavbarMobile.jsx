@@ -24,43 +24,41 @@ const NavbarMobile = () => {
     // Add any other logic you need based on tab change
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar>
-        <Toolbar>
-          <Tabs
-            value={tabValue}
-            onChange={handleTabChange}
-            aria-label="navigation tabs"
-            sx={{
-              display: { xs: "none", sm: "flex" },
-              flexGrow: 1,
-              alignSelf: "flex-end",
-              justifyContent: "center",
-              "& .MuiTab-root": {
-                padding: "12px 54px", // Adjust padding for tabs
-              },
-            }}
-          >
-            <Tab icon={<HomeIcon />} component={Link} to="/home" />
-            <Tab icon={<VideoIcon />} component={Link} to="/videos" />
-            <Tab
-              icon={<img src={GroupIcon} />} // Ensure GroupIcon component renders correctly
-              component={Link}
-              to="/groups"
-            />
-            <Tab icon={<StorefrontIcon />} component={Link} to="/marketplace" />
-            <Tab
-              icon={
-                <Badge badgeContent={3} color="primary">
-                  <Cart />
-                </Badge>
-              }
-              component={Link}
-              to="/cart"
-            />
-          </Tabs>
-        </Toolbar>
-      </AppBar>
+    <Box
+      sx={{ display: { xs: "block", sm: "none" }, border: "5px solid black" }}
+    >
+      <Toolbar>
+        <Tabs
+          value={tabValue}
+          onChange={handleTabChange}
+          aria-label="navigation tabs"
+          sx={{
+            // alignSelf: "flex-end",
+            // justifyContent: "center",
+            "& .MuiTab-root": {
+              padding: "12px 54px", // Adjust padding for tabs
+            },
+          }}
+        >
+          <Tab icon={<HomeIcon />} component={Link} to="/home" />
+          <Tab icon={<VideoIcon />} component={Link} to="/videos" />
+          <Tab
+            icon={<img src={GroupIcon} />} // Ensure GroupIcon component renders correctly
+            component={Link}
+            to="/groups"
+          />
+          <Tab icon={<StorefrontIcon />} component={Link} to="/marketplace" />
+          <Tab
+            icon={
+              <Badge badgeContent={3} color="primary">
+                <Cart />
+              </Badge>
+            }
+            component={Link}
+            to="/cart"
+          />
+        </Tabs>
+      </Toolbar>
     </Box>
   );
 };

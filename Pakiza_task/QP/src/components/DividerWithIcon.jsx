@@ -1,5 +1,4 @@
-import React from 'react';
-import { Divider, Box } from '@mui/material';
+import { Divider, Box } from "@mui/material";
 
 const DividerWithIcon = ({ icon: Icon }) => {
   return (
@@ -14,12 +13,19 @@ const DividerWithIcon = ({ icon: Icon }) => {
           width: "100%",
           border: "1px solid rgba(0, 0, 0, 0.12)",
           position: "relative",
-          '&::before, &::after': {
+          "&::before, &::after": {
             border: "none",
           },
         }}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center', backgroundColor: 'white', padding: '0 4px' }}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            backgroundColor: "white",
+            padding: "0 4px",
+          }}
+        >
           <Icon />
         </Box>
       </Divider>
