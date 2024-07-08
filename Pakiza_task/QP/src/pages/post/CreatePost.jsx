@@ -94,26 +94,30 @@ const CreatePost = () => {
           placeholder={`What's on your mind, ${userInfo?.last_name}?`}
           InputProps={{
             sx: {
-              // border: "none", // light border
+              '& .MuiOutlinedInput-notchedOutline': {
+                border:  { xs: "0px", md: "1px" }, // light border
+              },
+              
               borderRadius: { xs: "4px", md: "160px" },
               paddingInline: { xs: "4px", sm: "16px" },
-              backgroundColor: "#EEEEEE",
+              backgroundColor: { xs: "none", sm: "#EEEEEE" }, 
               fontFamily: "Poppins",
-              fontSize: "14px",
+              fontSize:  { xs: "12px", sm: "14px" },
               fontWeight: 400,
-              lineHeight: "21px",
+              lineHeight: { xs: "18px", sm: "21px" },
               letterSpacing: "0.01em",
               textAlign: "left",
               color: "#000", // text color
               "&::placeholder": {
+                // backgroundColor: 
                 color: "#B0B3B8", // placeholder color
               },
             },
           }}
         />
-        <IconButton sx={{ display: { xs: "block", sm: "none" } }}>
+        <IconButton sx={{ display: { xs: "block", sm: "none" } , backgroundColor: "#EEEEEE", borderRadius: "8px" }}>
           
-          <PhotoIconTwo sx={{ padding:"4px" }} />
+          <PhotoIconTwo sx={{ padding:"4px"  }} />
         </IconButton>
       </Box>
 
