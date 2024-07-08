@@ -29,6 +29,9 @@ import Love from "../../assets/love.png";
 import ShareIcon from "../../assets/ShareIcon.jsx";
 import ReplyArrow from "../../assets/ReplyArrow.jsx";
 import TimeFormat from "../../components/TimeFormat.jsx";
+import MessageIcon from "../../assets/MessageIcon.jsx";
+import RelationIcon from "../../assets/RelationIcon.jsx";
+import DividerWithIcon from "../../components/DividerWithIcon.jsx";
 
 // import Wow from "../../assets/Wow.png";
 // import Sad from "../../assets/Sad.png";
@@ -134,7 +137,11 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   >
                     <TimeFormat post={post.createdAt} />
                     {post.location_name && (
-                      <small>{` ${post?.location_name === "null" ? "" : post?.location_name }`}</small>
+                      <small>{` ${
+                        post?.location_name === "null"
+                          ? ""
+                          : post?.location_name
+                      }`}</small>
                     )}{" "}
                     •
                     {post.post_privacy === "public" && (
@@ -202,6 +209,70 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   </Typography>
                 </Box>
               </Container>
+            ) : null}
+
+            {post.reactionCount.length > 0 ? (
+              <>
+                <Divider border={"1px solid rgba(0, 0, 0, 0.12)"} />
+                <Box
+                  mt={2}
+                  py={4}
+                  display={"flex"}
+                  alignItems={"center"}
+                  flexDirection={"column"}
+                >
+                  <RelationIcon />
+
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "poppins",
+                      fontSize: "14px",
+                      fontWeight: 400,
+                      lineHeight: "18.5px",
+                      textAlign: "left",
+                    }}
+                  >
+                    in a relationship with{" "}
+                    {post.reactionTypeCountsByPost.user_details.last_name}
+                  </Typography>
+
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "poppins",
+                      fontSize: "14px",
+                      fontWeight: 400,
+                      lineHeight: "18.5px",
+                      textAlign: "left",
+                    }}
+                  >
+                    {post.reactionTypeCountsByPost.user_details.createdAt}
+                    <TimeFormat
+                      post={
+                        post.reactionTypeCountsByPost.user_details.createdAt
+                      }
+                    />
+                  </Typography>
+                </Box>
+                <Divider border={"1px solid rgba(0, 0, 0, 0.12)"} />
+                <DividerWithIcon icon={RelationIcon} />
+
+                <Box mt={2}>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontFamily: "poppins",
+                      fontSize: "14px",
+                      fontWeight: 400,
+                      lineHeight: "18.5px",
+                      textAlign: "left",
+                    }}
+                  >
+                    {post.reactionTypeCountsByPost.reaction_type}
+                  </Typography>
+                </Box>
+              </>
             ) : null}
 
             {/* Shared Post Description */}
@@ -396,8 +467,11 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   sx={{
                     padding: 0,
                     margin: 0,
+                    marginBottom: "4px",
                   }}
-                ></IconButton>
+                >
+                  <CommentIcon />
+                </IconButton>
                 <Typography
                   marginLeft={1}
                   sx={{
@@ -416,8 +490,11 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   sx={{
                     padding: 0,
                     margin: 0,
+                    marginBottom: "4px",
                   }}
-                ></IconButton>
+                >
+                  <ShareIcon />
+                </IconButton>
                 <Typography
                   marginLeft={1}
                   sx={{

@@ -3,15 +3,14 @@ import propImage from "../../assets/prop_img-2.png";
 import { styled } from "@mui/material/styles";
 
 const StyledButton = styled(Button)(({ theme }) => ({
-  fontFamily: "Roboto",
-  padding: {xs: "6px 20px", sm: "10px 20px"}, // Responsive paddingtheme.spacing(1.5, 3.1),
+  fontFamily: "Roboto", // Responsive paddingtheme.spacing(1.5, 3.1),
   fontSize: "18px",
   fontWeight: 500,
   lineHeight: "14.06px",
   textAlign: "center",
   borderRadius: "8px",
-  marginRight: theme.spacing(1), // Use theme spacing for consistent spacing
   textTransform: "capitalize",
+  // marginRight: theme.spacing(1), // Use theme spacing for consistent spacing
 }));
 
 const friendRequests = [
@@ -132,7 +131,16 @@ const FriendRequests = () => {
 
             <Grid container>
               <Grid item>
-                <StyledButton variant="contained" color="primary">
+                <StyledButton
+                  variant="contained"
+                  color="primary"
+                  sx={{
+                    marginRight: 1,
+                    marginBottom: 1,
+                    width: { xs: "3rem", sm: "4rem", md: "6rem" },
+                    height: { xs: "30px", sm: "40px", md: "50px" },
+                  }}
+                >
                   Confirm
                 </StyledButton>
               </Grid>
@@ -140,7 +148,12 @@ const FriendRequests = () => {
                 <StyledButton
                   variant="contained"
                   color="secondary"
-                  sx={{ marginRight: 0 }}
+                  sx={{
+                    marginRight: 0,
+                    width: { xs: "3rem", sm: "4rem", md: "6rem" },
+                    height: { xs: "30px", sm: "40px", md: "50px" },
+                   
+                  }}
                 >
                   Delete
                 </StyledButton>
