@@ -109,7 +109,7 @@ const TextStoryForm = () => {
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
-            zIndex: 1,
+            zIndex: -1,
             display: isMobile ? "none" : "block", // Hide drawer on mobile
           },
         }}

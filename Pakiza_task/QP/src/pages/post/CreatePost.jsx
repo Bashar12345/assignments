@@ -24,8 +24,9 @@ import PlusIcon from "../../assets/PlusIcon";
 import CameraIcon from "../../assets/CameraIcon";
 // import PlusIcon from "../../assets/PlusIcon";
 
-import { color } from "@mui/system";
+import { color, display } from "@mui/system";
 import PhotoIcon from "../../assets/PhotoIcon";
+import PhotoIconTwo from "../../assets/PhotoIconTwo";
 
 const btnTypoStyleProps = {
   fontFamily: "poppins",
@@ -73,7 +74,7 @@ const CreatePost = () => {
         display="flex"
         alignItems="center"
         width="100%"
-        mb={{ xs: 0, sm: 2 }}
+        my={{ xs: 0, sm: 2 }}
         paddingTop={1}
         paddingInline={{ xs: 1, sm: 2 }}
       >
@@ -87,14 +88,14 @@ const CreatePost = () => {
             borderRadius: { xs: "10px", sm: "50%" },
           }}
         />
+
         <TextField
           fullWidth
-          variant="outlined"
           placeholder={`What's on your mind, ${userInfo?.last_name}?`}
           InputProps={{
-            style: {
-              border: "none", // light border
-              borderRadius: { xs: "4px", sm: "46px" },
+            sx: {
+              // border: "none", // light border
+              borderRadius: { xs: "4px", md: "160px" },
               paddingInline: { xs: "4px", sm: "16px" },
               backgroundColor: "#EEEEEE",
               fontFamily: "Poppins",
@@ -110,21 +111,27 @@ const CreatePost = () => {
             },
           }}
         />
-        <IconButton>
-          <PhotoIcon sx={{ color: "black" }} />
+        <IconButton sx={{ display: { xs: "block", sm: "none" } }}>
+          
+          <PhotoIconTwo sx={{ padding:"4px" }} />
         </IconButton>
       </Box>
 
-      <Divider />
 
+
+      <Box sx={{ border: "1px solid rgba(227, 237, 237, 0.6)" , width: "100%" }}/>
+
+      
       {/* Post Buttons */}
       <Box
         sx={{
           display: { xs: "none", md: "flex" },
           justifyContent: "space-around",
+          alignItems: "center",
+          marginBlock: "0.6rem",
         }}
         width="100%"
-        mb={2}
+        
       >
         <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}>
           <Typography sx={btnTypoStyleProps}>Live Video</Typography>
@@ -144,7 +151,9 @@ const CreatePost = () => {
         </Button>
       </Box>
 
-      <Divider />
+      <Box sx={{ border: "1px solid rgba(227, 237, 237, 0.6)" , width: "100%" }}/>
+
+
 
       {/* Featured Users */}
       <Box position="relative" width="100%" height="100%" overflow="visible">

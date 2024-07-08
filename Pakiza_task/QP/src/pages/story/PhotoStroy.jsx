@@ -117,7 +117,7 @@ const PhotoStroy = () => {
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
-            zIndex: 1,
+            zIndex: -1,
           },
         }}
       >

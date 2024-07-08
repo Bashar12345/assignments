@@ -213,7 +213,7 @@ export default function Navbar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="sticky"
+        position="static"
         color="navbar"
         // sx={{ display: { xs: "none", sm: "block" } }}
       >

@@ -46,7 +46,7 @@ const CreateStory = () => {
     <Box
       sx={
         {
-          border: "1px solid black",
+          // border: "1px solid black",
           width: {xs: "100%", sm: "auto"},
         }
       }
@@ -64,7 +64,7 @@ const CreateStory = () => {
             zIndex: -1,
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
-            top: isMobile ? "auto" : 64,
+            top: isMobile ? "auto" : "64px",
           },
         }}
       >

@@ -21,7 +21,7 @@ const AppLayout = () => {
       {!isStoryListRoute && (
         <Navbar
           position="fixed"
-          style={{ zIndex: 1201, backgroundColor: "#fff" }}
+          style={{ zIndex: 1000, backgroundColor: "#fff" }}
         />
       )}
       {/* <NavbarMobile sx ={{zIndex: 1201 , marginTop: "64px", display: { xs: "block", sm: "none"}}}/> */}
