@@ -33,7 +33,7 @@ function App() {
               <Route path="stories-form" element={<TextStoryForm />} />
               <Route path="photo-stories" element={<PhotoStroy />} />
             </Route>
-          </Route>
+          {/* </Route> */}
           {/* Handle 404 - Not Found */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
