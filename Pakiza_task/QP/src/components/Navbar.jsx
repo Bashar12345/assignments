@@ -103,12 +103,13 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axiosInstance.get("/logout");
+      const response = await axiosInstance.get("/api/logout");
       console.log("Logout Successful:", response.data); // Assuming your API returns a success message
       toast.success("Logout Successful");
 
       localStorage.removeItem("accessToken");
       localStorage.removeItem("refreshToken");
+
     } catch (error) {
       console.error("Logout Error:", error);
     } finally {

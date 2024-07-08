@@ -309,9 +309,6 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             )}
 
 
-
-
-
             {/* Post Reactions */}
             <Box
               display="flex"
