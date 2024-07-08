@@ -759,7 +759,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                             border: { xs: "0px", md: "1px" }, // light border
                           },
 
-                          borderRadius: { xs: "4px", md: "160px" },
+                          borderRadius: { xs: "4px", md: "16px" },
                           paddingInline: { xs: "4px", sm: "16px" },
                           backgroundColor: "#EEEEEE",
                           fontFamily: "Poppins",

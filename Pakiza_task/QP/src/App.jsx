@@ -22,8 +22,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          {/* for preview perpose i am not using protected routes */}
-          {/* <Route path="/" element={<ProtectedRoute />}>  */}  
+          <Route path="/" element={<ProtectedRoute />}>
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="posts" element={<NewsFeed />} />
@@ -33,7 +32,7 @@ function App() {
               <Route path="stories-form" element={<TextStoryForm />} />
               <Route path="photo-stories" element={<PhotoStroy />} />
             </Route>
-          {/* </Route> */}
+          </Route>
           {/* Handle 404 - Not Found */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
