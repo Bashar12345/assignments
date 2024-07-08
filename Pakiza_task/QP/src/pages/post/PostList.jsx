@@ -66,12 +66,16 @@ const PostList = ({ posts, loading, loadMore, error }) => {
   };
 
   return (
-    <Box display="grid" justifyContent={"center"} mt={2}>
+    <Box display="grid" justifyContent={"center"} mt={{ xs: 0, sm: 2 }}>
       {posts.map((post, index) => (
         <Card
           key={index}
           ref={index === posts.length - 1 ? lastPostElementRef : null}
-          sx={{ marginBottom: 2, width: { xs: "100%", sm: "auto" } }} // md:"655px"
+          sx={{
+            marginBottom: { xs: 0, sm: 2 },
+            width: { xs: "100%", sm: "auto" },
+            borderBottom: {xs:"1px solid #E5E5E5", sm:"0px"},
+          }} // md:"655px"
         >
           <CardContent sx={{ padding: 0 }}>
             {/* Post Header */}
@@ -750,15 +754,18 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       variant="outlined"
                       placeholder={`Write a Public comment...`}
                       InputProps={{
-                        style: {
-                          border: "none", // light border
-                          borderRadius: "8px",
-                          paddingInline: "16px",
+                        sx: {
+                          "& .MuiOutlinedInput-notchedOutline": {
+                            border: { xs: "0px", md: "1px" }, // light border
+                          },
+
+                          borderRadius: { xs: "4px", md: "160px" },
+                          paddingInline: { xs: "4px", sm: "16px" },
                           backgroundColor: "#EEEEEE",
                           fontFamily: "Poppins",
-                          fontSize: "14px",
+                          fontSize: { xs: "12px", sm: "14px" },
                           fontWeight: 400,
-                          lineHeight: "21px",
+                          lineHeight: { xs: "18px", sm: "21px" },
                           letterSpacing: "0.01em",
                           textAlign: "left",
                           color: "#000", // text color

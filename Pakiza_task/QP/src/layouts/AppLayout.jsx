@@ -2,7 +2,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
-import { styled } from "@mui/system";
+import { margin, padding, styled } from "@mui/system";
 import NavbarMobile from "../components/NavbarMobile";
 
 const LayoutContainer = styled(Box)({
@@ -24,15 +24,14 @@ const AppLayout = () => {
           style={{ zIndex: 1000, backgroundColor: "#fff" }}
         />
       )}
-      
 
-      <div style={{ marginTop: "6px" }}>
-        <CssBaseline /> 
-       <NavbarMobile sx ={{zIndex: 1201 }}/>
+      <Box sx={{ marginTop: { xs: "0px", sm: "6px" } }}>
+        <CssBaseline />
+        <NavbarMobile sx={{ zIndex: 1201 }} />
         <LayoutContainer>
           <Outlet />
         </LayoutContainer>
-      </div>
+      </Box>
     </>
   );
 };

@@ -22,7 +22,8 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/" element={<ProtectedRoute />}>
+          {/* for preview perpose i am not using protected routes */}
+          {/* <Route path="/" element={<ProtectedRoute />}>  */}  
             <Route element={<AppLayout />}>
               <Route path="/" element={<Home />} />
               <Route path="posts" element={<NewsFeed />} />

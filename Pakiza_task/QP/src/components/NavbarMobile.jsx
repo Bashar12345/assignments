@@ -24,10 +24,16 @@ const NavbarMobile = () => {
     // Add any other logic you need based on tab change
   };
   return (
-    <Box
-      sx={{ display: { xs: "block", sm: "none" }, border: "5px solid black" }}
-    >
-      <Toolbar>
+    <Box sx={{ display: { xs: "block", sm: "none" } }}>
+      <Toolbar
+        sx={{
+          justifyContent: "space-between",
+          margin: "0px",
+          padding: "0px",
+          boxShadow: "none",
+          border: "0px"
+        }}
+      >
         <Tabs
           value={tabValue}
           onChange={handleTabChange}
@@ -36,7 +42,9 @@ const NavbarMobile = () => {
             // alignSelf: "flex-end",
             // justifyContent: "center",
             "& .MuiTab-root": {
-              padding: "12px 54px", // Adjust padding for tabs
+              padding: "2px", // Adjust padding for tabs
+              backgroundColor: "background.paper",
+              border : "0px",
             },
           }}
         >

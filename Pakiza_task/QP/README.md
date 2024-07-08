@@ -1,6 +1,7 @@
-# React + Vite
+### React + Vite
 
-click logo the sidebar will open all the pages are listed in the sidebar for easy navigation
+# For preview perpose i am not using protected routes
+# click logo the sidebar will open all the pages are listed in the sidebar for easy navigation
 
 # Quantum Possibilities Social Media Application
 

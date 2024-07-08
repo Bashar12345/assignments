@@ -67,6 +67,7 @@ const CreatePost = () => {
         boxShadow: 3,
         pt: 5,
         height: { xs: "234px", md: "474px" },
+        borderBottom: "1px solid #E5E5E5",
       }}
     >
       {/* Input Field */}
@@ -94,38 +95,46 @@ const CreatePost = () => {
           placeholder={`What's on your mind, ${userInfo?.last_name}?`}
           InputProps={{
             sx: {
-              '& .MuiOutlinedInput-notchedOutline': {
-                border:  { xs: "0px", md: "1px" }, // light border
+              "& .MuiOutlinedInput-notchedOutline": {
+                border: { xs: "0px", md: "1px" }, // light border
               },
-              
+
               borderRadius: { xs: "4px", md: "160px" },
               paddingInline: { xs: "4px", sm: "16px" },
-              backgroundColor: { xs: "none", sm: "#EEEEEE" }, 
+              backgroundColor: { xs: "none", sm: "#EEEEEE" },
               fontFamily: "Poppins",
-              fontSize:  { xs: "12px", sm: "14px" },
+              fontSize: { xs: "12px", sm: "14px" },
               fontWeight: 400,
               lineHeight: { xs: "18px", sm: "21px" },
               letterSpacing: "0.01em",
               textAlign: "left",
               color: "#000", // text color
               "&::placeholder": {
-                // backgroundColor: 
+                // backgroundColor:
                 color: "#B0B3B8", // placeholder color
               },
             },
           }}
         />
-        <IconButton sx={{ display: { xs: "block", sm: "none" } , backgroundColor: "#EEEEEE", borderRadius: "8px" }}>
-          
-          <PhotoIconTwo sx={{ padding:"4px"  }} />
+        <IconButton
+          sx={{
+            display: { xs: "block", sm: "none" },
+            backgroundColor: "#EEEEEE",
+            borderRadius: "8px",
+          }}
+        >
+          <PhotoIconTwo sx={{ padding: "4px" }} />
         </IconButton>
       </Box>
 
+      <Box
+        sx={{
+          display: { xs: "none", md: "block" },
+          border: "1px solid rgba(227, 237, 237, 0.6)",
+          width: "100%",
+        }}
+      />
 
-
-      <Box sx={{ border: "1px solid rgba(227, 237, 237, 0.6)" , width: "100%" }}/>
-
-      
       {/* Post Buttons */}
       <Box
         sx={{
@@ -135,7 +144,6 @@ const CreatePost = () => {
           marginBlock: "0.6rem",
         }}
         width="100%"
-        
       >
         <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}>
           <Typography sx={btnTypoStyleProps}>Live Video</Typography>
@@ -155,9 +163,13 @@ const CreatePost = () => {
         </Button>
       </Box>
 
-      <Box sx={{ border: "1px solid rgba(227, 237, 237, 0.6)" , width: "100%" }}/>
-
-
+      <Box
+        sx={{
+          display: { xs: "none", md: "block" },
+          border: "1px solid rgba(227, 237, 237, 0.6)",
+          width: "100%",
+        }}
+      />
 
       {/* Featured Users */}
       <Box position="relative" width="100%" height="100%" overflow="visible">
@@ -172,20 +184,28 @@ const CreatePost = () => {
         >
           {/* Featured User Cards */}
           {featuredUsers?.map((featuredUser, index) => (
-            <Box key={index} ml={{ xs: 1 , sm: 0 }} mr={{xs: 0, sm: 1}} display="inline-block">
+            <Box
+              key={index}
+              ml={{ xs: 1, sm: 0 }}
+              mr={{ xs: 0, sm: 1 }}
+              display="inline-block"
+            >
               <Box
                 position="relative"
                 display="flex"
                 justifyContent="center"
                 alignItems="center"
-                sx={{ width: {xs: "80px", sm: "150px"} , height: {xs: "142px", sm: "264px"} }}
+                sx={{
+                  width: { xs: "80px", sm: "150px" },
+                  height: { xs: "142px", sm: "264px" },
+                }}
               >
                 <Avatar
                   alt={featuredUser.last_name}
                   src={propImage || featuredUser.profilePic}
                   sx={{
-                    width: {xs: "80px", sm: "150px"} ,
-                    height: {xs: "118px", sm: "214px"} ,
+                    width: { xs: "80px", sm: "150px" },
+                    height: { xs: "118px", sm: "214px" },
                     borderRadius: "16px",
                     border: "1.5px solid",
                     borderImageSource:
@@ -195,7 +215,7 @@ const CreatePost = () => {
                 {/* Conditionally render either PlusIcon or Avatar */}
                 <Box
                   position="absolute"
-                  bottom= {{xs: "-1%", sm: "0%"}}
+                  bottom={{ xs: "-1%", sm: "0%" }}
                   transform="translate(-50%, -50%)"
                   display="flex"
                   justifyContent="center"
@@ -213,8 +233,8 @@ const CreatePost = () => {
                         transform="translate(-50%, -50%)"
                         sx={{
                           alignItem: "center",
-                          width: {xs: "22px", sm: "40px"},
-                          height: {xs: "22px", sm: "40px"},
+                          width: { xs: "22px", sm: "40px" },
+                          height: { xs: "22px", sm: "40px" },
                           border: "2px solid #307777",
                           borderRadius: "50%",
                         }}

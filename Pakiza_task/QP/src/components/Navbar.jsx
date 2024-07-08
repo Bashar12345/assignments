@@ -215,9 +215,9 @@ export default function Navbar() {
       <AppBar
         position="static"
         color="navbar"
-        // sx={{ display: { xs: "none", sm: "block" } }}
+        sx={{ boxShadow: { xs: "none" } }}
       >
-        <Toolbar>
+        <Toolbar sx={{ boxShadow: { xs: "none" } }}>
           <IconButton
             size="large"
             edge="start"
