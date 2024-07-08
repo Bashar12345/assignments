@@ -24,7 +24,7 @@ const AppLayout = () => {
           style={{ zIndex: 1201, backgroundColor: "#fff" }}
         />
       )}
-      <NavbarMobile sx ={{zIndex: 1201 , marginTop: "64px", display: { xs: "block", sm: "none"}}}/>
+      {/* <NavbarMobile sx ={{zIndex: 1201 , marginTop: "64px", display: { xs: "block", sm: "none"}}}/> */}
 
       <div style={{ marginTop: "6px" }}>
         <CssBaseline />
