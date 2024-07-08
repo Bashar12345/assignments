@@ -233,6 +233,8 @@ const CreateStory = () => {
                     style={{
                       background:
                         "linear-gradient(180deg, #136CAC 0%, #59DDDD 100%)",
+                        width: { xs: "154px", md: "247px" },
+                        height: { xs: "271px", md: "449px" },
                     }}
                     onClick={isMobile ? handleMainDrawerToggle : null}
                   >

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       // Example: Using axiosInstance for login
-      const response = await axiosInstance.post("/login", {
+      const response = await axiosInstance.post("/api/login", {
         email,
         password,
       });
@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (formData) => {
     try {
       // Example: Using axiosInstance for registration
-      const response = await axiosInstance.post("/signup", formData);
+      const response = await axiosInstance.post("/api/signup", formData);
 
       // Assuming your API returns a token upon successful registration
       // const { token } = response.data;

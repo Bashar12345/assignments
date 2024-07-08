@@ -27,7 +27,7 @@ const useUserInfo = () => {
         formData.append('password', "12345678As@");
 
         // Replace 'user-login' with your actual API endpoint
-        const response = await axiosInstance.post('/user-login', formData);
+        const response = await axiosInstance.post('/api/user-login', formData);
         // console.log(response.data);
 
         setUserInfo(response.data.user);

@@ -32,12 +32,15 @@ import TimeFormat from "../../components/TimeFormat.jsx";
 import MessageIcon from "../../assets/MessageIcon.jsx";
 import RelationIcon from "../../assets/RelationIcon.jsx";
 import DividerWithIcon from "../../components/DividerWithIcon.jsx";
+import LinkCard from "../../components/LinkCard.jsx";
+import SharedPostCard from "../../components/SharedPostCard.jsx";
 
 // import Wow from "../../assets/Wow.png";
 // import Sad from "../../assets/Sad.png";
 // import Angry from "../../assets/Angry.png";
 
 const PostList = ({ posts, loading, loadMore, error }) => {
+  const imagePath = ` ${import.meta.env.VITE_BASE_URL}/uploads/posts`;
   const observer = useRef();
   const [repliesVisible, setRepliesVisible] = useState({});
 
@@ -74,7 +77,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
           sx={{
             marginBottom: { xs: 0, sm: 2 },
             width: { xs: "100%", sm: "auto" },
-            borderBottom: {xs:"1px solid #E5E5E5", sm:"0px"},
+            borderBottom: { xs: "1px solid #E5E5E5", sm: "0px" },
           }} // md:"655px"
         >
           <CardContent sx={{ padding: 0 }}>
@@ -95,7 +98,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     height: "50px",
                     borderRadius: { xs: "10px", sm: "50%" },
                   }}
-                  src={alterImage || post.user_id.profile_pic}
+                  src={`${imagePath}/${post.user_id.profile_pic}`}
                   alt={post.user_id.username}
                 />
                 <Box ml={1}>
@@ -280,37 +283,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             ) : null}
 
             {/* Shared Post Description */}
-            {post.share_post_id && (
-              <Card variant="outlined" sx={{ margin: 3, padding: 0 }}>
-                <CardContent>
-                  <Typography
-                    sx={{
-                      fontFamily: "poppins",
-                      fontSize: "15px",
-                      fontWeight: 400,
-                      lineHeight: "18.5px",
-                      textAlign: "left",
-                    }}
-                  >
-                    {post.share_post_id.description ||
-                      "No shared post description"}
-                  </Typography>
-                  <Typography
-                    color="textSecondary"
-                    sx={{
-                      fontFamily: "Poppins",
-                      fontSize: "12px",
-                      fontWeight: 400,
-                      lineHeight: "18.5px",
-                      textAlign: "left",
-                      color: "gray",
-                    }}
-                  >
-                    {`Shared from ${post.share_post_id.user_id.first_name} ${post.share_post_id.user_id.last_name}`}
-                  </Typography>
-                </CardContent>
-              </Card>
-            )}
+            {post.share_post_id.length > 0 && <SharedPostCard post={post} />}
 
             {/* Post Media */}
             {post.media.length > 0 && (
@@ -320,10 +293,24 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 height="395"
                 width="655"
                 // image={post.media[0] || alterImage}
-                image={alterImage || "https://picsum.photos/200"}
+                // image={alterImage || "https://picsum.photos/200"}
+                image={`${imagePath}/${post.media[0]?.media}` || alterImage}
                 alt="Post media"
               />
             )}
+
+            {/* Post Links */}
+            {post.link_image.length > 0 && (
+              <LinkCard
+                post={post}
+                imagePath={imagePath}
+                alterImage={alterImage}
+              />
+            )}
+
+
+
+
 
             {/* Post Reactions */}
             <Box
@@ -741,7 +728,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     // paddingInline={2}
                   >
                     <Avatar
-                      src={propImage}
+                      src={`${imagePath}/${post.user_id.profile_pic}`}
                       sx={{
                         width: "59px",
                         height: "59px",

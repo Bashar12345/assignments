@@ -16,6 +16,7 @@ import {
   AppBar,
   Toolbar,
   TextField,
+  useMediaQuery,
 } from "@mui/material";
 import {
   Close as CloseIcon,
@@ -33,8 +34,10 @@ import "slick-carousel/slick/slick-theme.css";
 import { NextArrow, PrevArrow } from "../../components/Arrow";
 
 const StoryList = () => {
+  const isXs = useMediaQuery('(max-width:600px)'); 
   const [stories, setStories] = useState([]);
   const sliderSettings = {
+    arrows: !isXs,
     dots: true,
     infinite: true,
     speed: 500,
@@ -286,7 +289,7 @@ const StoryList = () => {
               zIndex: 1,
             }}
           >
-            <Slider {...sliderSettings}>
+            <Slider {...sliderSettings} >
               {images.map((image, index) => (
                 <Box key={index} sx={{ position: "relative" }}>
                   <img

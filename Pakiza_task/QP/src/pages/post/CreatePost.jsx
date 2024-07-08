@@ -39,6 +39,8 @@ const btnTypoStyleProps = {
 
 const CreatePost = () => {
   const { userInfo, loading, error } = useUserInfo();
+  const imagePath = ` ${import.meta.env.VITE_BASE_URL}/uploads/posts`;
+  console.log(imagePath);
 
   // console.log(userInfo);
 
@@ -81,7 +83,7 @@ const CreatePost = () => {
       >
         <Avatar
           alt={userInfo.last_name}
-          src={propImage || userInfo?.profilePic}
+          src={`${imagePath}/${userInfo?.profilePic}`}
           sx={{
             width: "59px",
             height: "59px",

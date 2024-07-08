@@ -27,7 +27,7 @@ const AppLayout = () => {
 
       <Box sx={{ marginTop: { xs: "0px", sm: "6px" } }}>
         <CssBaseline />
-        <NavbarMobile sx={{ zIndex: 1201 }} />
+        {!isStoryListRoute && <NavbarMobile sx={{ zIndex: 1201 }} />}
         <LayoutContainer>
           <Outlet />
         </LayoutContainer>
