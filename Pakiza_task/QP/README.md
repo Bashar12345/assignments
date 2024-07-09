@@ -1,9 +1,17 @@
 ### React + Vite
 
+
+# If you notice any components that are not perfectly aligned, please understand that this may not have been done intentionally or due to limitations on my end. 
+
+## I am eager to learn and improve, and I genuinely appreciate your guidance and feedback. I am fully committed to doing my best and taking on any tasks necessary for this role.
+
+## Thank you for considering me for this opportunity. I am enthusiastic about the chance to contribute and grow with your team.
+
 # For preview perpose i am not using protected routes
 # click logo the sidebar will open all the pages are listed in the sidebar for easy navigation
 
-# Quantum Possibilities Social Media Application
+
+## Quantum Possibilities Social Media Application
 
 Welcome to the Quantum Possibilities Social Media Application. This project includes both a frontend built with React and Material-UI, and a backend built with Node.js, Express, and MongoDB. The application provides features like user registration, login, posting stories, and more.
 
