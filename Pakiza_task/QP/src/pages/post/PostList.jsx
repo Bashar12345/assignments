@@ -10,26 +10,24 @@ import {
   Divider,
   IconButton,
   Button,
-  CardHeader,
   Container,
   TextField,
 } from "@mui/material";
-import { format } from "date-fns";
+
 import alterImage from "../../assets/props_img.jpeg";
-import propImage from "../../assets/props_img.jpeg";
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ThreeCirclesSVG from "../../assets/ThreeDotIcon";
 import CrossSVG from "../../assets/CloseRingLight";
 import PublicSvg from "../../assets/publicSvg";
 import Haha from "../../assets/haha.png";
-import Like from "../../assets/Like.jsx";
+
 import CommentIcon from "../../assets/CommentIcon.jsx";
 import Love from "../../assets/love.png";
 import ShareIcon from "../../assets/ShareIcon.jsx";
 import ReplyArrow from "../../assets/ReplyArrow.jsx";
 import TimeFormat from "../../components/TimeFormat.jsx";
-import MessageIcon from "../../assets/MessageIcon.jsx";
+
 import RelationIcon from "../../assets/RelationIcon.jsx";
 import DividerWithIcon from "../../components/DividerWithIcon.jsx";
 import LinkCard from "../../components/LinkCard.jsx";
@@ -81,7 +79,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             borderBottom: { xs: "1px solid #E5E5E5", sm: "0px" },
           }} // md:"655px"
         >
-          <CardContent sx={{ padding: 0 }}>
+          <CardContent sx={{ padding: "0px" }}>
             {/* Post Header */}
 
             <Box display="flex" alignItems="center" mb={1}>
@@ -285,17 +283,22 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             ) : null}
 
             {/* Shared Post Description */}
-            {post?.share_post_id && (<SharedPostCard post={post} />)}
+            {post?.share_post_id && <SharedPostCard post={post} />}
 
             {/* Post Media */}
             {post.media.length > 0 && (
               <CardMedia
                 component="img"
-                sx={{ margin: "0px", padding: "0px", objectFit: "cover" }}
+                sx={{ margin: "0px", padding: "0px",marginTop:"8px", objectFit: "cover" }}
                 height="auto"
                 width="655px"
                 // image={alterImage || "https://picsum.photos/200"}
-                image={`${imagePath}/${post.media[0]?.media}` || alterImage }
+                image={
+                  post.media && post.media[0]?.media !== "null"
+                    ? `${imagePath}/${post.media[0].media}`
+                    : alterImage
+                }
+                // image={ {post.media[0]?.media} not "null" `${imagePath}/${post.media[0]?.media}` || alterImage }
                 alt="Posted picture "
               />
             )}
@@ -453,7 +456,6 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 </Typography>
               </Box> */}
 
-              
               {/* Comment */}
               <Box display="flex" alignItems="center">
                 <IconButton

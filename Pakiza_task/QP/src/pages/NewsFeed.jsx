@@ -1,6 +1,6 @@
 import useFetchPosts from '../api/getAllusersPosts';
 import PostList from '../pages/post/PostList';
-import { Typography } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
 const NewsFeed = () => {
   const { posts, loading, error, loadMore } = useFetchPosts();
@@ -8,12 +8,14 @@ const NewsFeed = () => {
   if (error) return <Typography>Error loading posts: {error.message}</Typography>;
 
   return (
+    <Container>
     <PostList
       posts={posts}
       loading={loading}
       loadMore={loadMore}
       error={error}
     />
+    </Container>
   );
 };
 
