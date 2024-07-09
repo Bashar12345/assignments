@@ -1,4 +1,4 @@
-const Like = () => {
+const LikeIcon = () => {
   return (
     <svg
       width="23"
@@ -15,4 +15,4 @@ const Like = () => {
   );
 };
 
-export default Like;
+export default LikeIcon;

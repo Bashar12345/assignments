@@ -2,11 +2,11 @@ import { Outlet, useLocation } from "react-router-dom";
 import { CssBaseline } from "@mui/material";
 import Navbar from "../components/Navbar";
 import { Box } from "@mui/material";
-import { margin, padding, styled } from "@mui/system";
+import { styled } from "@mui/system";
 import NavbarMobile from "../components/NavbarMobile";
 
 const LayoutContainer = styled(Box)({
-  marginInline: { xs: "0.1rem", sm: "1rem" },
+  marginInline: { xs: "0.1rem", sm: "1rem", xl: "4rem" },
   // display: "flex",
 });
 

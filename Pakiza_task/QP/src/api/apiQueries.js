@@ -6,7 +6,7 @@ console.log(import.meta.env.VITE_BASE_URL)
 // Create an instance of axios with default configuration
 const axiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // Replace with your base URL
-  timeout: 10000, // Example timeout
+  timeout: 20000, // Example timeout
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },

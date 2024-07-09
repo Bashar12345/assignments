@@ -45,11 +45,18 @@ const CreatePost = () => {
   // console.log(userInfo);
 
   const featuredUsers = [
-    { id: 1, name: "John Doe", profilePic: propImage },
-    { id: 2, name: "Jane Smith", profilePic: propImage },
-    { id: 3, name: "Mike Johnson", profilePic: propImage },
-    { id: 4, name: "Emily Smith", profilePic: propImage },
-    { id: 5, name: "Lola Johnson", profilePic: propImage },
+    { id: 1, name: "John Doe", profilePic: propImage, share_reel_id: 101 },
+    { id: 2, name: "Jane Smith", profilePic: propImage }, // No share_reel_id
+    { id: 3, name: "Mike Johnson", profilePic: propImage, share_reel_id: 103 },
+    { id: 4, name: "Emily Smith", profilePic: propImage }, // No share_reel_id
+    { id: 5, name: "Lola Johnson", profilePic: propImage, share_reel_id: 105 },
+    { id: 6, name: "James Brown", profilePic: propImage, share_reel_id: 106 },
+    { id: 7, name: "Anna White", profilePic: propImage }, // No share_reel_id
+    { id: 8, name: "Robert Black", profilePic: propImage, share_reel_id: 108 },
+
+    { id: 10, name: "David Blue", profilePic: propImage, share_reel_id: 110 },
+
+    { id: 12, name: "Karen Grey", profilePic: propImage, share_reel_id: 112 },
     // Add more as needed
   ];
 
@@ -205,7 +212,7 @@ const CreatePost = () => {
               >
                 <Avatar
                   alt={featuredUser.last_name}
-                  src={propImage || featuredUser.profilePic}
+                  src={propImage || featuredUser?.media}
                   sx={{
                     width: { xs: "80px", sm: "150px" },
                     height: { xs: "118px", sm: "214px" },

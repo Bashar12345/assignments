@@ -34,6 +34,7 @@ import RelationIcon from "../../assets/RelationIcon.jsx";
 import DividerWithIcon from "../../components/DividerWithIcon.jsx";
 import LinkCard from "../../components/LinkCard.jsx";
 import SharedPostCard from "../../components/SharedPostCard.jsx";
+import ReactionButton from "../../components/ReactionButton.jsx";
 
 // import Wow from "../../assets/Wow.png";
 // import Sad from "../../assets/Sad.png";
@@ -72,7 +73,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
     <Box display="grid" justifyContent={"center"} mt={{ xs: 0, sm: 2 }}>
       {posts.map((post, index) => (
         <Card
-          key={index}
+          key={post.post_id}
           ref={index === posts.length - 1 ? lastPostElementRef : null}
           sx={{
             marginBottom: { xs: 0, sm: 2 },
@@ -218,6 +219,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               </Container>
             ) : null}
 
+            {/* Post Reaction */}
             {post.reactionCount.length > 0 ? (
               <>
                 <Divider border={"1px solid rgba(0, 0, 0, 0.12)"} />
@@ -283,19 +285,18 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             ) : null}
 
             {/* Shared Post Description */}
-            {post.share_post_id.length > 0 && <SharedPostCard post={post} />}
+            {post?.share_post_id && (<SharedPostCard post={post} />)}
 
             {/* Post Media */}
             {post.media.length > 0 && (
               <CardMedia
                 component="img"
                 sx={{ margin: "0px", padding: "0px", objectFit: "cover" }}
-                height="395"
-                width="655"
-                // image={post.media[0] || alterImage}
+                height="auto"
+                width="655px"
                 // image={alterImage || "https://picsum.photos/200"}
-                image={`${imagePath}/${post.media[0]?.media}` || alterImage}
-                alt="Post media"
+                image={`${imagePath}/${post.media[0]?.media}` || alterImage }
+                alt="Posted picture "
               />
             )}
 
@@ -307,7 +308,6 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 alterImage={alterImage}
               />
             )}
-
 
             {/* Post Reactions */}
             <Box
@@ -427,7 +427,10 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               color={"#6A6A6B"}
               marginInline={"16px"}
             >
-              <Box display="flex" alignItems="center">
+              {/* Like */}
+              <ReactionButton />
+
+              {/* <Box display="flex" alignItems="center">
                 <IconButton
                   sx={{
                     paddingRight: "0px",
@@ -448,8 +451,10 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 >
                   Like
                 </Typography>
-              </Box>
+              </Box> */}
 
+              
+              {/* Comment */}
               <Box display="flex" alignItems="center">
                 <IconButton
                   sx={{
@@ -472,7 +477,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   Comment
                 </Typography>
               </Box>
-
+              {/* Share */}
               <Box display="flex" alignItems="center">
                 <IconButton
                   sx={{
