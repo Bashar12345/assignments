@@ -93,7 +93,7 @@ const PhotoStroy = () => {
     axiosInstance
       .post("/story", formData)
       .then((response) => {
-        // console.log("Form submitted successfully:", response.data);
+        console.log("Form submitted successfully:", response.data);
         toast.success("Form submitted successfully");
       })
       .catch((error) => {
@@ -117,7 +117,7 @@ const PhotoStroy = () => {
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
-            zIndex: -1,
+            zIndex: 0,
           },
         }}
       >

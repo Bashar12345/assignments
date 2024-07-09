@@ -21,13 +21,13 @@ const AppLayout = () => {
       {!isStoryListRoute && (
         <Navbar
           position="fixed"
-          style={{ zIndex: 1000, backgroundColor: "#fff" }}
+          style={{ zIndex: 1500, backgroundColor: "#fff" }}
         />
       )}
 
       <Box sx={{ marginTop: { xs: "0px", sm: "6px" } }}>
         <CssBaseline />
-        {!isStoryListRoute && <NavbarMobile sx={{ zIndex: 1201 }} />}
+        {!isStoryListRoute && <NavbarMobile sx={{ zIndex: 1200 }} />}
         <LayoutContainer>
           <Outlet />
         </LayoutContainer>

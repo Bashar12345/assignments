@@ -26,6 +26,7 @@ import { color, display } from "@mui/system";
 import PhotoIcon from "../../assets/PhotoIcon";
 import PhotoIconTwo from "../../assets/PhotoIconTwo";
 import { useEffect, useRef, useState } from "react";
+import useSavePost from "../../api/uploadAPost";
 
 const btnTypoStyleProps = {
   fontFamily: "poppins",
@@ -37,8 +38,28 @@ const btnTypoStyleProps = {
 };
 
 const CreatePost = () => {
-  const { userInfo, loading, error, profileImagePath } = useUserInfo();
-  // console.log(imagePath);
+  const { userInfo, profileImagePath } = useUserInfo();
+  const [postDescription, setPostDescription] = useState("");
+  const [selectedFiles, setSelectedFiles] = useState([]);
+  const { savePost } = useSavePost();
+
+  const handleFileChange = (event) => {
+    const files = Array.from(event.target.files);
+    setSelectedFiles(files);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const result = await savePost(postDescription, selectedFiles);
+    if (result.success) {
+      console.log("Post created successfully");
+      // Reset form fields
+      setPostDescription("");
+      setSelectedFiles([]);
+    } else {
+      console.error("Error creating post:", result.error);
+    }
+  };
 
   console.log(userInfo);
 
@@ -82,6 +103,8 @@ const CreatePost = () => {
 
   return (
     <Box
+      component="form"
+      onSubmit={handleSubmit}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -148,12 +171,19 @@ const CreatePost = () => {
             backgroundColor: "#EEEEEE",
             borderRadius: "8px",
           }}
+          component="label"
         >
           <PhotoIconTwo sx={{ padding: "4px" }} />
+          <input
+            type="file"
+            multiple
+            hidden
+            onChange={handleFileChange}
+          />
         </IconButton>
       </Box>
 
-          {/* Divider */}
+      {/* Divider */}
       <Box
         sx={{
           display: { xs: "none", md: "block" },
@@ -172,11 +202,25 @@ const CreatePost = () => {
         }}
         width="100%"
       >
-        <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}>
+        <Button startIcon={<CameraIcon />} sx={{ textTransform: "none" }}
+          component="label">
           <Typography sx={btnTypoStyleProps}>Live Video</Typography>
+          <input
+            type="file"
+            multiple
+            hidden
+            onChange={handleFileChange}
+          />
         </Button>
-        <Button startIcon={<PhotoIcon />} sx={{ textTransform: "none" }}>
+        <Button startIcon={<PhotoIcon />} sx={{ textTransform: "none" }}
+          component="label">
           <Typography sx={btnTypoStyleProps}>Photo/Video</Typography>
+          <input
+            type="file"
+            multiple
+            hidden
+            onChange={handleFileChange}
+          />
         </Button>
         <Button
           startIcon={
@@ -185,8 +229,15 @@ const CreatePost = () => {
             />
           }
           sx={{ textTransform: "none" }}
+          component="label"
         >
           <Typography sx={btnTypoStyleProps}>Feeling/activity</Typography>
+          <input
+            type="file"
+            multiple
+            hidden
+            onChange={handleFileChange}
+          />
         </Button>
       </Box>
 
@@ -229,7 +280,7 @@ const CreatePost = () => {
                 width: "auto",
                 maxWidth: { xs: "80px", sm: "150px" }, // Adjust width based on screen size
                 height: { xs: "142px", sm: "264px" }, // Adjust height based on screen size
-                
+
               }}
             >
               <Box
@@ -242,7 +293,7 @@ const CreatePost = () => {
                   maxWidth: { xs: "80px", sm: "150px" },
                   height: { xs: "142px", sm: "264px" },
                   margin: "0 auto", // Center align the slide within the Slider container
-            
+
                 }}
               >
                 <Avatar
@@ -266,7 +317,15 @@ const CreatePost = () => {
                   alignItems="center"
                 >
                   {index === 0 ? (
-                    <PlusIcon />
+                    <IconButton component="label">
+                      <PlusIcon />
+                      <input
+                        type="file"
+                        multiple
+                        hidden
+                        onChange={handleFileChange} />
+
+                    </IconButton>
                   ) : (
                     <Box
                       display="flex"
@@ -302,30 +361,30 @@ const CreatePost = () => {
           ))}
         </Slider>
 
-     {/* Next Arrow */}
-     <IconButton
-        sx={{
-          display: { xs: "none", md: "block" },
-          position: "absolute",
-          right: "16px", // Adjust as necessary
-          width: "50px",
-          height: "50px",
-          top: "50%",
-          transform: "translateY(-50%)",
-          zIndex: 1000,
-          backgroundColor: "rgba(255, 255, 255, 0.8)", // Background to make it more visible
-          "&:hover": {
-            backgroundColor: "rgba(255, 255, 255, 1)",
-          },
-        }}
-        onClick={handleNextClick} // Add click handler for sliding functionality
-      >
-        <KeyboardArrowRight style={{ zIndex: 1000, right: "16px" }} />
-      </IconButton>
+        {/* Next Arrow */}
+        <IconButton
+          sx={{
+            display: { xs: "none", md: "block" },
+            position: "absolute",
+            right: "16px", // Adjust as necessary
+            width: "50px",
+            height: "50px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 1000,
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // Background to make it more visible
+            "&:hover": {
+              backgroundColor: "rgba(255, 255, 255, 1)",
+            },
+          }}
+          onClick={handleNextClick} // Add click handler for sliding functionality
+        >
+          <KeyboardArrowRight style={{ zIndex: 1000, right: "16px" }} />
+        </IconButton>
 
       </Box>
 
- 
+
     </Box>
   );
 };

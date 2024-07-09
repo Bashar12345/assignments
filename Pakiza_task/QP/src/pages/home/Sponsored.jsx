@@ -10,7 +10,7 @@ import propImage from "../../assets/props_img.jpeg";
 
 const Sponsored = ({ primaryText, secondaryText, avatarSrc }) => {
   return (
-    <ListItem sx={{ paddingInline: "0px", paddingBlock: "4px" }}>
+    <ListItem button sx={{ paddingInline: "0px", paddingBlock: "4px" }}>
       <ListItemAvatar>
         <Avatar
           sx={{ width: "110px", height: "107px", borderRadius: "8px" }}

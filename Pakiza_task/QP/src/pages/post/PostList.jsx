@@ -20,10 +20,10 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import ThreeCirclesSVG from "../../assets/ThreeDotIcon";
 import CrossSVG from "../../assets/CloseRingLight";
 import PublicSvg from "../../assets/publicSvg";
-import Haha from "../../assets/haha.png";
+import Haha from "../../assets/b5ff2eb06261e3566ba8299e5afb8f27.png";
 
 import CommentIcon from "../../assets/CommentIcon.jsx";
-import Love from "../../assets/love.png";
+import Love from "../../assets/87a2e354a5342e2971aca3c1c36d9994.png";
 import ShareIcon from "../../assets/ShareIcon.jsx";
 import ReplyArrow from "../../assets/ReplyArrow.jsx";
 import TimeFormat from "../../components/TimeFormat.jsx";
@@ -143,11 +143,10 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   >
                     <TimeFormat post={post.createdAt} />
                     {post.location_name && (
-                      <small>{` ${
-                        post?.location_name === "null"
+                      <small>{` ${post?.location_name === "null"
                           ? ""
                           : post?.location_name
-                      }`}</small>
+                        }`}</small>
                     )}{" "}
                     •
                     {post.post_privacy === "public" && (
@@ -289,7 +288,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             {post.media.length > 0 && (
               <CardMedia
                 component="img"
-                sx={{ margin: "0px", padding: "0px",marginTop:"8px", objectFit: "cover" }}
+                sx={{ margin: "0px", padding: "0px", marginTop: "8px", objectFit: "cover" }}
                 height="auto"
                 width="655px"
                 // image={alterImage || "https://picsum.photos/200"}
@@ -358,6 +357,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     src={Love}
                     alt="love"
                   />
+                  {/* <Love/> */}
                 </IconButton>
 
                 <Typography
@@ -433,28 +433,6 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               {/* Like */}
               <ReactionButton />
 
-              {/* <Box display="flex" alignItems="center">
-                <IconButton
-                  sx={{
-                    paddingRight: "0px",
-                    marginRight: "0px",
-                    marginBottom: "4px",
-                  }}
-                >
-                  <Like />
-                </IconButton>
-                <Typography
-                  sx={{
-                    marginLeft: "4px",
-                    fontFamily: "Poppins",
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    lineHeight: "24px",
-                  }}
-                >
-                  Like
-                </Typography>
-              </Box> */}
 
               {/* Comment */}
               <Box display="flex" alignItems="center">
@@ -466,18 +444,20 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   }}
                 >
                   <CommentIcon />
+                  <Typography
+                    marginLeft={1}
+                    sx={{
+                      fontFamily: "Poppins",
+                      fontSize: "16px",
+                      fontWeight: 500,
+                      lineHeight: "24px",
+
+                    }}
+                  >
+                    Comment
+                  </Typography>
                 </IconButton>
-                <Typography
-                  marginLeft={1}
-                  sx={{
-                    fontFamily: "Poppins",
-                    fontSize: "16px",
-                    fontWeight: 500,
-                    lineHeight: "24px",
-                  }}
-                >
-                  Comment
-                </Typography>
+
               </Box>
               {/* Share */}
               <Box display="flex" alignItems="center">
@@ -489,8 +469,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                   }}
                 >
                   <ShareIcon />
-                </IconButton>
-                <Typography
+                  <Typography
                   marginLeft={1}
                   sx={{
                     fontFamily: "Poppins",
@@ -501,6 +480,8 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                 >
                   Share
                 </Typography>
+                </IconButton>
+                
               </Box>
             </Box>
           </CardContent>
@@ -691,25 +672,25 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                                     </Typography>
                                     {reply.replies_comment_reactions.length >
                                       0 && (
-                                      <Box display="flex" mt={1}>
-                                        {reply.replies_comment_reactions.map(
-                                          (reaction) => (
-                                            <IconButton
-                                              key={reaction._id}
-                                              sx={{ padding: "4px" }}
-                                            >
-                                              {reaction.reaction_type ===
-                                                "love" && (
-                                                <FavoriteIcon
-                                                  color="secondary"
-                                                  fontSize="small"
-                                                />
-                                              )}
-                                            </IconButton>
-                                          )
-                                        )}
-                                      </Box>
-                                    )}
+                                        <Box display="flex" mt={1}>
+                                          {reply.replies_comment_reactions.map(
+                                            (reaction) => (
+                                              <IconButton
+                                                key={reaction._id}
+                                                sx={{ padding: "4px" }}
+                                              >
+                                                {reaction.reaction_type ===
+                                                  "love" && (
+                                                    <FavoriteIcon
+                                                      color="secondary"
+                                                      fontSize="small"
+                                                    />
+                                                  )}
+                                              </IconButton>
+                                            )
+                                          )}
+                                        </Box>
+                                      )}
                                   </Box>
                                 </Box>
                               ))}
@@ -729,7 +710,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                     alignItems="center"
                     width="100%"
                     mb={2}
-                    // paddingInline={2}
+                  // paddingInline={2}
                   >
                     <Avatar
                       src={`${imagePath}/${post.user_id.profile_pic}`}

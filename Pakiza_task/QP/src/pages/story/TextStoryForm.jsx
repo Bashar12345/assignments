@@ -78,7 +78,7 @@ const TextStoryForm = () => {
       // Example Axios POST request to your backend
       const response = await axiosInstance.post("/story", formData);
 
-      // console.log("Image uploaded successfully:", response.data);
+      console.log("Image uploaded successfully:", response.data);
       toast.success("Image uploaded successfully");
       // Handle success (e.g., show message to user)
     } catch (error) {
@@ -111,7 +111,7 @@ const TextStoryForm = () => {
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : 64,
-            zIndex: -1,
+            zIndex: 0,
             display: isMobile ? "none" : "block", // Hide drawer on mobile
           },
         }}

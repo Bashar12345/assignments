@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
-import Love from "../assets/love.png";
-import Haha from "../assets/haha.png";
+import Love from "../assets/87a2e354a5342e2971aca3c1c36d9994.png";
+import Haha from "../assets/b5ff2eb06261e3566ba8299e5afb8f27.png";
 // import Angry from "./icons/Angry";
 // import Sad from "./icons/Sad";
 import Like from "../assets/Like.jsx";
@@ -33,21 +33,24 @@ const ReactionButton = () => {
             paddingRight: "0px",
             marginRight: "0px",
             marginBottom: "4px",
+            cursor: "pointer",
           }}
         >
           <Like />
-        </IconButton>
-        <Typography
+          <Typography
           sx={{
             marginLeft: "4px",
             fontFamily: "Poppins",
             fontSize: "16px",
             fontWeight: 500,
             lineHeight: "24px",
+            cursor: "pointer",
           }}
         >
           Like
         </Typography>
+        </IconButton>
+       
         {showReactions && (
           <Box
             display="flex"
@@ -59,27 +62,27 @@ const ReactionButton = () => {
             borderRadius="8px"
             padding="4px"
           >
-            <IconButton sx={{ padding: "4px" }}>
+            <IconButton sx={{ padding: "4px", cursor: "pointer" }}>
               <Like />
             </IconButton>
-            <IconButton sx={{ padding: "4px" }}>
-              <Love />
+            <IconButton sx={{ padding: "4px", cursor: "pointer" }}>
+              <Box component="img" src={Love} />
             </IconButton>
-            <IconButton sx={{ padding: "4px" }}>
+            <IconButton sx={{ padding: "4px", cursor: "pointer" }}>
               <Haha />
             </IconButton>
-            <IconButton sx={{ color: "white" }}>
+            <IconButton sx={{ color: "white", cursor: "pointer" }}>
               <Typography
                 variant="body1"
-                sx={{ color: "white", padding: "4px" }}
+                sx={{ color: "white", padding: "4px", cursor: "pointer" }}
               >
                 😢
               </Typography>
             </IconButton>
-            <IconButton sx={{ color: "white" }}>
+            <IconButton sx={{ color: "white", cursor: "pointer" }}>
               <Typography
                 variant="body1"
-                sx={{ color: "white", padding: "4px" }}
+                sx={{ color: "white", padding: "4px", cursor: "pointer" }}
               >
                 😡
               </Typography>

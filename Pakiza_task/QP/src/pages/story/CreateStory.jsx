@@ -61,7 +61,7 @@ const CreateStory = () => {
         sx={{
           "& .MuiDrawer-paper": {
             boxSizing: "border-box",
-            zIndex: -1,
+            zIndex: 0,
             width: isMobile ? "100%" : 374,
             height: isMobile ? "50%" : "calc(100% - 64px)",
             top: isMobile ? "auto" : "64px",
