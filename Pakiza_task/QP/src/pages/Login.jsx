@@ -22,7 +22,7 @@ const Login = () => {
   const Navigate = useNavigate();
   const { login, isAuthenticated } = useAuth();
 
-  console.log(isAuthenticated);
+  console.log("isAuthenticated ",isAuthenticated);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);

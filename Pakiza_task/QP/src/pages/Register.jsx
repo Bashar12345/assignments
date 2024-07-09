@@ -110,8 +110,8 @@ const Register = () => {
       newErrors.acceptTerms = "";
     }
 
-    console.log("formData:", formData);
-    console.log("newErrors:", newErrors);
+    // console.log("formData:", formData);
+    // console.log("newErrors:", newErrors);
 
     setFormErrors(newErrors); // Update formErrors state with newErrors
     return valid;
@@ -159,7 +159,8 @@ const Register = () => {
       // console.log("Registration successful:", response.data);
 
       clearForm();
-      console.log("Form submitted successfully. Form data cleared.");
+      // console.log("Form submitted successfully. Form data cleared.");
+      toast.success("Form submitted successfully. Form data cleared.");
     } catch (error) {
       console.error("Registration error:", error);
       toast.error(error.response?.data?.message || "Registration failed.");

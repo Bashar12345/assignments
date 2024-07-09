@@ -12,7 +12,7 @@ const useFetchPosts = () => {
       setLoading(true);
       try {
         const response = await axiosInstance.get(`/api/get-all-users-posts?page=${page}&limit=10`);
-        console.log(response);
+        // console.log(response);
         setPosts(prevPosts => [...prevPosts, ...response.data.posts]);
       } catch (err) {
         setError(err);

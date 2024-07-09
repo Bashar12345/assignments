@@ -32,6 +32,7 @@ import { Tabs, Tab, Drawer } from "@mui/material";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../api/apiQueries";
+import useUserInfo from "../api/getUserInfo";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -84,6 +85,8 @@ export default function Navbar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
+  const { userInfo, loading, error, profileImagePath } = useUserInfo();
+
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -104,7 +107,7 @@ export default function Navbar() {
   const handleLogout = async () => {
     try {
       const response = await axiosInstance.get("/api/logout");
-      console.log("Logout Successful:", response.data); // Assuming your API returns a success message
+      // console.log("Logout Successful:", response.data); // Assuming your API returns a success message
       toast.success("Logout Successful");
 
       localStorage.removeItem("accessToken");
@@ -191,7 +194,7 @@ export default function Navbar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle />
+          <img src={profileImagePath} alt="Profile" />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -336,13 +339,15 @@ export default function Navbar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle
+              <Box
+              component="img"
+              src={profileImagePath}
                 sx={{
                   width: "45px",
                   height: "46.8px",
                   top: "-1px",
                   gap: "0px",
-                  borderRadius: "30px 0px 0px 0px",
+                  borderRadius: "30px",
                   opacity: "0px",
                 }}
               />

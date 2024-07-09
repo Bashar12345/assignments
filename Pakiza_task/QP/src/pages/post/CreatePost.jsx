@@ -5,17 +5,15 @@ import {
   TextField,
   Button,
   IconButton,
-  Divider,
 } from "@mui/material";
+
 import { KeyboardArrowRight } from "@mui/icons-material";
-import {
-  // VideoCall,
-  // PhotoLibrary,
-  InsertEmoticon,
-  LocationOn,
-  MoreHoriz,
-  // ArrowForwardIosIcon,
-} from "@mui/icons-material";
+import { InsertEmoticon } from "@mui/icons-material";
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 import useUserInfo from "../../api/getUserInfo";
 import propImage from "../../assets/props_img.jpeg";
 import propImageTwo from "../../assets/prop_img-2.png";
@@ -27,6 +25,7 @@ import CameraIcon from "../../assets/CameraIcon";
 import { color, display } from "@mui/system";
 import PhotoIcon from "../../assets/PhotoIcon";
 import PhotoIconTwo from "../../assets/PhotoIconTwo";
+import { useEffect, useRef, useState } from "react";
 
 const btnTypoStyleProps = {
   fontFamily: "poppins",
@@ -38,11 +37,10 @@ const btnTypoStyleProps = {
 };
 
 const CreatePost = () => {
-  const { userInfo, loading, error } = useUserInfo();
-  const imagePath = ` ${import.meta.env.VITE_BASE_URL}/uploads/users`;
+  const { userInfo, loading, error, profileImagePath } = useUserInfo();
   // console.log(imagePath);
 
-  // console.log(userInfo);
+  console.log(userInfo);
 
   const featuredUsers = [
     { id: 1, name: "John Doe", profilePic: propImage, share_reel_id: 101 },
@@ -53,15 +51,33 @@ const CreatePost = () => {
     { id: 6, name: "James Brown", profilePic: propImage, share_reel_id: 106 },
     { id: 7, name: "Anna White", profilePic: propImage }, // No share_reel_id
     { id: 8, name: "Robert Black", profilePic: propImage, share_reel_id: 108 },
-
     { id: 10, name: "David Blue", profilePic: propImage, share_reel_id: 110 },
-
     { id: 12, name: "Karen Grey", profilePic: propImage, share_reel_id: 112 },
     // Add more as needed
   ];
+  const [slidesToShow, setSlidesToShow] = useState(4); // Initial slides to show
+
+  const scrollRef = useRef(null);
+  const settings = {
+    arrows: false,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    // overflow: "visible",
+    variableWidth: true, // Allow slides to have variable width
+    centerMode: false, // Disable center mode to reduce gaps
+    swipeToSlide: true, // Enable swipe to slide
+  };
+
+
+
 
   const handleNextClick = () => {
-    console.log("Next clicked");
+    if (scrollRef.current) {
+      scrollRef.current.slickNext(); // Using slickNext() to slide to the next set
+    }
   };
 
   return (
@@ -72,7 +88,7 @@ const CreatePost = () => {
       sx={{
         backgroundColor: "#fff",
         borderRadius: "2px",
-        p: { xs: 0, sm: 2 },
+        p: { xs: 0, sm: "20px" },
         boxShadow: 3,
         pt: 5,
         height: { xs: "234px", md: "474px" },
@@ -89,9 +105,9 @@ const CreatePost = () => {
         paddingInline={{ xs: 1, sm: 2 }}
       >
         <Avatar
-          alt={userInfo.last_name}
-          // src={`${imagePath}/${userInfo?.profilePic}`|| propImage}
-          src={propImage}
+          alt={userInfo?.last_name}
+          src={profileImagePath || propImage}
+          // src={propImage}
           sx={{
             width: "59px",
             height: "59px",
@@ -137,6 +153,7 @@ const CreatePost = () => {
         </IconButton>
       </Box>
 
+          {/* Divider */}
       <Box
         sx={{
           display: { xs: "none", md: "block" },
@@ -173,6 +190,7 @@ const CreatePost = () => {
         </Button>
       </Box>
 
+      {/* Divider */}
       <Box
         sx={{
           display: { xs: "none", md: "block" },
@@ -182,23 +200,37 @@ const CreatePost = () => {
       />
 
       {/* Featured Users */}
+
       <Box position="relative" width="100%" height="100%" overflow="visible">
-        <Box
-          display="flex"
-          alignItems="center"
-          sx={{
-            whiteSpace: "nowrap",
-            overflowX: "auto",
-            "::-webkit-scrollbar": { display: "none" },
+
+
+
+        <Slider
+          {...settings}
+          className="slick-slider"
+          ref={scrollRef}
+          style={{
+            width: "100%", // Adjust to occupy full width
+            maxWidth: "100%", // Ensure it takes full available width
+            height: { xs: "144px", sm: "264px" }, // Update height based on screen size
+            // whiteSpace: "nowrap", // Prevent wrapping of items
+            // display: "flex", // Ensure it behaves as a flex container
+            // alignItems: "center", // Center items vertically
           }}
         >
           {/* Featured User Cards */}
-          {featuredUsers?.map((featuredUser, index) => (
+          {featuredUsers.map((featuredUser, index) => (
             <Box
               key={index}
               ml={{ xs: 1, sm: 0 }}
-              mr={{ xs: 0, sm: 1 }}
+              mr={{ xs: 0, sm: "5px" }}
               display="inline-block"
+              sx={{
+                width: "auto",
+                maxWidth: { xs: "80px", sm: "150px" }, // Adjust width based on screen size
+                height: { xs: "142px", sm: "264px" }, // Adjust height based on screen size
+                
+              }}
             >
               <Box
                 position="relative"
@@ -206,13 +238,16 @@ const CreatePost = () => {
                 justifyContent="center"
                 alignItems="center"
                 sx={{
-                  width: { xs: "80px", sm: "150px" },
+                  width: "auto",
+                  maxWidth: { xs: "80px", sm: "150px" },
                   height: { xs: "142px", sm: "264px" },
+                  margin: "0 auto", // Center align the slide within the Slider container
+            
                 }}
               >
                 <Avatar
-                  alt={featuredUser.last_name}
-                  src={propImage || featuredUser?.media}
+                  alt={featuredUser.name}
+                  src={featuredUser.profilePic}
                   sx={{
                     width: { xs: "80px", sm: "150px" },
                     height: { xs: "118px", sm: "214px" },
@@ -222,7 +257,6 @@ const CreatePost = () => {
                       "linear-gradient(0deg, #2DB9B9, #2DB9B9)",
                   }}
                 />
-                {/* Conditionally render either PlusIcon or Avatar */}
                 <Box
                   position="absolute"
                   bottom={{ xs: "-1%", sm: "0%" }}
@@ -240,21 +274,18 @@ const CreatePost = () => {
                       alignItems="center"
                     >
                       <Avatar
-                        transform="translate(-50%, -50%)"
                         sx={{
-                          alignItem: "center",
                           width: { xs: "22px", sm: "40px" },
                           height: { xs: "22px", sm: "40px" },
                           border: "2px solid #307777",
                           borderRadius: "50%",
                         }}
-                        alt={featuredUser.last_name}
-                        src={propImageTwo || featuredUser.profilePic}
+                        alt={featuredUser.name}
+                        src={propImageTwo}
                       />
                       <Typography
                         sx={{
                           marginTop: "2px",
-                          display: index === 0 ? "none" : "block",
                           fontSize: "10px",
                           fontWeight: 400,
                           fontFamily: "SF Pro Text",
@@ -269,29 +300,32 @@ const CreatePost = () => {
               </Box>
             </Box>
           ))}
-        </Box>
+        </Slider>
 
-        {/* Next Arrow */}
-        <IconButton
-          sx={{
-            display: { xs: "none", md: "block" },
-            position: "absolute",
-            right: "16px", // Adjust as necessary
-            width: "50px",
-            height: "50px",
-            top: "50%",
-            transform: "translateY(-50%)",
-            zIndex: 1000,
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Background to make it more visible
-            "&:hover": {
-              backgroundColor: "rgba(255, 255, 255, 1)",
-            },
-          }}
-          onClick={handleNextClick} // Add click handler for sliding functionality
-        >
-          <KeyboardArrowRight style={{ zIndex: 1000, right: "16px" }} />
-        </IconButton>
+     {/* Next Arrow */}
+     <IconButton
+        sx={{
+          display: { xs: "none", md: "block" },
+          position: "absolute",
+          right: "16px", // Adjust as necessary
+          width: "50px",
+          height: "50px",
+          top: "50%",
+          transform: "translateY(-50%)",
+          zIndex: 1000,
+          backgroundColor: "rgba(255, 255, 255, 0.8)", // Background to make it more visible
+          "&:hover": {
+            backgroundColor: "rgba(255, 255, 255, 1)",
+          },
+        }}
+        onClick={handleNextClick} // Add click handler for sliding functionality
+      >
+        <KeyboardArrowRight style={{ zIndex: 1000, right: "16px" }} />
+      </IconButton>
+
       </Box>
+
+ 
     </Box>
   );
 };

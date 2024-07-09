@@ -208,7 +208,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
                       fontSize: "14px",
                       fontWeight: 400,
                       lineHeight: "18.5px",
-                      textAlign: "left",
+                      textAlign: "justify",
                     }}
                   >
                     {post.description}
@@ -304,7 +304,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
             )}
 
             {/* Post Links */}
-            {post.link_image.length > 0 && (
+            {post.link_image && post.link_image.length > 0 && (
               <LinkCard
                 post={post}
                 imagePath={imagePath}
@@ -317,7 +317,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               display="flex"
               alignItems="center"
               justifyContent="space-between"
-              my={2}
+              my={1}
               mx={2}
             >
               <Box display="flex" alignItems="center">
@@ -426,7 +426,7 @@ const PostList = ({ posts, loading, loadMore, error }) => {
               display="flex"
               alignItems="center"
               justifyContent="space-between"
-              mt={2}
+              mx={1}
               color={"#6A6A6B"}
               marginInline={"16px"}
             >

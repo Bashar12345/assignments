@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axiosInstance from './apiQueries';
 
 const useUserInfo = () => {
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -41,7 +41,13 @@ const useUserInfo = () => {
     fetchUserInfo();
   }, []);
 
-  return { userInfo, loading, error };
+  // Construct imagePath based on userInfo
+  const profileImagePath = userInfo
+    ? `${import.meta.env.VITE_BASE_URL}/uploads/${userInfo.profile_pic}`
+    : null;
+  // console.log(userInfo)
+
+  return { userInfo, loading, error, profileImagePath };
 };
 
 export default useUserInfo;

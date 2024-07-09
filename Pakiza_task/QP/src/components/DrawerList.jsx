@@ -25,6 +25,7 @@ import SellerIcon from "../assets/SellerIcon";
 import BuyerIcon from "../assets/BuyerIcon";
 import MarketPlace from "../assets/MarketPlace";
 import logo from ".././assets/op.png";
+import useUserInfo from "../api/getUserInfo";
 
 //   const iconStyle = {
 //     height: "24px",
@@ -43,6 +44,8 @@ const typographyProps = {
 const DrawerList = ({ toggleDrawer }) => {
   const theme = useTheme();
 
+  const { userInfo, profileImagePath } = useUserInfo();
+
   const iconStyle = {
     height: "24px",
     width: "24px",
@@ -50,25 +53,6 @@ const DrawerList = ({ toggleDrawer }) => {
     paddingTop: "8px",
   };
 
-  const userInfo = {
-    _id: "6514147376594264b1103efe",
-    first_name: "Md ",
-    last_name: "Anik Islam",
-    username: "anik.ba",
-    email: "anik.ba@pakizatvl.com",
-    phone: "+1 212 121 212",
-    profile_pic:
-      "1719995947437-6514147376594264b1103efe-1719996478687-croppedImageProfile.jpg",
-    cover_pic:
-      "1718184718411-6514147376594264b1103efe-1718270743668-croppedImageCover.jpg",
-    user_status: null,
-    gender: {
-      _id: "65018b27577b4590853ef576",
-      gender_name: "Female",
-    },
-    email_list: ["asif@gmail.com", "pakiza@ptvl.com"],
-    fullName: "Md  Anik Islam",
-  };
 
   return (
     <Box
@@ -99,10 +83,10 @@ const DrawerList = ({ toggleDrawer }) => {
       <List>
         <ListItem button component={Link} to="/profie">
           <ListItemAvatar>
-            <Avatar alt="Anik Islam" src={PropImage || userInfo.profile_pic} />
+            <Avatar alt={userInfo?.username} src={profileImagePath} />
           </ListItemAvatar>
           <ListItemText
-            primary={userInfo.fullName}
+            primary={userInfo?.first_name + " " + userInfo?.last_name}
             primaryTypographyProps={{ fontSize: "16px" }}
           />
         </ListItem>

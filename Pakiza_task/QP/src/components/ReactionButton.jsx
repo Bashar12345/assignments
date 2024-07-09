@@ -22,13 +22,12 @@ const ReactionButton = () => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      mt={2}
       color={"#6A6A6B"}
       marginInline={"16px"}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <Box display="flex" alignItems="center" position="relative">
+      <Box display="flex" alignItems="center" justifyContent={"center"} position="relative">
         <IconButton
           sx={{
             paddingRight: "0px",

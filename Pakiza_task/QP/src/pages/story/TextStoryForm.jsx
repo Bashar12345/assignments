@@ -20,6 +20,7 @@ import StoryPreview from "../../components/StroyPreview";
 import { styled } from "@mui/material/styles";
 import axiosInstance from "../../api/apiQueries";
 import StoryLayout from "./StoryLayout";
+import { toast } from "react-toastify";
 
 const ColorOption = styled("div")({
   width: "23px",
@@ -77,7 +78,8 @@ const TextStoryForm = () => {
       // Example Axios POST request to your backend
       const response = await axiosInstance.post("/story", formData);
 
-      console.log("Image uploaded successfully:", response.data);
+      // console.log("Image uploaded successfully:", response.data);
+      toast.success("Image uploaded successfully");
       // Handle success (e.g., show message to user)
     } catch (error) {
       console.error("Error uploading image:", error);
